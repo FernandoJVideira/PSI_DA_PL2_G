@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RestGuestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EstadoPedido" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMenuPedido">
+          <Key>
+            <PropertyRef Name="ItemMenu_Id" />
+            <PropertyRef Name="Pedidos_Id" />
+          </Key>
+          <Property Name="ItemMenu_Id" Type="int" Nullable="false" />
+          <Property Name="Pedidos_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMenuRestaurante">
+          <Key>
+            <PropertyRef Name="ItemMenu_Id" />
+            <PropertyRef Name="Restaurantes_Id" />
+          </Key>
+          <Property Name="ItemMenu_Id" Type="int" Nullable="false" />
+          <Property Name="Restaurantes_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMenus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Preco" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetodoPagamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MetodoPagamentoPedido" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moradas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rua" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cidade" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CodPostal" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Pais" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Restaurante_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pagamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="IdMetodoPagamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTrabalhador" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="IdRestaurante" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pessoas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telemovel" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Morada_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pessoas_Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TotalGasto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NumContribuinte" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pessoas_Trabalhador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Posicao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdRestaurante" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurantes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CategoriaItemMenu">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+          <End Role="ItemMenus" Type="Self.ItemMenus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenus">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_inherits_Pessoa">
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Cliente">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemMenuPedido_ItemMenu">
+          <End Role="ItemMenus" Type="Self.ItemMenus" Multiplicity="1" />
+          <End Role="ItemMenuPedido" Type="Self.ItemMenuPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemMenus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenuPedido">
+              <PropertyRef Name="ItemMenu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemMenuPedido_Pedido">
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1" />
+          <End Role="ItemMenuPedido" Type="Self.ItemMenuPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenuPedido">
+              <PropertyRef Name="Pedidos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemMenuRestaurante_ItemMenu">
+          <End Role="ItemMenus" Type="Self.ItemMenus" Multiplicity="1" />
+          <End Role="ItemMenuRestaurante" Type="Self.ItemMenuRestaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemMenus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenuRestaurante">
+              <PropertyRef Name="ItemMenu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemMenuRestaurante_Restaurante">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="ItemMenuRestaurante" Type="Self.ItemMenuRestaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenuRestaurante">
+              <PropertyRef Name="Restaurantes_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoradaRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Moradas" Type="Self.Moradas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Moradas">
+              <PropertyRef Name="Restaurante_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagamentoMetodoPagamento">
+          <End Role="MetodoPagamentos" Type="Self.MetodoPagamentos" Multiplicity="1" />
+          <End Role="Pagamentos" Type="Self.Pagamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodoPagamentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pagamentos">
+              <PropertyRef Name="IdMetodoPagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoCliente">
+          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoEstado">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoPagamento">
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1" />
+          <End Role="Pagamentos" Type="Self.Pagamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pagamentos">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PessoaMorada">
+          <End Role="Moradas" Type="Self.Moradas" Multiplicity="1" />
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moradas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas">
+              <PropertyRef Name="Morada_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabalhador_inherits_Pessoa">
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Trabalhador">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabalhadorPedido">
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Trabalhador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdTrabalhador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabalhadorRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Trabalhador">
+              <PropertyRef Name="IdRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestGuestModelStoreContainer">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemMenuPedido" EntityType="Self.ItemMenuPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemMenuRestaurante" EntityType="Self.ItemMenuRestaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemMenus" EntityType="Self.ItemMenus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodoPagamentos" EntityType="Self.MetodoPagamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moradas" EntityType="Self.Moradas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagamentos" EntityType="Self.Pagamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoas_Cliente" EntityType="Self.Pessoas_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoas_Trabalhador" EntityType="Self.Pessoas_Trabalhador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoriaItemMenu" Association="Self.FK_CategoriaItemMenu">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="Self.FK_Cliente_inherits_Pessoa">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemMenuPedido_ItemMenu" Association="Self.FK_ItemMenuPedido_ItemMenu">
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+            <End Role="ItemMenuPedido" EntitySet="ItemMenuPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemMenuPedido_Pedido" Association="Self.FK_ItemMenuPedido_Pedido">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="ItemMenuPedido" EntitySet="ItemMenuPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemMenuRestaurante_ItemMenu" Association="Self.FK_ItemMenuRestaurante_ItemMenu">
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+            <End Role="ItemMenuRestaurante" EntitySet="ItemMenuRestaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemMenuRestaurante_Restaurante" Association="Self.FK_ItemMenuRestaurante_Restaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="ItemMenuRestaurante" EntitySet="ItemMenuRestaurante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoradaRestaurante" Association="Self.FK_MoradaRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Moradas" EntitySet="Moradas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagamentoMetodoPagamento" Association="Self.FK_PagamentoMetodoPagamento">
+            <End Role="MetodoPagamentos" EntitySet="MetodoPagamentos" />
+            <End Role="Pagamentos" EntitySet="Pagamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoCliente" Association="Self.FK_PedidoCliente">
+            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoEstado" Association="Self.FK_PedidoEstado">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoPagamento" Association="Self.FK_PedidoPagamento">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="Pagamentos" EntitySet="Pagamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoRestaurante" Association="Self.FK_PedidoRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PessoaMorada" Association="Self.FK_PessoaMorada">
+            <End Role="Moradas" EntitySet="Moradas" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="Self.FK_Trabalhador_inherits_Pessoa">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabalhadorPedido" Association="Self.FK_TrabalhadorPedido">
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabalhadorRestaurante" Association="Self.FK_TrabalhadorRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestGuestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ItemMenus" Relationship="Self.FK_CategoriaItemMenu" FromRole="Categorias" ToRole="ItemMenus" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstadoPedido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_PedidoEstado" FromRole="Estados" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="ItemMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Ingredientes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Preco" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_CategoriaItemMenu" FromRole="ItemMenus" ToRole="Categorias" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.ItemMenuPedido" FromRole="ItemMenus" ToRole="Pedidos" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.ItemMenuRestaurante" FromRole="ItemMenus" ToRole="Restaurantes" />
+        </EntityType>
+        <EntityType Name="MetodoPagamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MetodoPagamentoPedido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pagamentos" Relationship="Self.FK_PagamentoMetodoPagamento" FromRole="MetodoPagamentos" ToRole="Pagamentos" />
+        </EntityType>
+        <EntityType Name="Morada">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cidade" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Restaurante_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_MoradaRestaurante" FromRole="Moradas" ToRole="Restaurantes" />
+          <NavigationProperty Name="Pessoas" Relationship="Self.FK_PessoaMorada" FromRole="Moradas" ToRole="Pessoas" />
+        </EntityType>
+        <EntityType Name="Pagamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdMetodoPagamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MetodoPagamento" Relationship="Self.FK_PagamentoMetodoPagamento" FromRole="Pagamentos" ToRole="MetodoPagamentos" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_PedidoPagamento" FromRole="Pagamentos" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTrabalhador" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="IdRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_PedidoEstado" FromRole="Pedidos" ToRole="Estados" />
+          <NavigationProperty Name="Pagamentos" Relationship="Self.FK_PedidoPagamento" FromRole="Pedidos" ToRole="Pagamentos" />
+          <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_PedidoCliente" FromRole="Pedidos" ToRole="Pessoas_Cliente" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_PedidoRestaurante" FromRole="Pedidos" ToRole="Restaurantes" />
+          <NavigationProperty Name="Pessoas_Trabalhador" Relationship="Self.FK_TrabalhadorPedido" FromRole="Pedidos" ToRole="Pessoas_Trabalhador" />
+          <NavigationProperty Name="ItemMenus" Relationship="Self.ItemMenuPedido" FromRole="Pedidos" ToRole="ItemMenus" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telemovel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Morada_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Morada" Relationship="Self.FK_PessoaMorada" FromRole="Pessoas" ToRole="Moradas" />
+          <NavigationProperty Name="Pessoas_Cliente" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas" ToRole="Pessoas_Cliente" />
+          <NavigationProperty Name="Pessoas_Trabalhador" Relationship="Self.FK_Trabalhador_inherits_Pessoa" FromRole="Pessoas" ToRole="Pessoas_Trabalhador" />
+        </EntityType>
+        <EntityType Name="Pessoas_Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TotalGasto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NumContribuinte" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_PedidoCliente" FromRole="Pessoas_Cliente" ToRole="Pedidos" />
+          <NavigationProperty Name="Pessoa" Relationship="Self.FK_Cliente_inherits_Pessoa" FromRole="Pessoas_Cliente" ToRole="Pessoas" />
+        </EntityType>
+        <EntityType Name="Pessoas_Trabalhador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Posicao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRestaurante" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_TrabalhadorPedido" FromRole="Pessoas_Trabalhador" ToRole="Pedidos" />
+          <NavigationProperty Name="Pessoa" Relationship="Self.FK_Trabalhador_inherits_Pessoa" FromRole="Pessoas_Trabalhador" ToRole="Pessoas" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.FK_TrabalhadorRestaurante" FromRole="Pessoas_Trabalhador" ToRole="Restaurantes" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Moradas" Relationship="Self.FK_MoradaRestaurante" FromRole="Restaurantes" ToRole="Moradas" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_PedidoRestaurante" FromRole="Restaurantes" ToRole="Pedidos" />
+          <NavigationProperty Name="Pessoas_Trabalhador" Relationship="Self.FK_TrabalhadorRestaurante" FromRole="Restaurantes" ToRole="Pessoas_Trabalhador" />
+          <NavigationProperty Name="ItemMenus" Relationship="Self.ItemMenuRestaurante" FromRole="Restaurantes" ToRole="ItemMenus" />
+        </EntityType>
+        <Association Name="FK_CategoriaItemMenu">
+          <End Role="Categorias" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="ItemMenus" Type="Self.ItemMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemMenus">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoEstado">
+          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagamentoMetodoPagamento">
+          <End Role="MetodoPagamentos" Type="Self.MetodoPagamento" Multiplicity="1" />
+          <End Role="Pagamentos" Type="Self.Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodoPagamentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pagamentos">
+              <PropertyRef Name="IdMetodoPagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoradaRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurante" Multiplicity="1" />
+          <End Role="Moradas" Type="Self.Morada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Moradas">
+              <PropertyRef Name="Restaurante_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PessoaMorada">
+          <End Role="Moradas" Type="Self.Morada" Multiplicity="1" />
+          <End Role="Pessoas" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moradas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas">
+              <PropertyRef Name="Morada_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoPagamento">
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Pagamentos" Type="Self.Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pagamentos">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoCliente">
+          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurante" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabalhadorPedido">
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="1" />
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas_Trabalhador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdTrabalhador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_inherits_Pessoa">
+          <End Role="Pessoas" Type="Self.Pessoa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pessoas_Cliente" Type="Self.Pessoas_Cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Cliente">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabalhador_inherits_Pessoa">
+          <End Role="Pessoas" Type="Self.Pessoa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Trabalhador">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabalhadorRestaurante">
+          <End Role="Restaurantes" Type="Self.Restaurante" Multiplicity="1" />
+          <End Role="Pessoas_Trabalhador" Type="Self.Pessoas_Trabalhador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurantes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoas_Trabalhador">
+              <PropertyRef Name="IdRestaurante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemMenuPedido">
+          <End Role="ItemMenus" Type="Self.ItemMenu" Multiplicity="*" />
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+        </Association>
+        <Association Name="ItemMenuRestaurante">
+          <End Role="ItemMenus" Type="Self.ItemMenu" Multiplicity="*" />
+          <End Role="Restaurantes" Type="Self.Restaurante" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RestGuestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categorias" EntityType="Self.Categoria" />
+          <EntitySet Name="Estados" EntityType="Self.Estado" />
+          <EntitySet Name="ItemMenus" EntityType="Self.ItemMenu" />
+          <EntitySet Name="MetodoPagamentos" EntityType="Self.MetodoPagamento" />
+          <EntitySet Name="Moradas" EntityType="Self.Morada" />
+          <EntitySet Name="Pagamentos" EntityType="Self.Pagamento" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedido" />
+          <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
+          <EntitySet Name="Pessoas_Cliente" EntityType="Self.Pessoas_Cliente" />
+          <EntitySet Name="Pessoas_Trabalhador" EntityType="Self.Pessoas_Trabalhador" />
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurante" />
+          <AssociationSet Name="FK_CategoriaItemMenu" Association="Self.FK_CategoriaItemMenu">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoEstado" Association="Self.FK_PedidoEstado">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagamentoMetodoPagamento" Association="Self.FK_PagamentoMetodoPagamento">
+            <End Role="MetodoPagamentos" EntitySet="MetodoPagamentos" />
+            <End Role="Pagamentos" EntitySet="Pagamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoradaRestaurante" Association="Self.FK_MoradaRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Moradas" EntitySet="Moradas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PessoaMorada" Association="Self.FK_PessoaMorada">
+            <End Role="Moradas" EntitySet="Moradas" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoPagamento" Association="Self.FK_PedidoPagamento">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="Pagamentos" EntitySet="Pagamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoCliente" Association="Self.FK_PedidoCliente">
+            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoRestaurante" Association="Self.FK_PedidoRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabalhadorPedido" Association="Self.FK_TrabalhadorPedido">
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="Self.FK_Cliente_inherits_Pessoa">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Pessoas_Cliente" EntitySet="Pessoas_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="Self.FK_Trabalhador_inherits_Pessoa">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabalhadorRestaurante" Association="Self.FK_TrabalhadorRestaurante">
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+            <End Role="Pessoas_Trabalhador" EntitySet="Pessoas_Trabalhador" />
+          </AssociationSet>
+          <AssociationSet Name="ItemMenuPedido" Association="Self.ItemMenuPedido">
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="ItemMenuRestaurante" Association="Self.ItemMenuRestaurante">
+            <End Role="ItemMenus" EntitySet="ItemMenus" />
+            <End Role="Restaurantes" EntitySet="Restaurantes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestGuestModelStoreContainer" CdmEntityContainer="RestGuestEntities">
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="RestGuestModel.Categoria">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="RestGuestModel.Estado">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EstadoPedido" ColumnName="EstadoPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemMenus">
+            <EntityTypeMapping TypeName="RestGuestModel.ItemMenu">
+              <MappingFragment StoreEntitySet="ItemMenus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+                <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetodoPagamentos">
+            <EntityTypeMapping TypeName="RestGuestModel.MetodoPagamento">
+              <MappingFragment StoreEntitySet="MetodoPagamentos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MetodoPagamentoPedido" ColumnName="MetodoPagamentoPedido" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moradas">
+            <EntityTypeMapping TypeName="RestGuestModel.Morada">
+              <MappingFragment StoreEntitySet="Moradas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Restaurante_Id" ColumnName="Restaurante_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagamentos">
+            <EntityTypeMapping TypeName="RestGuestModel.Pagamento">
+              <MappingFragment StoreEntitySet="Pagamentos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdMetodoPagamento" ColumnName="IdMetodoPagamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidos">
+            <EntityTypeMapping TypeName="RestGuestModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTrabalhador" ColumnName="IdTrabalhador" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoas">
+            <EntityTypeMapping TypeName="RestGuestModel.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
+                <ScalarProperty Name="Morada_Id" ColumnName="Morada_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoas_Cliente">
+            <EntityTypeMapping TypeName="RestGuestModel.Pessoas_Cliente">
+              <MappingFragment StoreEntitySet="Pessoas_Cliente">
+                <ScalarProperty Name="TotalGasto" ColumnName="TotalGasto" />
+                <ScalarProperty Name="NumContribuinte" ColumnName="NumContribuinte" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoas_Trabalhador">
+            <EntityTypeMapping TypeName="RestGuestModel.Pessoas_Trabalhador">
+              <MappingFragment StoreEntitySet="Pessoas_Trabalhador">
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Posicao" ColumnName="Posicao" />
+                <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurantes">
+            <EntityTypeMapping TypeName="RestGuestModel.Restaurante">
+              <MappingFragment StoreEntitySet="Restaurantes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ItemMenuPedido" TypeName="RestGuestModel.ItemMenuPedido" StoreEntitySet="ItemMenuPedido">
+            <EndProperty Name="ItemMenus">
+              <ScalarProperty Name="Id" ColumnName="ItemMenu_Id" />
+            </EndProperty>
+            <EndProperty Name="Pedidos">
+              <ScalarProperty Name="Id" ColumnName="Pedidos_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ItemMenuRestaurante" TypeName="RestGuestModel.ItemMenuRestaurante" StoreEntitySet="ItemMenuRestaurante">
+            <EndProperty Name="ItemMenus">
+              <ScalarProperty Name="Id" ColumnName="ItemMenu_Id" />
+            </EndProperty>
+            <EndProperty Name="Restaurantes">
+              <ScalarProperty Name="Id" ColumnName="Restaurantes_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
