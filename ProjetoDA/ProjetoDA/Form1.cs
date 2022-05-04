@@ -10,11 +10,49 @@ using System.Windows.Forms;
 
 namespace ProjetoDA
 {
-    public partial class Form1 : Form
+    public partial class RestGuest : Form 
     {
-        public Form1()
+        bool mouseDown;
+        private Point offset;
+        public RestGuest()
         {
             InitializeComponent();
+        }
+
+        private void MouseDown_Event(object sender, MouseEventArgs e)
+        {
+            offset.X = e.X;
+            offset.Y = e.Y;
+            mouseDown = true;
+        }
+
+        private void MouseMove_Event(object sender, MouseEventArgs e)
+        {
+            if(mouseDown == true)
+            {
+                Point currentScreenPos = PointToScreen(e.Location);
+                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+            }
+        }
+
+        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Pretende sair do programa?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

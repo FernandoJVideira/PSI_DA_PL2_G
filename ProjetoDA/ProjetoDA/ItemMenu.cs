@@ -25,7 +25,7 @@ namespace ProjetoDA
         public int IdCategoria { get; set; }
         public string Nome { get; set; }
         public byte[] Fotografia { get; set; }
-        public string Ingredientes { get; set; }
+        public string[] Ingredientes { get; set; }
         public decimal Preco { get; set; }
         public bool Ativo { get; set; }
     
