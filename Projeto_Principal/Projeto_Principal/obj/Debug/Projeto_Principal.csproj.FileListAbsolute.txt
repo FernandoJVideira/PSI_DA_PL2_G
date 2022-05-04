@@ -1,0 +1,17 @@
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\bin\Debug\Projeto_Principal.exe.config
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\bin\Debug\Projeto_Principal.exe
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\bin\Debug\Projeto_Principal.pdb
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.AssemblyReference.cache
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.SuggestedBindingRedirects.cache
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.Form1.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesClientes.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesMenu.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesRestaurantGlobal.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.Properties.Resources.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.SelectRestaurant.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.GenerateResource.cache
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.CoreCompileInputs.cache
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.exe
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.pdb
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GerirRestaurante.resources
+C:\Users\rodri\Desktop\code\Projeto_DA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesPedidos.resources
