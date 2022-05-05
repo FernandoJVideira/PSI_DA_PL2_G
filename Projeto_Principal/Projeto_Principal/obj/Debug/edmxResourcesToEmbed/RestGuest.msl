@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RestGuestStoreContainer" CdmEntityContainer="RestGuestContainer">
+    <EntitySetMapping Name="Pessoas">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Pessoa)">
+        <MappingFragment StoreEntitySet="Pessoas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Trabalhador)">
+        <MappingFragment StoreEntitySet="Pessoas_Trabalhador">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Salario" ColumnName="Salario" />
+          <ScalarProperty Name="Posicao" ColumnName="Posicao" />
+          <ScalarProperty Name="IdRestaurante" ColumnName="IdRestaurante" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Cliente)">
+        <MappingFragment StoreEntitySet="Pessoas_Cliente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TotalGasto" ColumnName="TotalGasto" />
+          <ScalarProperty Name="NumCont" ColumnName="NumCont" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moradas">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Morada)">
+        <MappingFragment StoreEntitySet="Moradas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Rua" ColumnName="Rua" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="CodPost" ColumnName="CodPost" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurantes">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Restaurante)">
+        <MappingFragment StoreEntitySet="Restaurantes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedidoss">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Pedido)">
+        <MappingFragment StoreEntitySet="Pedidoss">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdTrabalhador" ColumnName="IdTrabalhador" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Estado)">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EstadoPedido" ColumnName="EstadoPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MetodoPagamentos">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.MetodoPagamento)">
+        <MappingFragment StoreEntitySet="MetodoPagamentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MetodoDePagamento" ColumnName="MetodoDePagamento" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pagamentos">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Pagamento)">
+        <MappingFragment StoreEntitySet="Pagamentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="IdMetodoPagamento" ColumnName="IdMetodoPagamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItensMenu">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.ItemMenu)">
+        <MappingFragment StoreEntitySet="ItensMenu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+          <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PessoaMorada" TypeName="RestGuest.PessoaMorada" StoreEntitySet="Pessoas">
+      <EndProperty Name="Morada">
+        <ScalarProperty Name="Id" ColumnName="Morada_Id" />
+      </EndProperty>
+      <EndProperty Name="Pessoa">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RestauranteMorada" TypeName="RestGuest.RestauranteMorada" StoreEntitySet="Restaurantes">
+      <EndProperty Name="Morada">
+        <ScalarProperty Name="Id" ColumnName="Morada_Id" />
+      </EndProperty>
+      <EndProperty Name="Restaurante">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ItemMenuRestaurante" TypeName="RestGuest.ItemMenuRestaurante" StoreEntitySet="ItemMenuRestaurante">
+      <EndProperty Name="ItemMenu">
+        <ScalarProperty Name="Id" ColumnName="ItensMenu_Id" />
+      </EndProperty>
+      <EndProperty Name="Restaurante">
+        <ScalarProperty Name="Id" ColumnName="Restaurantes_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ItemMenuPedido" TypeName="RestGuest.ItemMenuPedido" StoreEntitySet="ItemMenuPedido">
+      <EndProperty Name="ItemMenu">
+        <ScalarProperty Name="Id" ColumnName="ItensMenu_Id" />
+      </EndProperty>
+      <EndProperty Name="Pedido">
+        <ScalarProperty Name="Id" ColumnName="Pedidos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
