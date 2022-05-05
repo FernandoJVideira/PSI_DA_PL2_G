@@ -6,6 +6,29 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ab996b59ae91423592bc687156ec28e4" Name="Diagram1" >
         <EntityTypeShape EntityType="RestGuest.Pessoa" Width="1.5" PointX="5.375" PointY="2.5" />
+        <EntityTypeShape EntityType="RestGuest.Morada" Width="1.5" PointX="8.75" PointY="2.25" />
+        <EntityTypeShape EntityType="RestGuest.Cliente" Width="1.5" PointX="4.25" PointY="5.5" />
+        <EntityTypeShape EntityType="RestGuest.Trabalhador" Width="1.5" PointX="6.5" PointY="5.5" />
+        <InheritanceConnector EntityType="RestGuest.Cliente" />
+        <InheritanceConnector EntityType="RestGuest.Trabalhador" />
+        <EntityTypeShape EntityType="RestGuest.Restaurante" Width="1.5" PointX="9.75" PointY="6" />
+        <AssociationConnector Association="RestGuest.PessoaMorada" />
+        <AssociationConnector Association="RestGuest.RestauranteMorada" />
+        <AssociationConnector Association="RestGuest.TrabalhadorRestaurante" />
+        <EntityTypeShape EntityType="RestGuest.Pedido" Width="1.5" PointX="6.875" PointY="9.375" />
+        <AssociationConnector Association="RestGuest.TrabalhadorPedido" />
+        <AssociationConnector Association="RestGuest.ClientePedido" />
+        <EntityTypeShape EntityType="RestGuest.Estado" Width="1.5" PointX="9.5" PointY="10" />
+        <EntityTypeShape EntityType="RestGuest.MetodoPagamento" Width="1.5" PointX="4.625" PointY="12.5" />
+        <EntityTypeShape EntityType="RestGuest.Pagamento" Width="1.5" PointX="4.625" PointY="10.125" />
+        <AssociationConnector Association="RestGuest.PagamentoPedido" />
+        <AssociationConnector Association="RestGuest.MetodoPagamentoPagamento" />
+        <AssociationConnector Association="RestGuest.PedidoEstado" />
+        <EntityTypeShape EntityType="RestGuest.ItemMenu" Width="1.5" PointX="12.75" PointY="6.375" />
+        <EntityTypeShape EntityType="RestGuest.Categoria" Width="1.5" PointX="12.625" PointY="9.75" />
+        <AssociationConnector Association="RestGuest.CategoriaItemMenu" />
+        <AssociationConnector Association="RestGuest.ItemMenuRestaurante" />
+        <AssociationConnector Association="RestGuest.ItemMenuPedido" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
