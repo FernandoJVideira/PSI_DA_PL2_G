@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Projeto_Principal
 {
-    public partial class GesPedidos : Form
+    public partial class MainMenu : Form
     {
         bool mouseDown;
         private Point offset;
-        public GesPedidos()
+
+        public MainMenu()
         {
             InitializeComponent();
         }
@@ -44,13 +45,53 @@ namespace Projeto_Principal
         //-------------------------------------------------------------------------------------//
         private void btnClose_Click(object sender, EventArgs e)
         {
-            new MainMenu().Show();
-            this.Close();
+            DialogResult result = MessageBox.Show("Pretende sair do programa?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnSelectRestaurante_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new SelectRestaurant());
+        }
+
+        private void btnGesRestaurantGlobal_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new GesRestaurantGlobal());
+        }
+
+        private void buttonGesClientes_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new GesClientes());
+        }
+
+        private void buttonGesMenu_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new GesMenu());
+        }
+
+        private void buttonGesPedidos_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new GesPedidos());
+        }
+
+        private void buttonGesRestaurant_Click(object sender, EventArgs e)
+        {
+            ShowMenuForm(new GerirRestaurante());
+        }
+
+        private void ShowMenuForm(Form form)
+        {
+            form.Show();
+            this.Close();
         }
     }
 }

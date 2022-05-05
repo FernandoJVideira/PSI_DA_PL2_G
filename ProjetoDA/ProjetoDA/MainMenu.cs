@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Projeto_Principal
+namespace ProjetoDA
 {
-    public partial class GesClientes : Form
+    public partial class RestGuest : Form 
     {
         bool mouseDown;
         private Point offset;
-
-        public GesClientes()
+        public RestGuest()
         {
             InitializeComponent();
         }
@@ -29,7 +28,7 @@ namespace Projeto_Principal
 
         private void MouseMove_Event(object sender, MouseEventArgs e)
         {
-            if (mouseDown == true)
+            if(mouseDown == true)
             {
                 Point currentScreenPos = PointToScreen(e.Location);
                 Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
@@ -43,8 +42,12 @@ namespace Projeto_Principal
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            new MainMenu().Show();
-            this.Close();
+            DialogResult result = MessageBox.Show("Pretende sair do programa?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;  // Add reference to Microsoft.VisualBasic!!
 
 namespace Projeto_Principal
 {
-    internal static class Program
+    class Program : WindowsFormsApplicationBase
     {
-        /// <summary>
-        /// Ponto de entrada principal para o aplicativo.
-        /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var app = new Program();
+            app.EnableVisualStyles = true;
+            app.ShutdownStyle = ShutdownMode.AfterAllFormsClose;
+            app.MainForm = new MainMenu();
+            app.Run(args);
         }
     }
 }
