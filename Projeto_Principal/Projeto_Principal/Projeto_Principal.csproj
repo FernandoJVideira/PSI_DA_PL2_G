@@ -96,11 +96,6 @@
     <Compile Include="GesRestaurantGlobal.Designer.cs">
       <DependentUpon>GesRestaurantGlobal.cs</DependentUpon>
     </Compile>
-    <Compile Include="RestGuest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RestGuest.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="RestGuest.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,7 +139,7 @@
     <EmbeddedResource Include="SelectRestaurant.resx">
       <DependentUpon>SelectRestaurant.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="App.Config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -161,16 +156,6 @@
     <None Include="RestGuest.edmx.diagram">
       <DependentUpon>RestGuest.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RestGuest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RestGuest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="RestGuest.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
