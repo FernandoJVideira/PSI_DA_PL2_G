@@ -12,22 +12,18 @@ namespace Projeto_Principal
     using System;
     using System.Collections.Generic;
     
-    public partial class Restaurante
+    public partial class Ingredientes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Restaurante()
+        public Ingredientes()
         {
-            this.Trabalhadores = new HashSet<Trabalhador>();
-            this.ItensMenu = new HashSet<ItemMenu>();
+            this.ItemMenus = new HashSet<ItemMenu>();
         }
     
         public int Id { get; set; }
         public string Nome { get; set; }
     
-        public virtual Morada Morada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trabalhador> Trabalhadores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemMenu> ItensMenu { get; set; }
+        public virtual ICollection<ItemMenu> ItemMenus { get; set; }
     }
 }

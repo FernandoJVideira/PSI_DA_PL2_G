@@ -88,7 +88,6 @@
           <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
-          <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
         </MappingFragment>
@@ -100,6 +99,14 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredientes">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Ingredientes)">
+        <MappingFragment StoreEntitySet="Ingredientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -133,6 +140,14 @@
       </EndProperty>
       <EndProperty Name="Pedido">
         <ScalarProperty Name="Id" ColumnName="Pedidos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ItemMenuIngredientes" TypeName="RestGuest.ItemMenuIngredientes" StoreEntitySet="ItemMenuIngredientes">
+      <EndProperty Name="ItemMenu">
+        <ScalarProperty Name="Id" ColumnName="ItemMenus_Id" />
+      </EndProperty>
+      <EndProperty Name="Ingredientes">
+        <ScalarProperty Name="Id" ColumnName="Ingredientes_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

@@ -29,6 +29,8 @@
         <AssociationConnector Association="RestGuest.CategoriaItemMenu" />
         <AssociationConnector Association="RestGuest.ItemMenuRestaurante" />
         <AssociationConnector Association="RestGuest.ItemMenuPedido" />
+        <EntityTypeShape EntityType="RestGuest.Ingredientes" Width="1.5" PointX="14.75" PointY="6.875" />
+        <AssociationConnector Association="RestGuest.ItemMenuIngredientes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

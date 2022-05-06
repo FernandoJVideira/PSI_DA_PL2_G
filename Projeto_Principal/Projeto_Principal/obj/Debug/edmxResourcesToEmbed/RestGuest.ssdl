@@ -10,10 +10,12 @@
     <EntitySet Name="Pagamentos" EntityType="RestGuest.Store.Pagamentos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItensMenu" EntityType="RestGuest.Store.ItensMenu" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Categorias" EntityType="RestGuest.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ingredientes" EntityType="RestGuest.Store.Ingredientes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas_Trabalhador" EntityType="RestGuest.Store.Pessoas_Trabalhador" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas_Cliente" EntityType="RestGuest.Store.Pessoas_Cliente" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemMenuRestaurante" EntityType="RestGuest.Store.ItemMenuRestaurante" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemMenuPedido" EntityType="RestGuest.Store.ItemMenuPedido" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ItemMenuIngredientes" EntityType="RestGuest.Store.ItemMenuIngredientes" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PessoaMorada" Association="RestGuest.Store.PessoaMorada">
       <End Role="Pessoa" EntitySet="Pessoas" />
       <End Role="Morada" EntitySet="Moradas" />
@@ -65,6 +67,14 @@
     <AssociationSet Name="FK_ItemMenuPedido_Pedido" Association="RestGuest.Store.FK_ItemMenuPedido_Pedido">
       <End Role="Pedido" EntitySet="Pedidoss" />
       <End Role="ItemMenuPedido" EntitySet="ItemMenuPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMenuIngredientes_ItemMenu" Association="RestGuest.Store.FK_ItemMenuIngredientes_ItemMenu">
+      <End Role="ItemMenu" EntitySet="ItensMenu" />
+      <End Role="ItemMenuIngredientes" EntitySet="ItemMenuIngredientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMenuIngredientes_Ingredientes" Association="RestGuest.Store.FK_ItemMenuIngredientes_Ingredientes">
+      <End Role="Ingredientes" EntitySet="Ingredientes" />
+      <End Role="ItemMenuIngredientes" EntitySet="ItemMenuIngredientes" />
     </AssociationSet>
     <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="RestGuest.Store.FK_Trabalhador_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoas" />
@@ -143,7 +153,6 @@
     <Property Name="IdCategoria" Type="int" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
-    <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Preco" Type="decimal" Nullable="false" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
@@ -154,6 +163,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ingredientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas_Trabalhador">
     <Key>
@@ -187,6 +203,14 @@
     </Key>
     <Property Name="ItensMenu_Id" Type="int" Nullable="false" />
     <Property Name="Pedidos_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemMenuIngredientes">
+    <Key>
+      <PropertyRef Name="ItemMenus_Id" />
+      <PropertyRef Name="Ingredientes_Id" />
+    </Key>
+    <Property Name="ItemMenus_Id" Type="int" Nullable="false" />
+    <Property Name="Ingredientes_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PessoaMorada">
     <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="*" />
@@ -341,6 +365,30 @@
       </Principal>
       <Dependent Role="ItemMenuPedido">
         <PropertyRef Name="Pedidos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemMenuIngredientes_ItemMenu">
+    <End Role="ItemMenu" Type="RestGuest.Store.ItensMenu" Multiplicity="1" />
+    <End Role="ItemMenuIngredientes" Type="RestGuest.Store.ItemMenuIngredientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuIngredientes">
+        <PropertyRef Name="ItemMenus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemMenuIngredientes_Ingredientes">
+    <End Role="ItemMenuIngredientes" Type="RestGuest.Store.ItemMenuIngredientes" Multiplicity="*" />
+    <End Role="Ingredientes" Type="RestGuest.Store.Ingredientes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuIngredientes">
+        <PropertyRef Name="Ingredientes_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

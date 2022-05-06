@@ -34,5 +34,6 @@ namespace Projeto_Principal
         public virtual DbSet<Pagamento> Pagamentos { get; set; }
         public virtual DbSet<ItemMenu> ItensMenu { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Ingredientes> Ingredientes { get; set; }
     }
 }

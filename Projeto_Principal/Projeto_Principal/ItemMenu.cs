@@ -19,13 +19,13 @@ namespace Projeto_Principal
         {
             this.Restaurantes = new HashSet<Restaurante>();
             this.Pedidos = new HashSet<Pedido>();
+            this.Ingredientes = new HashSet<Ingredientes>();
         }
     
         public int Id { get; set; }
         public int IdCategoria { get; set; }
         public string Nome { get; set; }
         public byte[] Fotografia { get; set; }
-        public string Ingredientes { get; set; }
         public decimal Preco { get; set; }
         public bool Ativo { get; set; }
     
@@ -34,5 +34,7 @@ namespace Projeto_Principal
         public virtual ICollection<Restaurante> Restaurantes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ingredientes> Ingredientes { get; set; }
     }
 }

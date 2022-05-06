@@ -69,6 +69,9 @@
     <Compile Include="Estado.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
+    <Compile Include="Ingredientes.cs">
+      <DependentUpon>RestGuest.tt</DependentUpon>
+    </Compile>
     <Compile Include="ItemMenu.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>

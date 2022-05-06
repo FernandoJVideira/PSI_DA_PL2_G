@@ -54,6 +54,11 @@
       <End Role="ItemMenu" EntitySet="ItensMenu" />
       <End Role="Pedido" EntitySet="Pedidoss" />
     </AssociationSet>
+    <EntitySet Name="Ingredientes" EntityType="RestGuest.Ingredientes" />
+    <AssociationSet Name="ItemMenuIngredientes" Association="RestGuest.ItemMenuIngredientes">
+      <End Role="ItemMenu" EntitySet="ItensMenu" />
+      <End Role="Ingredientes" EntitySet="Ingredientes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pessoa">
     <Key>
@@ -95,7 +100,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" Nullable="false" />
     <NavigationProperty Name="Morada" Relationship="RestGuest.RestauranteMorada" FromRole="Restaurante" ToRole="Morada" />
-    <NavigationProperty Name="Trabalhadors" Relationship="RestGuest.TrabalhadorRestaurante" FromRole="Restaurante" ToRole="Trabalhador" />
+    <NavigationProperty Name="Trabalhadores" Relationship="RestGuest.TrabalhadorRestaurante" FromRole="Restaurante" ToRole="Trabalhador" />
     <NavigationProperty Name="ItensMenu" Relationship="RestGuest.ItemMenuRestaurante" FromRole="Restaurante" ToRole="ItemMenu" />
   </EntityType>
   <Association Name="PessoaMorada">
@@ -229,11 +234,11 @@
     <Property Name="IdCategoria" Type="Int32" Nullable="false" />
     <Property Name="Nome" Type="String" Nullable="false" />
     <Property Name="Fotografia" Type="Binary" Nullable="false" />
-    <Property Name="Ingredientes" Type="String" Nullable="false" />
     <Property Name="Preco" Type="Decimal" Nullable="false" />
     <Property Name="Ativo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Restaurantes" Relationship="RestGuest.ItemMenuRestaurante" FromRole="ItemMenu" ToRole="Restaurante" />
     <NavigationProperty Name="Pedidos" Relationship="RestGuest.ItemMenuPedido" FromRole="ItemMenu" ToRole="Pedido" />
+    <NavigationProperty Name="Ingredientes" Relationship="RestGuest.ItemMenuIngredientes" FromRole="ItemMenu" ToRole="Ingredientes" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
@@ -263,5 +268,17 @@
   <Association Name="ItemMenuPedido">
     <End Type="RestGuest.ItemMenu" Role="ItemMenu" Multiplicity="*" />
     <End Type="RestGuest.Pedido" Role="Pedido" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Ingredientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="ItemMenus" Relationship="RestGuest.ItemMenuIngredientes" FromRole="Ingredientes" ToRole="ItemMenu" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="ItemMenuIngredientes">
+    <End Type="RestGuest.ItemMenu" Role="ItemMenu" Multiplicity="*" />
+    <End Type="RestGuest.Ingredientes" Role="Ingredientes" Multiplicity="*" />
   </Association>
 </Schema>

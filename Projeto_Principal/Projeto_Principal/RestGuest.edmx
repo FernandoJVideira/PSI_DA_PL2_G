@@ -15,10 +15,12 @@
     <EntitySet Name="Pagamentos" EntityType="RestGuest.Store.Pagamentos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItensMenu" EntityType="RestGuest.Store.ItensMenu" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Categorias" EntityType="RestGuest.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ingredientes" EntityType="RestGuest.Store.Ingredientes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas_Trabalhador" EntityType="RestGuest.Store.Pessoas_Trabalhador" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pessoas_Cliente" EntityType="RestGuest.Store.Pessoas_Cliente" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemMenuRestaurante" EntityType="RestGuest.Store.ItemMenuRestaurante" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemMenuPedido" EntityType="RestGuest.Store.ItemMenuPedido" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ItemMenuIngredientes" EntityType="RestGuest.Store.ItemMenuIngredientes" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PessoaMorada" Association="RestGuest.Store.PessoaMorada">
       <End Role="Pessoa" EntitySet="Pessoas" />
       <End Role="Morada" EntitySet="Moradas" />
@@ -70,6 +72,14 @@
     <AssociationSet Name="FK_ItemMenuPedido_Pedido" Association="RestGuest.Store.FK_ItemMenuPedido_Pedido">
       <End Role="Pedido" EntitySet="Pedidoss" />
       <End Role="ItemMenuPedido" EntitySet="ItemMenuPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMenuIngredientes_ItemMenu" Association="RestGuest.Store.FK_ItemMenuIngredientes_ItemMenu">
+      <End Role="ItemMenu" EntitySet="ItensMenu" />
+      <End Role="ItemMenuIngredientes" EntitySet="ItemMenuIngredientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMenuIngredientes_Ingredientes" Association="RestGuest.Store.FK_ItemMenuIngredientes_Ingredientes">
+      <End Role="Ingredientes" EntitySet="Ingredientes" />
+      <End Role="ItemMenuIngredientes" EntitySet="ItemMenuIngredientes" />
     </AssociationSet>
     <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="RestGuest.Store.FK_Trabalhador_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoas" />
@@ -148,7 +158,6 @@
     <Property Name="IdCategoria" Type="int" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
-    <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Preco" Type="decimal" Nullable="false" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
@@ -159,6 +168,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ingredientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas_Trabalhador">
     <Key>
@@ -192,6 +208,14 @@
     </Key>
     <Property Name="ItensMenu_Id" Type="int" Nullable="false" />
     <Property Name="Pedidos_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemMenuIngredientes">
+    <Key>
+      <PropertyRef Name="ItemMenus_Id" />
+      <PropertyRef Name="Ingredientes_Id" />
+    </Key>
+    <Property Name="ItemMenus_Id" Type="int" Nullable="false" />
+    <Property Name="Ingredientes_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PessoaMorada">
     <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="*" />
@@ -349,6 +373,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ItemMenuIngredientes_ItemMenu">
+    <End Role="ItemMenu" Type="RestGuest.Store.ItensMenu" Multiplicity="1" />
+    <End Role="ItemMenuIngredientes" Type="RestGuest.Store.ItemMenuIngredientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuIngredientes">
+        <PropertyRef Name="ItemMenus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemMenuIngredientes_Ingredientes">
+    <End Role="ItemMenuIngredientes" Type="RestGuest.Store.ItemMenuIngredientes" Multiplicity="*" />
+    <End Role="Ingredientes" Type="RestGuest.Store.Ingredientes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuIngredientes">
+        <PropertyRef Name="Ingredientes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Trabalhador_inherits_Pessoa">
     <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -435,6 +483,11 @@
             <End Role="ItemMenu" EntitySet="ItensMenu" />
             <End Role="Pedido" EntitySet="Pedidoss" />
           </AssociationSet>
+          <EntitySet Name="Ingredientes" EntityType="RestGuest.Ingredientes" />
+          <AssociationSet Name="ItemMenuIngredientes" Association="RestGuest.ItemMenuIngredientes">
+            <End Role="ItemMenu" EntitySet="ItensMenu" />
+            <End Role="Ingredientes" EntitySet="Ingredientes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Pessoa">
           <Key>
@@ -476,7 +529,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" />
           <NavigationProperty Name="Morada" Relationship="RestGuest.RestauranteMorada" FromRole="Restaurante" ToRole="Morada" />
-          <NavigationProperty Name="Trabalhadors" Relationship="RestGuest.TrabalhadorRestaurante" FromRole="Restaurante" ToRole="Trabalhador" />
+          <NavigationProperty Name="Trabalhadores" Relationship="RestGuest.TrabalhadorRestaurante" FromRole="Restaurante" ToRole="Trabalhador" />
           <NavigationProperty Name="ItensMenu" Relationship="RestGuest.ItemMenuRestaurante" FromRole="Restaurante" ToRole="ItemMenu" />
         </EntityType>
         <Association Name="PessoaMorada">
@@ -610,11 +663,11 @@
           <Property Name="IdCategoria" Type="Int32" Nullable="false" />
           <Property Name="Nome" Type="String" Nullable="false" />
           <Property Name="Fotografia" Type="Binary" Nullable="false" />
-          <Property Name="Ingredientes" Type="String" Nullable="false" />
           <Property Name="Preco" Type="Decimal" Nullable="false" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Restaurantes" Relationship="RestGuest.ItemMenuRestaurante" FromRole="ItemMenu" ToRole="Restaurante" />
           <NavigationProperty Name="Pedidos" Relationship="RestGuest.ItemMenuPedido" FromRole="ItemMenu" ToRole="Pedido" />
+          <NavigationProperty Name="Ingredientes" Relationship="RestGuest.ItemMenuIngredientes" FromRole="ItemMenu" ToRole="Ingredientes" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -644,6 +697,18 @@
         <Association Name="ItemMenuPedido">
           <End Type="RestGuest.ItemMenu" Role="ItemMenu" Multiplicity="*" />
           <End Type="RestGuest.Pedido" Role="Pedido" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Ingredientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ItemMenus" Relationship="RestGuest.ItemMenuIngredientes" FromRole="Ingredientes" ToRole="ItemMenu" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ItemMenuIngredientes">
+          <End Type="RestGuest.ItemMenu" Role="ItemMenu" Multiplicity="*" />
+          <End Type="RestGuest.Ingredientes" Role="Ingredientes" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -738,7 +803,6 @@
           <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
-          <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
         </MappingFragment>
@@ -750,6 +814,14 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredientes">
+      <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Ingredientes)">
+        <MappingFragment StoreEntitySet="Ingredientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -783,6 +855,14 @@
       </EndProperty>
       <EndProperty Name="Pedido">
         <ScalarProperty Name="Id" ColumnName="Pedidos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ItemMenuIngredientes" TypeName="RestGuest.ItemMenuIngredientes" StoreEntitySet="ItemMenuIngredientes">
+      <EndProperty Name="ItemMenu">
+        <ScalarProperty Name="Id" ColumnName="ItemMenus_Id" />
+      </EndProperty>
+      <EndProperty Name="Ingredientes">
+        <ScalarProperty Name="Id" ColumnName="Ingredientes_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
