@@ -14,6 +14,9 @@ namespace Projeto_Principal
     {
         bool mouseDown;
         private Point offset;
+        private Model1Container model;
+        
+
 
         public GesRestaurantGlobal()
         {
@@ -50,6 +53,38 @@ namespace Projeto_Principal
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRegistar_Click(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            Restaurante tempRestaurante = new Restaurante();
+            Morada tempMorada = new Morada();
+
+            tempMorada.Rua = txtRua.Text;
+            tempMorada.Cidade = txtCidade.Text;
+            tempMorada.Pais = txtPais.Text;
+            tempMorada.CodPostal = txtPostalCod.Text;
+
+            tempRestaurante.Nome = txtNome.Text;
+            tempRestaurante.Morada = tempMorada;
+
+            model.Restaurante.Add(tempRestaurante);
+            model.Morada.Add(tempMorada);
+
+            model.SaveChanges();
+
+        }
+
+        public void LerDados()
+        {
+            listBoxRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+        }
+
+        private void GesRestaurantGlobal_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
         }
     }
 }

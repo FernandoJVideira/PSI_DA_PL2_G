@@ -14,18 +14,10 @@ namespace Projeto_Principal
     
     public partial class Trabalhador : Pessoa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Trabalhador()
-        {
-            this.Pedidos = new HashSet<Pedido>();
-        }
-    
         public decimal Salario { get; set; }
         public string Posicao { get; set; }
-        public int IdRestaurante { get; set; }
+        public int RestauranteId { get; set; }
     
         public virtual Restaurante Restaurante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

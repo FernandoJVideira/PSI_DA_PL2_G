@@ -17,22 +17,17 @@ namespace Projeto_Principal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pedido()
         {
-            this.Pagamentos = new HashSet<Pagamento>();
-            this.ItensMenu = new HashSet<ItemMenu>();
+            this.ItemMenu = new HashSet<ItemMenu>();
         }
     
         public int Id { get; set; }
-        public int IdTrabalhador { get; set; }
-        public int IdCliente { get; set; }
-        public int IdEstado { get; set; }
         public decimal ValorTotal { get; set; }
+        public int EstadoId { get; set; }
+        public int PagamentoId { get; set; }
     
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagamento> Pagamentos { get; set; }
-        public virtual Estado Estado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemMenu> ItensMenu { get; set; }
+        public virtual ICollection<ItemMenu> ItemMenu { get; set; }
     }
 }

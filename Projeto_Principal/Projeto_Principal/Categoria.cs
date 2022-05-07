@@ -14,17 +14,8 @@ namespace Projeto_Principal
     
     public partial class Categoria
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categoria()
-        {
-            this.ItensMenu = new HashSet<ItemMenu>();
-        }
-    
         public int Id { get; set; }
         public string Nome { get; set; }
         public bool Ativo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemMenu> ItensMenu { get; set; }
     }
 }

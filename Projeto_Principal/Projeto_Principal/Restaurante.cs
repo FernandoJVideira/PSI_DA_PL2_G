@@ -14,20 +14,9 @@ namespace Projeto_Principal
     
     public partial class Restaurante
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Restaurante()
-        {
-            this.Trabalhadores = new HashSet<Trabalhador>();
-            this.ItensMenu = new HashSet<ItemMenu>();
-        }
-    
         public int Id { get; set; }
         public string Nome { get; set; }
     
         public virtual Morada Morada { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trabalhador> Trabalhadores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemMenu> ItensMenu { get; set; }
     }
 }

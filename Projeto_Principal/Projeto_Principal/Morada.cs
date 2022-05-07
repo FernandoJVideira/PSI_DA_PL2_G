@@ -17,10 +17,7 @@ namespace Projeto_Principal
         public int Id { get; set; }
         public string Rua { get; set; }
         public string Cidade { get; set; }
-        public string CodPost { get; set; }
         public string Pais { get; set; }
-    
-        public virtual Pessoa Pessoa { get; set; }
-        public virtual Restaurante Restaurante { get; set; }
+        public string CodPostal { get; set; }
     }
 }

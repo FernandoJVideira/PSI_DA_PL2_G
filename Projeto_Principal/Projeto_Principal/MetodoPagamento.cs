@@ -14,17 +14,7 @@ namespace Projeto_Principal
     
     public partial class MetodoPagamento
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MetodoPagamento()
-        {
-            this.Pagamentos = new HashSet<Pagamento>();
-        }
-    
         public int Id { get; set; }
-        public string MetodoDePagamento { get; set; }
         public bool Ativo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagamento> Pagamentos { get; set; }
     }
 }

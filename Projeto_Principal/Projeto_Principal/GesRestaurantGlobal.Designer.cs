@@ -58,6 +58,7 @@
             this.btnRegistar.TabIndex = 34;
             this.btnRegistar.Text = "Registar Restaurante";
             this.btnRegistar.UseVisualStyleBackColor = true;
+            this.btnRegistar.Click += new System.EventHandler(this.btnRegistar_Click);
             // 
             // txtPais
             // 
@@ -220,6 +221,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GesRestaurantGlobal";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.GesRestaurantGlobal_Load);
             this.TopBar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

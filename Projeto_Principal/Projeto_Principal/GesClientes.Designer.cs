@@ -158,6 +158,7 @@
             this.btnRegistarCliente.TabIndex = 16;
             this.btnRegistarCliente.Text = "Registar Cliente";
             this.btnRegistarCliente.UseVisualStyleBackColor = true;
+            this.btnRegistarCliente.Click += new System.EventHandler(this.btnRegistarCliente_Click);
             // 
             // listBoxClientes
             // 
@@ -260,6 +261,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GesClientes";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.GesClientes_Load);
             this.TopBar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

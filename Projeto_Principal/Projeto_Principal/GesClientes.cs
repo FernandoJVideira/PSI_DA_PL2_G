@@ -14,6 +14,7 @@ namespace Projeto_Principal
     {
         bool mouseDown;
         private Point offset;
+        private Model1Container model;
 
         public GesClientes()
         {
@@ -50,6 +51,43 @@ namespace Projeto_Principal
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRegistarCliente_Click(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            Pessoa tempPessoa = new Pessoa();
+            Morada tempMorada = new Morada();
+
+            tempMorada.Rua = txtRua.Text;
+            tempMorada.Cidade = txtCidade.Text;
+            tempMorada.Pais = txtPais.Text;
+            tempMorada.CodPostal = txtPostalCod.Text;
+            
+
+
+            tempPessoa.Morada = tempMorada;
+            tempPessoa.Nome = txtNome.Text;
+            tempPessoa.Telemovel = txtTelemovel.Text;
+
+            model.Pessoa.Add(tempPessoa);
+            model.Morada.Add(tempMorada);
+
+            model.SaveChanges();
+            
+            
+            
+        }
+
+        public void LerDados()
+        {
+            listBoxClientes.DataSource = model.Pessoa.ToList<Pessoa>();
+        }
+
+        private void GesClientes_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
         }
     }
 }

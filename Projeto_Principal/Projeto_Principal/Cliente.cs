@@ -14,16 +14,7 @@ namespace Projeto_Principal
     
     public partial class Cliente : Pessoa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cliente()
-        {
-            this.Pedidos = new HashSet<Pedido>();
-        }
-    
+        public string NIF { get; set; }
         public decimal TotalGasto { get; set; }
-        public string NumCont { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }
