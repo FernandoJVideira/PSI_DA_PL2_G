@@ -14,6 +14,7 @@ namespace Projeto_Principal
     {
         bool mouseDown;
         private Point offset;
+        private Model1Container model;
         public SelectRestaurant()
         {
             InitializeComponent();
@@ -51,6 +52,27 @@ namespace Projeto_Principal
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void SelectRestaurant_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
+        }
+
+        public void LerDados()
+        {
+            listBoxRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+        }
+
+        private void btnGerir_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

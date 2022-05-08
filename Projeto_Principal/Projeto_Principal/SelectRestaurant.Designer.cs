@@ -30,23 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectRestaurant));
-            this.listBoxRestaurantes = new System.Windows.Forms.ListBox();
             this.btnGerir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.listBoxRestaurantes = new System.Windows.Forms.ListBox();
             this.TopBar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBoxRestaurantes
-            // 
-            this.listBoxRestaurantes.FormattingEnabled = true;
-            this.listBoxRestaurantes.Location = new System.Drawing.Point(211, 58);
-            this.listBoxRestaurantes.Name = "listBoxRestaurantes";
-            this.listBoxRestaurantes.Size = new System.Drawing.Size(336, 355);
-            this.listBoxRestaurantes.TabIndex = 0;
             // 
             // btnGerir
             // 
@@ -56,6 +48,7 @@
             this.btnGerir.TabIndex = 1;
             this.btnGerir.Text = "Gerir";
             this.btnGerir.UseVisualStyleBackColor = true;
+            this.btnGerir.Click += new System.EventHandler(this.btnGerir_Click);
             // 
             // label1
             // 
@@ -108,6 +101,15 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // listBoxRestaurantes
+            // 
+            this.listBoxRestaurantes.FormattingEnabled = true;
+            this.listBoxRestaurantes.Location = new System.Drawing.Point(217, 58);
+            this.listBoxRestaurantes.Name = "listBoxRestaurantes";
+            this.listBoxRestaurantes.Size = new System.Drawing.Size(330, 355);
+            this.listBoxRestaurantes.TabIndex = 0;
+            this.listBoxRestaurantes.SelectedIndexChanged += new System.EventHandler(this.listBoxRestaurantes_SelectedIndexChanged);
+            // 
             // SelectRestaurant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,6 +122,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SelectRestaurant";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.SelectRestaurant_Load);
             this.TopBar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -127,13 +130,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBoxRestaurantes;
         private System.Windows.Forms.Button btnGerir;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ListBox listBoxRestaurantes;
     }
 }

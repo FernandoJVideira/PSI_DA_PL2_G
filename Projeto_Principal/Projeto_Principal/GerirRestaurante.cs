@@ -14,6 +14,7 @@ namespace Projeto_Principal
     {
         bool mouseDown;
         private Point offset;
+        private Model1Container model;
         public GerirRestaurante()
         {
             InitializeComponent();
@@ -52,5 +53,77 @@ namespace Projeto_Principal
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void listBoxTrabalhadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GerirRestaurante_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
+        }
+
+        public void LerDados()
+        {
+            List<Trabalhador> listaTrabalhadores = new List<Trabalhador>();
+
+            model = new Model1Container();
+
+            foreach (Pessoa pessoa in model.Pessoa)
+            {
+                if (pessoa is Trabalhador)
+                {
+                    Trabalhador trabalhador = (Trabalhador)pessoa;
+                    listaTrabalhadores.Add(trabalhador);
+                }
+
+                // falta verificar se pertence ao restaurante selecionado
+
+
+            }
+
+            dataGridViewTrabalhadores.DataSource = listaTrabalhadores;
+
+        }
+
+        private void txtAddSFicha_Click(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            Morada tempMorada = new Morada();
+            Trabalhador tempTrabalhador = new Trabalhador();
+
+            // falta passar o restaurnate
+            try
+            {
+                tempMorada.Rua = txtRua.Text;
+                tempMorada.Cidade = txtCidade.Text;
+                tempMorada.Pais = txtPais.Text;
+                tempMorada.CodPostal = txtPostalCod.Text;
+
+                
+                tempTrabalhador.Posicao = txtPosicao.Text;
+                tempTrabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
+                tempTrabalhador.Morada = tempMorada;
+                tempTrabalhador.Nome = txtNome.Text;
+                tempTrabalhador.Telemovel = txtTelemovel.Text;
+
+                model.Morada.Add(tempMorada);
+                model.Pessoa.Add(tempTrabalhador);
+
+                model.SaveChanges();
+                LerDados();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Salario invalido!!");
+            }
+
+
+        }
+
+
     }
 }

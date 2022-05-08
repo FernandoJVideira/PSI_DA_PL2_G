@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace Projeto_Principal
 {
@@ -56,38 +57,66 @@ namespace Projeto_Principal
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
             model = new Model1Container();
-            Pessoa tempPessoa = new Pessoa();
             Morada tempMorada = new Morada();
+            Cliente cliente = new Cliente();
 
             tempMorada.Rua = txtRua.Text;
             tempMorada.Cidade = txtCidade.Text;
             tempMorada.Pais = txtPais.Text;
             tempMorada.CodPostal = txtPostalCod.Text;
+
+
             
+            cliente.NIF = txtNumCont.Text;
+            cliente.TotalGasto = 0;
+            cliente.Morada = tempMorada;
+            cliente.Nome = txtNome.Text;
+            cliente.Telemovel = txtTelemovel.Text;
 
-
-            tempPessoa.Morada = tempMorada;
-            tempPessoa.Nome = txtNome.Text;
-            tempPessoa.Telemovel = txtTelemovel.Text;
-
-            model.Pessoa.Add(tempPessoa);
             model.Morada.Add(tempMorada);
+            model.Pessoa.Add(cliente);
 
             model.SaveChanges();
-            
+            LerDados();
             
             
         }
 
         public void LerDados()
         {
-            listBoxClientes.DataSource = model.Pessoa.ToList<Pessoa>();
+            List<Cliente> listaCLientes = new List<Cliente>();
+
+            model = new Model1Container();
+
+            foreach (Pessoa pessoa in model.Pessoa)
+            {
+                if(pessoa is Cliente)
+                {
+                    Cliente cliente = (Cliente)pessoa;
+                    listaCLientes.Add(cliente);
+                }
+                
+            }
+            
+            dataGridViewCliente.DataSource = listaCLientes;
+
         }
 
         private void GesClientes_Load(object sender, EventArgs e)
         {
             model = new Model1Container();
             LerDados();
+            
+
+
+
+        }
+
+        private void btnApagarCliente_Click(object sender, EventArgs e)
+        {
+            
+
+                
         }
     }
 }

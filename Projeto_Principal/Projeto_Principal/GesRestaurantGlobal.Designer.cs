@@ -41,13 +41,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBoxRestaurantes = new System.Windows.Forms.ListBox();
             this.btnRemover = new System.Windows.Forms.Button();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.dataGridViewRestaurante = new System.Windows.Forms.DataGridView();
             this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRestaurante)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegistar
@@ -140,14 +141,6 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Nome";
             // 
-            // listBoxRestaurantes
-            // 
-            this.listBoxRestaurantes.FormattingEnabled = true;
-            this.listBoxRestaurantes.Location = new System.Drawing.Point(325, 53);
-            this.listBoxRestaurantes.Name = "listBoxRestaurantes";
-            this.listBoxRestaurantes.Size = new System.Drawing.Size(244, 303);
-            this.listBoxRestaurantes.TabIndex = 0;
-            // 
             // btnRemover
             // 
             this.btnRemover.Location = new System.Drawing.Point(325, 375);
@@ -199,11 +192,20 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // dataGridViewRestaurante
+            // 
+            this.dataGridViewRestaurante.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRestaurante.Location = new System.Drawing.Point(301, 57);
+            this.dataGridViewRestaurante.Name = "dataGridViewRestaurante";
+            this.dataGridViewRestaurante.Size = new System.Drawing.Size(292, 312);
+            this.dataGridViewRestaurante.TabIndex = 36;
+            // 
             // GesRestaurantGlobal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 450);
+            this.Controls.Add(this.dataGridViewRestaurante);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.txtPais);
@@ -217,12 +219,12 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRemover);
-            this.Controls.Add(this.listBoxRestaurantes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GesRestaurantGlobal";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.GesRestaurantGlobal_Load);
             this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRestaurante)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,11 +243,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBoxRestaurantes;
         private System.Windows.Forms.Button btnRemover;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.DataGridView dataGridViewRestaurante;
     }
 }

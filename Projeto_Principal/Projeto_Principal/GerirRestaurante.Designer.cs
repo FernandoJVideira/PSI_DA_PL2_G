@@ -30,15 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerirRestaurante));
-            this.listBoxTrabalhadores = new System.Windows.Forms.ListBox();
             this.txtRemove = new System.Windows.Forms.Button();
-            this.txtAddCFicha = new System.Windows.Forms.Button();
-            this.listBoxClientes = new System.Windows.Forms.ListBox();
             this.txtPosicao = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSalario = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtAddSFicha = new System.Windows.Forms.Button();
+            this.txtAddTrabalhador = new System.Windows.Forms.Button();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -53,46 +50,25 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewTrabalhadores = new System.Windows.Forms.DataGridView();
+            this.txtTelemovel = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listBoxTrabalhadores
-            // 
-            this.listBoxTrabalhadores.FormattingEnabled = true;
-            this.listBoxTrabalhadores.Location = new System.Drawing.Point(532, 101);
-            this.listBoxTrabalhadores.Name = "listBoxTrabalhadores";
-            this.listBoxTrabalhadores.Size = new System.Drawing.Size(216, 290);
-            this.listBoxTrabalhadores.TabIndex = 0;
             // 
             // txtRemove
             // 
-            this.txtRemove.Location = new System.Drawing.Point(532, 397);
+            this.txtRemove.Location = new System.Drawing.Point(445, 397);
             this.txtRemove.Name = "txtRemove";
             this.txtRemove.Size = new System.Drawing.Size(216, 23);
             this.txtRemove.TabIndex = 1;
             this.txtRemove.Text = "Remover";
             this.txtRemove.UseVisualStyleBackColor = true;
             // 
-            // txtAddCFicha
-            // 
-            this.txtAddCFicha.Location = new System.Drawing.Point(298, 397);
-            this.txtAddCFicha.Name = "txtAddCFicha";
-            this.txtAddCFicha.Size = new System.Drawing.Size(216, 23);
-            this.txtAddCFicha.TabIndex = 2;
-            this.txtAddCFicha.Text = "Adicionar Trabalhador com ficha";
-            this.txtAddCFicha.UseVisualStyleBackColor = true;
-            // 
-            // listBoxClientes
-            // 
-            this.listBoxClientes.FormattingEnabled = true;
-            this.listBoxClientes.Location = new System.Drawing.Point(298, 154);
-            this.listBoxClientes.Name = "listBoxClientes";
-            this.listBoxClientes.Size = new System.Drawing.Size(216, 238);
-            this.listBoxClientes.TabIndex = 3;
-            // 
             // txtPosicao
             // 
-            this.txtPosicao.Location = new System.Drawing.Point(271, 101);
+            this.txtPosicao.Location = new System.Drawing.Point(140, 363);
             this.txtPosicao.Name = "txtPosicao";
             this.txtPosicao.Size = new System.Drawing.Size(123, 20);
             this.txtPosicao.TabIndex = 27;
@@ -100,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(177, 104);
+            this.label3.Location = new System.Drawing.Point(46, 366);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 26;
@@ -108,7 +84,7 @@
             // 
             // txtSalario
             // 
-            this.txtSalario.Location = new System.Drawing.Point(271, 62);
+            this.txtSalario.Location = new System.Drawing.Point(140, 324);
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(123, 20);
             this.txtSalario.TabIndex = 25;
@@ -116,20 +92,21 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(177, 65);
+            this.label8.Location = new System.Drawing.Point(46, 327);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 24;
             this.label8.Text = "Salario";
             // 
-            // txtAddSFicha
+            // txtAddTrabalhador
             // 
-            this.txtAddSFicha.Location = new System.Drawing.Point(49, 397);
-            this.txtAddSFicha.Name = "txtAddSFicha";
-            this.txtAddSFicha.Size = new System.Drawing.Size(216, 23);
-            this.txtAddSFicha.TabIndex = 28;
-            this.txtAddSFicha.Text = "Adicionar Trabalhador sem ficha";
-            this.txtAddSFicha.UseVisualStyleBackColor = true;
+            this.txtAddTrabalhador.Location = new System.Drawing.Point(49, 397);
+            this.txtAddTrabalhador.Name = "txtAddTrabalhador";
+            this.txtAddTrabalhador.Size = new System.Drawing.Size(216, 23);
+            this.txtAddTrabalhador.TabIndex = 28;
+            this.txtAddTrabalhador.Text = "Adicionar Trabalhador";
+            this.txtAddTrabalhador.UseVisualStyleBackColor = true;
+            this.txtAddTrabalhador.Click += new System.EventHandler(this.txtAddSFicha_Click);
             // 
             // RoundedBorders
             // 
@@ -175,7 +152,7 @@
             // 
             // txtPais
             // 
-            this.txtPais.Location = new System.Drawing.Point(142, 344);
+            this.txtPais.Location = new System.Drawing.Point(140, 290);
             this.txtPais.Name = "txtPais";
             this.txtPais.Size = new System.Drawing.Size(123, 20);
             this.txtPais.TabIndex = 43;
@@ -183,7 +160,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 347);
+            this.label7.Location = new System.Drawing.Point(46, 293);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(27, 13);
             this.label7.TabIndex = 42;
@@ -191,7 +168,7 @@
             // 
             // txtPostalCod
             // 
-            this.txtPostalCod.Location = new System.Drawing.Point(142, 305);
+            this.txtPostalCod.Location = new System.Drawing.Point(140, 251);
             this.txtPostalCod.Name = "txtPostalCod";
             this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
             this.txtPostalCod.TabIndex = 41;
@@ -199,7 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 308);
+            this.label4.Location = new System.Drawing.Point(46, 254);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 40;
@@ -207,7 +184,7 @@
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(142, 258);
+            this.txtCidade.Location = new System.Drawing.Point(140, 204);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(123, 20);
             this.txtCidade.TabIndex = 39;
@@ -215,7 +192,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 261);
+            this.label5.Location = new System.Drawing.Point(46, 207);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 38;
@@ -223,7 +200,7 @@
             // 
             // txtRua
             // 
-            this.txtRua.Location = new System.Drawing.Point(142, 214);
+            this.txtRua.Location = new System.Drawing.Point(140, 160);
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(123, 20);
             this.txtRua.TabIndex = 37;
@@ -231,7 +208,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 217);
+            this.label6.Location = new System.Drawing.Point(46, 163);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 36;
@@ -239,7 +216,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(142, 168);
+            this.txtNome.Location = new System.Drawing.Point(140, 64);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(123, 20);
             this.txtNome.TabIndex = 35;
@@ -247,21 +224,48 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 171);
+            this.label2.Location = new System.Drawing.Point(46, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 34;
             this.label2.Text = "Nome";
+            // 
+            // dataGridViewTrabalhadores
+            // 
+            this.dataGridViewTrabalhadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTrabalhadores.Location = new System.Drawing.Point(334, 80);
+            this.dataGridViewTrabalhadores.Name = "dataGridViewTrabalhadores";
+            this.dataGridViewTrabalhadores.Size = new System.Drawing.Size(423, 288);
+            this.dataGridViewTrabalhadores.TabIndex = 44;
+            // 
+            // txtTelemovel
+            // 
+            this.txtTelemovel.Location = new System.Drawing.Point(139, 113);
+            this.txtTelemovel.Name = "txtTelemovel";
+            this.txtTelemovel.Size = new System.Drawing.Size(123, 20);
+            this.txtTelemovel.TabIndex = 46;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(45, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Telvemovel";
             // 
             // GerirRestaurante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtTelemovel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridViewTrabalhadores);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtAddSFicha);
+            this.Controls.Add(this.txtAddTrabalhador);
             this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.txtPosicao);
             this.Controls.Add(this.label4);
@@ -272,32 +276,27 @@
             this.Controls.Add(this.txtRua);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.listBoxClientes);
             this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.txtAddCFicha);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtRemove);
-            this.Controls.Add(this.listBoxTrabalhadores);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GerirRestaurante";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.GerirRestaurante_Load);
             this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBoxTrabalhadores;
         private System.Windows.Forms.Button txtRemove;
-        private System.Windows.Forms.Button txtAddCFicha;
-        private System.Windows.Forms.ListBox listBoxClientes;
         private System.Windows.Forms.TextBox txtPosicao;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSalario;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button txtAddSFicha;
+        private System.Windows.Forms.Button txtAddTrabalhador;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;
@@ -312,5 +311,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridViewTrabalhadores;
+        private System.Windows.Forms.TextBox txtTelemovel;
+        private System.Windows.Forms.Label label1;
     }
 }

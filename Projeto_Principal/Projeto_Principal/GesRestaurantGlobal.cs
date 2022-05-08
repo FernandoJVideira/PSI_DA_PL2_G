@@ -78,7 +78,7 @@ namespace Projeto_Principal
 
         public void LerDados()
         {
-            listBoxRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+            dataGridViewRestaurante.DataSource = model.Restaurante.ToList<Restaurante>();
         }
 
         private void GesRestaurantGlobal_Load(object sender, EventArgs e)

@@ -50,6 +50,8 @@
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.buttonAddEngrediente = new System.Windows.Forms.Button();
+            this.buttonRemvEngrediente = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,22 +160,22 @@
             // listBoxIngredientes
             // 
             this.listBoxIngredientes.FormattingEnabled = true;
-            this.listBoxIngredientes.Location = new System.Drawing.Point(31, 278);
+            this.listBoxIngredientes.Location = new System.Drawing.Point(31, 266);
             this.listBoxIngredientes.Name = "listBoxIngredientes";
             this.listBoxIngredientes.Size = new System.Drawing.Size(187, 82);
             this.listBoxIngredientes.TabIndex = 12;
             // 
             // txtIngredientes
             // 
-            this.txtIngredientes.Location = new System.Drawing.Point(31, 252);
+            this.txtIngredientes.Location = new System.Drawing.Point(31, 240);
             this.txtIngredientes.Name = "txtIngredientes";
-            this.txtIngredientes.Size = new System.Drawing.Size(187, 20);
+            this.txtIngredientes.Size = new System.Drawing.Size(160, 20);
             this.txtIngredientes.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 236);
+            this.label5.Location = new System.Drawing.Point(28, 224);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 14;
@@ -230,11 +232,31 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // buttonAddEngrediente
+            // 
+            this.buttonAddEngrediente.Location = new System.Drawing.Point(197, 240);
+            this.buttonAddEngrediente.Name = "buttonAddEngrediente";
+            this.buttonAddEngrediente.Size = new System.Drawing.Size(21, 23);
+            this.buttonAddEngrediente.TabIndex = 37;
+            this.buttonAddEngrediente.Text = "+";
+            this.buttonAddEngrediente.UseVisualStyleBackColor = true;
+            // 
+            // buttonRemvEngrediente
+            // 
+            this.buttonRemvEngrediente.Location = new System.Drawing.Point(31, 354);
+            this.buttonRemvEngrediente.Name = "buttonRemvEngrediente";
+            this.buttonRemvEngrediente.Size = new System.Drawing.Size(187, 23);
+            this.buttonRemvEngrediente.TabIndex = 38;
+            this.buttonRemvEngrediente.Text = "Remover Engrediente";
+            this.buttonRemvEngrediente.UseVisualStyleBackColor = true;
+            // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 450);
+            this.Controls.Add(this.buttonRemvEngrediente);
+            this.Controls.Add(this.buttonAddEngrediente);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -283,5 +305,7 @@
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button buttonRemvEngrediente;
+        private System.Windows.Forms.Button buttonAddEngrediente;
     }
 }

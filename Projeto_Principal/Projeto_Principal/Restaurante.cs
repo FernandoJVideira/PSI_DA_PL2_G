@@ -18,5 +18,10 @@ namespace Projeto_Principal
         public string Nome { get; set; }
     
         public virtual Morada Morada { get; set; }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }
