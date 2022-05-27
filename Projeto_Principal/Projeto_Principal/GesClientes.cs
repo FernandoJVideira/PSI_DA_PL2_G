@@ -54,32 +54,30 @@ namespace Projeto_Principal
             this.WindowState = FormWindowState.Minimized;
         }
 
+        //-------------------------------------------------------------------------------------//
+
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
             model = new Model1Container();
-            Morada tempMorada = new Morada();
+            Morada morada = new Morada();
             Cliente cliente = new Cliente();
 
-            tempMorada.Rua = txtRua.Text;
-            tempMorada.Cidade = txtCidade.Text;
-            tempMorada.Pais = txtPais.Text;
-            tempMorada.CodPostal = txtPostalCod.Text;
-
-
+            morada.Rua = txtRua.Text;
+            morada.Cidade = txtCidade.Text;
+            morada.Pais = txtPais.Text;
+            morada.CodPostal = txtPostalCod.Text;
             
             cliente.NIF = txtNumCont.Text;
             cliente.TotalGasto = 0;
-            cliente.Morada = tempMorada;
+            cliente.Morada = morada;
             cliente.Nome = txtNome.Text;
             cliente.Telemovel = txtTelemovel.Text;
 
-            model.Morada.Add(tempMorada);
+            model.Morada.Add(morada);
             model.Pessoa.Add(cliente);
 
             model.SaveChanges();
-            LerDados();
-            
-            
+            LerDados();                  
         }
 
         public void LerDados()
@@ -94,22 +92,16 @@ namespace Projeto_Principal
                 {
                     Cliente cliente = (Cliente)pessoa;
                     listaCLientes.Add(cliente);
-                }
-                
+                }                
             }
             
             dataGridViewCliente.DataSource = listaCLientes;
-
         }
 
         private void GesClientes_Load(object sender, EventArgs e)
         {
             model = new Model1Container();
             LerDados();
-            
-
-
-
         }
 
         private void btnApagarCliente_Click(object sender, EventArgs e)

@@ -162,6 +162,7 @@
     </Key>
     <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
     <Property Name="Ativo" Nullable="false" Type="Boolean" />
+    <Property Name="Nome" Type="String" Nullable="false" />
   </EntityType>
   <Association Name="PagamentoMetodoPagamento">
     <End Type="Model1.Pagamento" Multiplicity="*" Role="Pagamento" />

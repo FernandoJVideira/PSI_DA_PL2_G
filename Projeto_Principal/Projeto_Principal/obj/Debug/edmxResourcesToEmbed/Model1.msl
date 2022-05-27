@@ -75,6 +75,7 @@
         <MappingFragment StoreEntitySet="MetodoPagamento">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -15,6 +15,7 @@ namespace Projeto_Principal
         bool mouseDown;
         private Point offset;
         private Model1Container model;
+
         public GerirRestaurante()
         {
             InitializeComponent();
@@ -41,8 +42,6 @@ namespace Projeto_Principal
             mouseDown = false;
         }
 
-
-        //-------------------------------------------------------------------------------------//
         private void btnClose_Click(object sender, EventArgs e)
         {
             new MainMenu().Show();
@@ -53,6 +52,8 @@ namespace Projeto_Principal
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        //-------------------------------------------------------------------------------------//
 
         private void listBoxTrabalhadores_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -67,9 +68,8 @@ namespace Projeto_Principal
 
         public void LerDados()
         {
+            
             List<Trabalhador> listaTrabalhadores = new List<Trabalhador>();
-
-            model = new Model1Container();
 
             foreach (Pessoa pessoa in model.Pessoa)
             {
@@ -80,50 +80,45 @@ namespace Projeto_Principal
                 }
 
                 // falta verificar se pertence ao restaurante selecionado
-
-
             }
 
             dataGridViewTrabalhadores.DataSource = listaTrabalhadores;
-
         }
 
-        private void txtAddSFicha_Click(object sender, EventArgs e)
+        private void btnAddTrabalhador_Click(object sender, EventArgs e)
         {
-            model = new Model1Container();
-            Morada tempMorada = new Morada();
-            Trabalhador tempTrabalhador = new Trabalhador();
+            Morada morada = new Morada();
+            Trabalhador trabalhador = new Trabalhador();
 
             // falta passar o restaurnate
             try
             {
-                tempMorada.Rua = txtRua.Text;
-                tempMorada.Cidade = txtCidade.Text;
-                tempMorada.Pais = txtPais.Text;
-                tempMorada.CodPostal = txtPostalCod.Text;
+                morada.Rua = txtRua.Text;
+                morada.Cidade = txtCidade.Text;
+                morada.Pais = txtPais.Text;
+                morada.CodPostal = txtPostalCod.Text;
 
-                
-                tempTrabalhador.Posicao = txtPosicao.Text;
-                tempTrabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
-                tempTrabalhador.Morada = tempMorada;
-                tempTrabalhador.Nome = txtNome.Text;
-                tempTrabalhador.Telemovel = txtTelemovel.Text;
+                trabalhador.Posicao = txtPosicao.Text;
+                trabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
+                trabalhador.Morada = morada;
+                trabalhador.Nome = txtNome.Text;
+                trabalhador.Telemovel = txtTelemovel.Text;
 
-                model.Morada.Add(tempMorada);
-                model.Pessoa.Add(tempTrabalhador);
+                model.Morada.Add(morada);
+                model.Pessoa.Add(trabalhador);
 
                 model.SaveChanges();
                 LerDados();
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Salario invalido!!");
             }
-
-
         }
 
+        private void txtRemove_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

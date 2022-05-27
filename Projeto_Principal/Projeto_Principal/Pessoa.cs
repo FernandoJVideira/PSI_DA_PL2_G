@@ -19,7 +19,5 @@ namespace Projeto_Principal
         public string Telemovel { get; set; }
     
         public virtual Morada Morada { get; set; }
-
-
     }
 }
