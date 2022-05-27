@@ -14,11 +14,15 @@ namespace Projeto_Principal
     {
         bool mouseDown;
         private Point offset;
+        public static int IdRestaurate = 0;
+
 
         public MainMenu()
         {
             InitializeComponent();
         }
+
+
 
         private void MouseDown_Event(object sender, MouseEventArgs e)
         {
@@ -52,6 +56,8 @@ namespace Projeto_Principal
                 Application.Exit();
             }
         }
+
+        
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -92,6 +98,18 @@ namespace Projeto_Principal
         {
             form.Show();
             this.Close();
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            if (IdRestaurate != 0)
+            {
+                Model1Container model1 = new Model1Container();
+                Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+
+                lblNomeRestaurante.Text = restaurante.Nome;
+            }
+
         }
     }
 }
