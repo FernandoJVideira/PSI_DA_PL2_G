@@ -76,7 +76,11 @@ namespace Projeto_Principal
                 if (pessoa is Trabalhador)
                 {
                     Trabalhador trabalhador = (Trabalhador)pessoa;
-                    listaTrabalhadores.Add(trabalhador);
+                    if(trabalhador.RestauranteId == MainMenu.IdRestaurate)
+                    {
+                        listaTrabalhadores.Add(trabalhador);
+
+                    }
                 }
 
                 // falta verificar se pertence ao restaurante selecionado
@@ -108,6 +112,7 @@ namespace Projeto_Principal
                 tempTrabalhador.Morada = tempMorada;
                 tempTrabalhador.Nome = txtNome.Text;
                 tempTrabalhador.Telemovel = txtTelemovel.Text;
+                tempTrabalhador.RestauranteId = MainMenu.IdRestaurate;
 
                 model.Morada.Add(tempMorada);
                 model.Pessoa.Add(tempTrabalhador);
