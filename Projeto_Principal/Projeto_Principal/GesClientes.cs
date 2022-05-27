@@ -56,31 +56,27 @@ namespace Projeto_Principal
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
-            Morada tempMorada = new Morada();
+            Morada moradaCliente = new Morada();
             Cliente cliente = new Cliente();
 
-            tempMorada.Rua = txtRua.Text;
-            tempMorada.Cidade = txtCidade.Text;
-            tempMorada.Pais = txtPais.Text;
-            tempMorada.CodPostal = txtPostalCod.Text;
+            moradaCliente.Rua = txtRua.Text;
+            moradaCliente.Cidade = txtCidade.Text;
+            moradaCliente.Pais = txtPais.Text;
+            moradaCliente.CodPostal = txtPostalCod.Text;
 
-
-            
             cliente.NIF = txtNumCont.Text;
             cliente.TotalGasto = 0;
-            cliente.Morada = tempMorada;
+            cliente.Morada = moradaCliente;
             cliente.Nome = txtNome.Text;
             cliente.Telemovel = txtTelemovel.Text;
 
-            model.Morada.Add(tempMorada);
+            model.Morada.Add(moradaCliente);
             model.Pessoa.Add(cliente);
 
             model.SaveChanges();
             LerDados();
-            
-            
+            ClearTxtBox();
         }
-
         public void LerDados()
         {
             List<Cliente> listaCLientes = new List<Cliente>();
@@ -92,15 +88,13 @@ namespace Projeto_Principal
                     Cliente cliente = (Cliente)pessoa;
                     listaCLientes.Add(cliente);
                 }
-                
             }
-            
             dataGridViewCliente.DataSource = listaCLientes;
-
         }
 
         private void GesClientes_Load(object sender, EventArgs e)
         {
+            dataGridViewCliente.ReadOnly = true;
             model = new Model1Container();
             LerDados();
             AjustDataColumns();
@@ -108,17 +102,67 @@ namespace Projeto_Principal
 
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
-            var toBeDeleted = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
-            var userdata = model.Pessoa.First(c => c.Id == toBeDeleted);
+            Cliente userdata = GetCliente();
             model.Pessoa.Remove(userdata);
             model.SaveChanges();
             dataGridViewCliente.DataSource = model.Pessoa.ToList();
+        }
+        private void btnEditCliente_Click(object sender, EventArgs e)
+        {
+            Cliente userdata = GetCliente();
+
+            userdata.Nome = txtNome.Text;
+            userdata.Telemovel = txtTelemovel.Text;
+            userdata.Morada.Cidade = txtCidade.Text;
+            userdata.NIF = txtNumCont.Text;
+            userdata.Morada.CodPostal = txtPostalCod.Text;
+            userdata.Morada.Rua = txtRua.Text;
+            userdata.Morada.Pais = txtPais.Text;
+
+            model.SaveChanges();
+
+            LerDados();
+        }
+        private void dataGridViewCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Cliente userdata = GetCliente();
+
+                txtNome.Text = userdata.Nome;
+                txtTelemovel.Text = userdata.Telemovel;
+                txtCidade.Text = userdata.Morada.Cidade;
+                txtNumCont.Text = userdata.NIF;
+                txtPostalCod.Text = userdata.Morada.CodPostal;
+                txtRua.Text = userdata.Morada.Rua;
+                txtPais.Text = userdata.Morada.Pais;
+            }
+            catch { }
         }
 
         private void AjustDataColumns()
         {
             dataGridViewCliente.Columns["Id"].DisplayIndex = 0;
             dataGridViewCliente.Columns["Nome"].DisplayIndex = 1;
+        }
+
+        private void ClearTxtBox()
+        {
+            txtRua.Text = "";
+            txtCidade.Text = "";
+            txtPais.Text = "";
+            txtPostalCod.Text = "";
+            txtNumCont.Text = "";
+            txtNome.Text = "";
+            txtTelemovel.Text = "";
+        }
+
+        private Cliente GetCliente()
+        {
+            var clientID = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
+            var userdata = model.Pessoa.First(c => c.Id == clientID) as Cliente;
+
+            return userdata;
         }
     }
 }

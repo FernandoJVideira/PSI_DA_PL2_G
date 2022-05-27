@@ -252,12 +252,13 @@
             // dataGridViewCliente
             // 
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCliente.Location = new System.Drawing.Point(447, 74);
+            this.dataGridViewCliente.Location = new System.Drawing.Point(447, 76);
             this.dataGridViewCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewCliente.Name = "dataGridViewCliente";
             this.dataGridViewCliente.RowHeadersWidth = 62;
             this.dataGridViewCliente.Size = new System.Drawing.Size(492, 477);
             this.dataGridViewCliente.TabIndex = 23;
+            this.dataGridViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellClick);
             // 
             // btnEditCliente
             // 
@@ -268,6 +269,7 @@
             this.btnEditCliente.TabIndex = 24;
             this.btnEditCliente.Text = "Editar Cliente";
             this.btnEditCliente.UseVisualStyleBackColor = true;
+            this.btnEditCliente.Click += new System.EventHandler(this.btnEditCliente_Click);
             // 
             // GesClientes
             // 
