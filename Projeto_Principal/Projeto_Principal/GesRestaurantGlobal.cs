@@ -107,21 +107,6 @@ namespace Projeto_Principal
 
         }
 
-        private void GesRestaurantGlobal_Load(object sender, EventArgs e)
-        {
-            model = new Model1Container();
-            LerDados();
-            cbDisponibilidadeCategoria.SelectedIndex = 0;
-            cbDisponibilidadeMetodoPagamento.SelectedIndex = 0;
-        }
-
-        public void LerDados()
-        {
-            dgvRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
-            dgvCategorias.DataSource = model.Categoria.ToList<Categoria>();
-            dgvMetodosPagamento.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
-        }
-
         private void btnRegistarCategoria_Click(object sender, EventArgs e)
         {
             try
