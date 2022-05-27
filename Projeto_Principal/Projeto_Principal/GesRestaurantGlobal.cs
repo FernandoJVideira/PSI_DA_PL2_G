@@ -55,49 +55,6 @@ namespace Projeto_Principal
 
         private void btnRegistar_Click(object sender, EventArgs e)
         {
-            model = new Model1Container();
-            Restaurante tempRestaurante = new Restaurante();
-            Morada tempMorada = new Morada();
-
-            tempMorada.Rua = txtRua.Text;
-            tempMorada.Cidade = txtCidade.Text;
-            tempMorada.Pais = txtPais.Text;
-            tempMorada.CodPostal = txtPostalCod.Text;
-
-            tempRestaurante.Nome = txtNome.Text;
-            tempRestaurante.Morada = tempMorada;
-
-            model.Restaurante.Add(tempRestaurante);
-            model.Morada.Add(tempMorada);
-
-            model.SaveChanges();
-
-            dataGridViewRestaurante.DataSource = model.Restaurante.ToList<Restaurante>();
-
-        }
-
-        public void LerDados()
-        {
-            dataGridViewRestaurante.DataSource = model.Restaurante.ToList<Restaurante>();
-        }
-
-        private void GesRestaurantGlobal_Load(object sender, EventArgs e)
-        {
-            model = new Model1Container();
-            LerDados();
-            cbDisponibilidadeCategoria.SelectedIndex = 0;
-            cbDisponibilidadeMetodoPagamento.SelectedIndex = 0;
-        }
-
-        public void LerDados()
-        {
-            dgvRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
-            dgvCategorias.DataSource = model.Categoria.ToList<Categoria>();
-            dgvMetodosPagamento.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
-        }
-
-        private void btnRegistar_Click(object sender, EventArgs e)
-        {
             try
             {
                 string nome = txtNome.Text;
@@ -107,7 +64,7 @@ namespace Projeto_Principal
                 string pais = txtPais.Text;
                 string codpostal = txtPostalCod.Text;
 
-                if(nome.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (nome.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
 
                 Restaurante restaurante = new Restaurante();
                 Morada morada = new Morada();
@@ -127,9 +84,25 @@ namespace Projeto_Principal
                 LerDados();
             }
             catch (Exception ex)
-            { 
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); 
-            }           
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void GesRestaurantGlobal_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
+            cbDisponibilidadeCategoria.SelectedIndex = 0;
+            cbDisponibilidadeMetodoPagamento.SelectedIndex = 0;
+        }
+
+        public void LerDados()
+        {
+            dgvRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+            dgvCategorias.DataSource = model.Categoria.ToList<Categoria>();
+            dgvMetodosPagamento.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
         }
 
         private void btnRegistarCategoria_Click(object sender, EventArgs e)
