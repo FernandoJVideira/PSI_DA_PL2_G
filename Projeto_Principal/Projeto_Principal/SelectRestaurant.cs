@@ -67,9 +67,10 @@ namespace Projeto_Principal
 
         private void btnGerir_Click(object sender, EventArgs e)
         {
-            int index = listBoxRestaurantes.SelectedIndex + 1;
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
+            
 
-            MainMenu.IdRestaurate = index;
+            MainMenu.IdRestaurate = restaurante.Id;
             new MainMenu().Show();
             this.Close();
 
