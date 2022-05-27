@@ -114,9 +114,9 @@ namespace Projeto_Principal
 
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
-            
 
-                
+
+
         }
     }
 }

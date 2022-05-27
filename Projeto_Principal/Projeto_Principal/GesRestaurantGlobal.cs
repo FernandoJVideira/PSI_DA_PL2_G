@@ -74,6 +74,8 @@ namespace Projeto_Principal
 
             model.SaveChanges();
 
+            dataGridViewRestaurante.DataSource = model.Restaurante.ToList<Restaurante>();
+
         }
 
         public void LerDados()
