@@ -56,7 +56,6 @@ namespace Projeto_Principal
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
-            model = new Model1Container();
             Morada tempMorada = new Morada();
             Cliente cliente = new Cliente();
 
@@ -86,8 +85,6 @@ namespace Projeto_Principal
         {
             List<Cliente> listaCLientes = new List<Cliente>();
 
-            model = new Model1Container();
-
             foreach (Pessoa pessoa in model.Pessoa)
             {
                 if(pessoa is Cliente)
@@ -106,17 +103,22 @@ namespace Projeto_Principal
         {
             model = new Model1Container();
             LerDados();
-            
-
-
-
+            AjustDataColumns();
         }
 
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
-            
+            var toBeDeleted = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
+            var userdata = model.Pessoa.First(c => c.Id == toBeDeleted);
+            model.Pessoa.Remove(userdata);
+            model.SaveChanges();
+            dataGridViewCliente.DataSource = model.Pessoa.ToList();
+        }
 
-                
+        private void AjustDataColumns()
+        {
+            dataGridViewCliente.Columns["Id"].DisplayIndex = 0;
+            dataGridViewCliente.Columns["Nome"].DisplayIndex = 1;
         }
     }
 }
