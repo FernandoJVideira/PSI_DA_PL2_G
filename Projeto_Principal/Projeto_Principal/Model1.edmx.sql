@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2022 20:48:20
+-- Date Created: 05/29/2022 21:54:04
 -- Generated from EDMX file: C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
 -- --------------------------------------------------
 
@@ -158,7 +158,7 @@ GO
 -- Creating table 'Pagamento'
 CREATE TABLE [dbo].[Pagamento] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Valor] nvarchar(max)  NOT NULL,
+    [Valor] decimal(18,0)  NOT NULL,
     [PedidoId] int  NOT NULL,
     [MetodoPagamento_Id] int  NOT NULL
 );
@@ -167,7 +167,8 @@ GO
 -- Creating table 'MetodoPagamento'
 CREATE TABLE [dbo].[MetodoPagamento] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Ativo] bit  NOT NULL
+    [Ativo] bit  NOT NULL,
+    [Nome] nvarchar(max)  NOT NULL
 );
 GO
 

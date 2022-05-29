@@ -58,7 +58,7 @@ namespace Projeto_Principal
         {
             listBoxPayment.Items.Clear();
             listBoxProcessing.Items.Clear();
-            model = new Model1Container();
+
             List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
             IEnumerable<Pedido> PedidosAndando = from pedido in listaPedidos
                                                  where pedido.EstadoId == 1
@@ -89,6 +89,8 @@ namespace Projeto_Principal
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
             List<Cliente> listaCLientes = new List<Cliente>();
             List<Trabalhador> listaTrabalhadores = new List<Trabalhador>();
+            List<MetodoPagamento> listaMetodoPagamentos = model.MetodoPagamento.ToList<MetodoPagamento>();
+
             RefreshPedidos();
             //--------------- load clientes
 
@@ -126,9 +128,14 @@ namespace Projeto_Principal
             }
 
 
-            //--------------- load trabalhadores
+            //--------------- load metodos
 
+            foreach (MetodoPagamento metodo in listaMetodoPagamentos)
+            {
+                checkedListBoxMethods.Items.Add(metodo);
+            }
 
+            
         }
 
         private void GesPedidos_Load(object sender, EventArgs e)
@@ -138,25 +145,37 @@ namespace Projeto_Principal
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            model = new Model1Container();
             Pedido pedido = new Pedido();
+            Pagamento pagamento = new Pagamento();
             decimal total = 0;
 
             pedido.Trabalhador = (Trabalhador)listBoxTrabalhadores.SelectedItem;
 
-            foreach (ItemMenu item in listBoxItems.Items)
+            foreach(ItemMenu item in listBoxItems.Items)
             {
                 pedido.ItemMenu.Add(item);
                 total += item.Preco;
             }
 
             pedido.ValorTotal = total;
-            pedido.EstadoId = 1;
             pedido.Cliente = GetCliente();
+            
+            pedido.EstadoId = 1;
 
+            pagamento.Valor = total;
+            pagamento.MetodoPagamento = (MetodoPagamento)checkedListBoxMethods.SelectedItem;
+            pagamento.Pedido = pedido;
+            pagamento.PedidoId = pedido.Id;
+            
 
+            model.Pagamento.Add(pagamento);
+            
+            model.Pedido.Add(pedido);
             model.SaveChanges();
 
+            RefreshPedidos();
+
+            
         }
 
         private Cliente GetCliente()
@@ -187,7 +206,7 @@ namespace Projeto_Principal
         {
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             listBoxProcessing.Items.Remove(listBoxProcessing.SelectedItem);
-            model.Pedido.Remove(pedido);
+            pedido.EstadoId = 3;
             model.SaveChanges();
             RefreshPedidos();
         }

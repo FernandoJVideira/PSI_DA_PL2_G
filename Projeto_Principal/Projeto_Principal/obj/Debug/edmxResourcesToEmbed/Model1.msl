@@ -50,7 +50,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
           <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
-          <ScalarProperty Name="PagamentoId" ColumnName="PagamentoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,6 +66,7 @@
         <MappingFragment StoreEntitySet="Pagamento">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,6 +75,7 @@
         <MappingFragment StoreEntitySet="MetodoPagamento">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -135,14 +136,6 @@
     <AssociationSetMapping Name="PagamentoMetodoPagamento" TypeName="Model1.PagamentoMetodoPagamento" StoreEntitySet="Pagamento">
       <EndProperty Name="MetodoPagamento">
         <ScalarProperty Name="Id" ColumnName="MetodoPagamento_Id" />
-      </EndProperty>
-      <EndProperty Name="Pagamento">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PagamentoPedido" TypeName="Model1.PagamentoPedido" StoreEntitySet="Pagamento">
-      <EndProperty Name="Pedido">
-        <ScalarProperty Name="Id" ColumnName="Pedido_Id" />
       </EndProperty>
       <EndProperty Name="Pagamento">
         <ScalarProperty Name="Id" ColumnName="Id" />
