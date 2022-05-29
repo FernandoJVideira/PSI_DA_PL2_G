@@ -48,6 +48,7 @@
             this.btnGerir.TabIndex = 1;
             this.btnGerir.Text = "Gerir";
             this.btnGerir.UseVisualStyleBackColor = true;
+            this.btnGerir.Click += new System.EventHandler(this.btnGerir_Click);
             // 
             // label1
             // 
