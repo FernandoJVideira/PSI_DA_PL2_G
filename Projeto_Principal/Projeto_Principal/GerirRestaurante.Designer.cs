@@ -35,7 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSalario = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtAddTrabalhador = new System.Windows.Forms.Button();
+            this.btnAddTrabalhador = new System.Windows.Forms.Button();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -65,6 +65,7 @@
             this.txtRemove.TabIndex = 1;
             this.txtRemove.Text = "Remover";
             this.txtRemove.UseVisualStyleBackColor = true;
+            this.txtRemove.Click += new System.EventHandler(this.txtRemove_Click);
             // 
             // txtPosicao
             // 
@@ -98,15 +99,15 @@
             this.label8.TabIndex = 24;
             this.label8.Text = "Salario";
             // 
-            // txtAddTrabalhador
+            // btnAddTrabalhador
             // 
-            this.txtAddTrabalhador.Location = new System.Drawing.Point(49, 397);
-            this.txtAddTrabalhador.Name = "txtAddTrabalhador";
-            this.txtAddTrabalhador.Size = new System.Drawing.Size(216, 23);
-            this.txtAddTrabalhador.TabIndex = 28;
-            this.txtAddTrabalhador.Text = "Adicionar Trabalhador";
-            this.txtAddTrabalhador.UseVisualStyleBackColor = true;
-            this.txtAddTrabalhador.Click += new System.EventHandler(this.txtAddSFicha_Click);
+            this.btnAddTrabalhador.Location = new System.Drawing.Point(49, 397);
+            this.btnAddTrabalhador.Name = "btnAddTrabalhador";
+            this.btnAddTrabalhador.Size = new System.Drawing.Size(216, 23);
+            this.btnAddTrabalhador.TabIndex = 28;
+            this.btnAddTrabalhador.Text = "Adicionar Trabalhador";
+            this.btnAddTrabalhador.UseVisualStyleBackColor = true;
+            this.btnAddTrabalhador.Click += new System.EventHandler(this.btnAddTrabalhador_Click);
             // 
             // RoundedBorders
             // 
@@ -265,7 +266,7 @@
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtAddTrabalhador);
+            this.Controls.Add(this.btnAddTrabalhador);
             this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.txtPosicao);
             this.Controls.Add(this.label4);
@@ -296,7 +297,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSalario;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button txtAddTrabalhador;
+        private System.Windows.Forms.Button btnAddTrabalhador;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;

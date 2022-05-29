@@ -16,13 +16,10 @@ namespace Projeto_Principal
         private Point offset;
         public static int IdRestaurate = 0;
 
-
         public MainMenu()
         {
             InitializeComponent();
         }
-
-
 
         private void MouseDown_Event(object sender, MouseEventArgs e)
         {
@@ -45,8 +42,6 @@ namespace Projeto_Principal
             mouseDown = false;
         }
 
-
-        //-------------------------------------------------------------------------------------//
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Pretende sair do programa?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -56,8 +51,6 @@ namespace Projeto_Principal
                 Application.Exit();
             }
         }
-
-        
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -109,7 +102,6 @@ namespace Projeto_Principal
 
                 lblNomeRestaurante.Text = restaurante.Nome;
             }
-
         }
 
     }

@@ -19,5 +19,10 @@ namespace Projeto_Principal
         public string Cidade { get; set; }
         public string Pais { get; set; }
         public string CodPostal { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Rua}, {this.Cidade}, {this.CodPostal}, {this.Pais}";
+        }
     }
 }

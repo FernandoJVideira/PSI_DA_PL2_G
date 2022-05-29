@@ -23,6 +23,59 @@ namespace Projeto_Principal
             model = new Model1Container();
         }
 
+        public void LerDados()
+        {
+            List<Cliente> listaCLientes = new List<Cliente>();
+
+            model = new Model1Container();
+
+            foreach (Pessoa pessoa in model.Pessoa)
+            {
+                if(pessoa is Cliente)
+                {
+                    Cliente cliente = (Cliente)pessoa;
+                    listaCLientes.Add(cliente);
+                }                
+            }
+            
+            dataGridViewCliente.DataSource = listaCLientes;
+        }
+
+        private void GesClientes_Load(object sender, EventArgs e)
+        {
+            model = new Model1Container();
+            LerDados();
+        }
+
+        private void btnRegistarCliente_Click(object sender, EventArgs e)
+        {
+            Morada morada = new Morada();
+            Cliente cliente = new Cliente();
+
+            morada.Rua = txtRua.Text;
+            morada.Cidade = txtCidade.Text;
+            morada.Pais = txtPais.Text;
+            morada.CodPostal = txtPostalCod.Text;
+            
+            cliente.NIF = txtNumCont.Text;
+            cliente.TotalGasto = 0;
+            cliente.Morada = morada;
+            cliente.Nome = txtNome.Text;
+            cliente.Telemovel = txtTelemovel.Text;
+
+            model.Morada.Add(morada);
+            model.Pessoa.Add(cliente);
+
+            model.SaveChanges();
+            LerDados();                  
+        }  
+
+        private void btnApagarCliente_Click(object sender, EventArgs e)
+        {                          
+        }
+
+        //-------------------------------------------------------------------------------------//
+
         private void MouseDown_Event(object sender, MouseEventArgs e)
         {
             offset.X = e.X;
@@ -53,71 +106,6 @@ namespace Projeto_Principal
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnRegistarCliente_Click(object sender, EventArgs e)
-        {
-            
-            Morada tempMorada = new Morada();
-            Cliente cliente = new Cliente();
-
-            tempMorada.Rua = txtRua.Text;
-            tempMorada.Cidade = txtCidade.Text;
-            tempMorada.Pais = txtPais.Text;
-            tempMorada.CodPostal = txtPostalCod.Text;
-
-
-            
-            cliente.NIF = txtNumCont.Text;
-            cliente.TotalGasto = 0;
-            cliente.Morada = tempMorada;
-            cliente.Nome = txtNome.Text;
-            cliente.Telemovel = txtTelemovel.Text;
-
-            model.Morada.Add(tempMorada);
-            model.Pessoa.Add(cliente);
-
-            model.SaveChanges();
-            LerDados();
-            
-            
-        }
-
-        public void LerDados()
-        {
-            List<Cliente> listaCLientes = new List<Cliente>();
-
-            model = new Model1Container();
-
-            foreach (Pessoa pessoa in model.Pessoa)
-            {
-                if(pessoa is Cliente)
-                {
-                    Cliente cliente = (Cliente)pessoa;
-                    listaCLientes.Add(cliente);
-                }
-                
-            }
-            
-            dataGridViewCliente.DataSource = listaCLientes;
-
-        }
-
-        private void GesClientes_Load(object sender, EventArgs e)
-        {
-            model = new Model1Container();
-            LerDados();
-            
-
-
-
-        }
-
-        private void btnApagarCliente_Click(object sender, EventArgs e)
-        {
-
-
-
         }
     }
 }

@@ -41,8 +41,6 @@ namespace Projeto_Principal
             mouseDown = false;
         }
 
-
-        //-------------------------------------------------------------------------------------//
         private void btnClose_Click(object sender, EventArgs e)
         {
             new MainMenu().Show();
@@ -53,6 +51,8 @@ namespace Projeto_Principal
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        //-------------------------------------------------------------------------------------//
 
         private void SelectRestaurant_Load(object sender, EventArgs e)
         {
@@ -69,12 +69,9 @@ namespace Projeto_Principal
         {
             Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
             
-
             MainMenu.IdRestaurate = restaurante.Id;
             new MainMenu().Show();
             this.Close();
-
-
         }
 
         private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)

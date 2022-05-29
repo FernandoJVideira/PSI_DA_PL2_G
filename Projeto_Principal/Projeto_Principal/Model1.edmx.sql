@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2022 16:29:59
--- Generated from EDMX file: C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
+-- Date Created: 05/15/2022 21:55:35
+-- Generated from EDMX file: E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -159,7 +159,8 @@ GO
 -- Creating table 'MetodoPagamento'
 CREATE TABLE [dbo].[MetodoPagamento] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Ativo] bit  NOT NULL
+    [Ativo] bit  NOT NULL,
+    [Nome] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -168,7 +169,7 @@ CREATE TABLE [dbo].[ItemMenu] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CategoriaId] int  NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [Fotografia] varbinary(max)  NOT NULL,
+    [Fotografia] nvarchar(max)  NOT NULL,
     [Ingredientes] nvarchar(max)  NOT NULL,
     [Preco] decimal(18,0)  NOT NULL,
     [Ativo] bit  NOT NULL
@@ -204,13 +205,6 @@ GO
 CREATE TABLE [dbo].[ItemMenuPedido] (
     [ItemMenu_Id] int  NOT NULL,
     [ItemMenuPedido_ItemMenu_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'RestauranteItemMenu'
-CREATE TABLE [dbo].[RestauranteItemMenu] (
-    [Restaurante_Id] int  NOT NULL,
-    [RestauranteItemMenu_Restaurante_Id] int  NOT NULL
 );
 GO
 
@@ -288,12 +282,6 @@ GO
 ALTER TABLE [dbo].[ItemMenuPedido]
 ADD CONSTRAINT [PK_ItemMenuPedido]
     PRIMARY KEY CLUSTERED ([ItemMenu_Id], [ItemMenuPedido_ItemMenu_Id] ASC);
-GO
-
--- Creating primary key on [Restaurante_Id], [RestauranteItemMenu_Restaurante_Id] in table 'RestauranteItemMenu'
-ALTER TABLE [dbo].[RestauranteItemMenu]
-ADD CONSTRAINT [PK_RestauranteItemMenu]
-    PRIMARY KEY CLUSTERED ([Restaurante_Id], [RestauranteItemMenu_Restaurante_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -457,30 +445,6 @@ GO
 CREATE INDEX [IX_FK_CategoriaItemMenu]
 ON [dbo].[ItemMenu]
     ([CategoriaId]);
-GO
-
--- Creating foreign key on [Restaurante_Id] in table 'RestauranteItemMenu'
-ALTER TABLE [dbo].[RestauranteItemMenu]
-ADD CONSTRAINT [FK_RestauranteItemMenu_Restaurante]
-    FOREIGN KEY ([Restaurante_Id])
-    REFERENCES [dbo].[Restaurante]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [RestauranteItemMenu_Restaurante_Id] in table 'RestauranteItemMenu'
-ALTER TABLE [dbo].[RestauranteItemMenu]
-ADD CONSTRAINT [FK_RestauranteItemMenu_ItemMenu]
-    FOREIGN KEY ([RestauranteItemMenu_Restaurante_Id])
-    REFERENCES [dbo].[ItemMenu]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RestauranteItemMenu_ItemMenu'
-CREATE INDEX [IX_FK_RestauranteItemMenu_ItemMenu]
-ON [dbo].[RestauranteItemMenu]
-    ([RestauranteItemMenu_Restaurante_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoa_Trabalhador'

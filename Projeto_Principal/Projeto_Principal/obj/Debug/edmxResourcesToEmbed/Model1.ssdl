@@ -135,6 +135,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemMenu">
     <Key>
