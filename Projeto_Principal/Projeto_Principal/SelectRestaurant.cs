@@ -69,9 +69,15 @@ namespace Projeto_Principal
         {
             Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
             
-            MainMenu.IdRestaurate = restaurante.Id;
-            new MainMenu().Show();
-            this.Close();
+            if(restaurante != null)
+            {
+                MainMenu.IdRestaurate = restaurante.Id;
+                new MainMenu().Show();
+                this.Close();
+            }
+
+            MessageBox.Show("Não existem restaurantes registados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)

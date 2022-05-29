@@ -20,31 +20,38 @@ namespace Projeto_Principal
         public GesClientes()
         {
             InitializeComponent();
-            model = new Model1Container();
         }
 
-        public void LerDados()
+        private void MouseDown_Event(object sender, MouseEventArgs e)
         {
-            List<Cliente> listaCLientes = new List<Cliente>();
+            offset.X = e.X;
+            offset.Y = e.Y;
+            mouseDown = true;
+        }
 
-            model = new Model1Container();
-
-            foreach (Pessoa pessoa in model.Pessoa)
+        private void MouseMove_Event(object sender, MouseEventArgs e)
+        {
+            if (mouseDown == true)
             {
-                if(pessoa is Cliente)
-                {
-                    Cliente cliente = (Cliente)pessoa;
-                    listaCLientes.Add(cliente);
-                }                
+                Point currentScreenPos = PointToScreen(e.Location);
+                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
             }
-            
-            dataGridViewCliente.DataSource = listaCLientes;
         }
 
-        private void GesClientes_Load(object sender, EventArgs e)
+        private void TopBar_MouseUp(object sender, MouseEventArgs e)
         {
-            model = new Model1Container();
-            LerDados();
+            mouseDown = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            new MainMenu().Show();
+            this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
@@ -70,20 +77,13 @@ namespace Projeto_Principal
             LerDados();
             ClearTxtBox();
         }
-
-        //-------------------------------------------------------------------------------------//
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
         public void LerDados()
         {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
+            List<Cliente> listaCLientes = new List<Cliente>();
 
             foreach (Pessoa pessoa in model.Pessoa)
             {
-                if(pessoa is Cliente)
+                if (pessoa is Cliente)
                 {
                     Cliente cliente = (Cliente)pessoa;
                     listaCLientes.Add(cliente);
@@ -92,7 +92,7 @@ namespace Projeto_Principal
             dataGridViewCliente.DataSource = listaCLientes;
         }
 
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        private void GesClientes_Load(object sender, EventArgs e)
         {
             dataGridViewCliente.ReadOnly = true;
             model = new Model1Container();
