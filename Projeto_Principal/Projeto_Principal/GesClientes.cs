@@ -20,6 +20,7 @@ namespace Projeto_Principal
         public GesClientes()
         {
             InitializeComponent();
+            model = new Model1Container();
         }
 
         private void MouseDown_Event(object sender, MouseEventArgs e)
@@ -56,7 +57,7 @@ namespace Projeto_Principal
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
-            model = new Model1Container();
+            
             Morada tempMorada = new Morada();
             Cliente cliente = new Cliente();
 
