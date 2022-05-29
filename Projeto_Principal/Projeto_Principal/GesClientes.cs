@@ -161,10 +161,11 @@ namespace Projeto_Principal
 
         private Cliente GetCliente()
         {
-            int clientID = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
-            Cliente userdata = model.Pessoa.First(c => c.Id == clientID) as Cliente;
+            int row = dataGridViewCliente.SelectedCells[0].RowIndex;
+            int id = (int)dataGridViewCliente.Rows[row].Cells["id"].Value;
+            Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
 
-            return userdata;
+            return data;
         }
     }
 }
