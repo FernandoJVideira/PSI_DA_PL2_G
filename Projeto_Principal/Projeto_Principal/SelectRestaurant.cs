@@ -69,12 +69,9 @@ namespace Projeto_Principal
         {
             Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
             
-
             MainMenu.IdRestaurate = restaurante.Id;
             new MainMenu().Show();
             this.Close();
-
-
         }
 
         private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)

@@ -101,12 +101,12 @@ namespace Projeto_Principal
                 morada.Pais = txtPais.Text;
                 morada.CodPostal = txtPostalCod.Text;
                 
-                tempTrabalhador.Posicao = txtPosicao.Text;
-                tempTrabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
-                tempTrabalhador.Morada = tempMorada;
-                tempTrabalhador.Nome = txtNome.Text;
-                tempTrabalhador.Telemovel = txtTelemovel.Text;
-                tempTrabalhador.RestauranteId = MainMenu.IdRestaurate;
+                trabalhador.Posicao = txtPosicao.Text;
+                trabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
+                trabalhador.Morada = morada;
+                trabalhador.Nome = txtNome.Text;
+                trabalhador.Telemovel = txtTelemovel.Text;
+                trabalhador.RestauranteId = MainMenu.IdRestaurate;
 
                 model.Morada.Add(morada);
                 model.Pessoa.Add(trabalhador);
