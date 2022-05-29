@@ -172,6 +172,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainMenu";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.TopBar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

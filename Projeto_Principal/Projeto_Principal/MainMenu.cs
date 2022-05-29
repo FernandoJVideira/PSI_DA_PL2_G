@@ -16,7 +16,6 @@ namespace Projeto_Principal
         private Point offset;
         public static int IdRestaurate = 0;
 
-
         public MainMenu()
         {
             InitializeComponent();
@@ -57,8 +56,6 @@ namespace Projeto_Principal
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-        //-------------------------------------------------------------------------------------//
 
         private void btnSelectRestaurante_Click(object sender, EventArgs e)
         {
