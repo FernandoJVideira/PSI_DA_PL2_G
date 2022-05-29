@@ -118,7 +118,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Pronto" Type="bit" Nullable="false" />
+    <Property Name="Pronto" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pagamento">
     <Key>

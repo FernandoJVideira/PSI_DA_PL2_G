@@ -18,16 +18,18 @@ namespace Projeto_Principal
         public Pedido()
         {
             this.ItemMenu = new HashSet<ItemMenu>();
+            this.Pagamento = new HashSet<Pagamento>();
         }
     
         public int Id { get; set; }
         public decimal ValorTotal { get; set; }
         public int EstadoId { get; set; }
-        public int PagamentoId { get; set; }
     
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemMenu> ItemMenu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
     }
 }

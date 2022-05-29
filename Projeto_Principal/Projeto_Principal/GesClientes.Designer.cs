@@ -48,9 +48,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
-            this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
@@ -205,14 +205,6 @@
             this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
             this.TopBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseUp);
             // 
-            // dataGridViewCliente
-            // 
-            this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCliente.Location = new System.Drawing.Point(298, 48);
-            this.dataGridViewCliente.Name = "dataGridViewCliente";
-            this.dataGridViewCliente.Size = new System.Drawing.Size(328, 310);
-            this.dataGridViewCliente.TabIndex = 23;
-            // 
             // btnMinimize
             // 
             this.btnMinimize.FlatAppearance.BorderSize = 0;
@@ -236,6 +228,15 @@
             this.btnClose.TabIndex = 21;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // dataGridViewCliente
+            // 
+            this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCliente.Location = new System.Drawing.Point(298, 48);
+            this.dataGridViewCliente.Name = "dataGridViewCliente";
+            this.dataGridViewCliente.Size = new System.Drawing.Size(328, 310);
+            this.dataGridViewCliente.TabIndex = 23;
+            this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
             // 
             // GesClientes
             // 

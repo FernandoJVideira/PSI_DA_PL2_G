@@ -137,7 +137,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Pronto" Type="Boolean" Nullable="false" />
+    <Property Name="Pronto" Type="String" Nullable="false" />
   </EntityType>
   <Association Name="EstadoPedido">
     <End Type="Model1.Estado" Role="Estado" Multiplicity="1" />

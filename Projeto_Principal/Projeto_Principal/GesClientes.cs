@@ -119,5 +119,10 @@ namespace Projeto_Principal
 
 
         }
+
+        private void dataGridViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
