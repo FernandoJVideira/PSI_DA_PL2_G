@@ -28,6 +28,7 @@
         <AssociationConnector Association="Model1.ItemMenuPedido" />
         <EntityTypeShape EntityType="Model1.Categoria" Width="1.5" PointX="11.75" PointY="10.125" />
         <AssociationConnector Association="Model1.CategoriaItemMenu" />
+        <AssociationConnector Association="Model1.RestauranteItemMenu" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

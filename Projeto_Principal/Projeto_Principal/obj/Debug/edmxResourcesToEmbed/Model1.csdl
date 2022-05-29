@@ -50,6 +50,10 @@
       <End Role="Categoria" EntitySet="Categoria" />
       <End Role="ItemMenu" EntitySet="ItemMenu" />
     </AssociationSet>
+    <AssociationSet Name="RestauranteItemMenu" Association="Model1.RestauranteItemMenu">
+      <End Role="Restaurante" EntitySet="Restaurante" />
+      <End Role="ItemMenu" EntitySet="ItemMenu" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pessoa">
     <Key>
@@ -178,10 +182,11 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CategoriaId" Type="Int32" Nullable="false" />
     <Property Name="Nome" Type="String" Nullable="false" />
-    <Property Name="Fotografia" Type="String" Nullable="false" />
+    <Property Name="Fotografia" Type="Binary" Nullable="false" />
     <Property Name="Ingredientes" Type="String" Nullable="false" />
     <Property Name="Preco" Type="Decimal" Nullable="false" />
     <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Restaurante" Relationship="Model1.RestauranteItemMenu" FromRole="ItemMenu" ToRole="Restaurante" />
   </EntityType>
   <Association Name="ItemMenuPedido">
     <End Type="Model1.ItemMenu" Role="ItemMenu" Multiplicity="*" />
@@ -206,5 +211,9 @@
         <PropertyRef Name="CategoriaId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <Association Name="RestauranteItemMenu">
+    <End Type="Model1.Restaurante" Role="Restaurante" Multiplicity="*" />
+    <End Type="Model1.ItemMenu" Role="ItemMenu" Multiplicity="*" />
   </Association>
 </Schema>

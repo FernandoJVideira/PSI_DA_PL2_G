@@ -125,6 +125,7 @@
             this.btnRemove.TabIndex = 7;
             this.btnRemove.Text = "Remover";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // listBoxPratosInativos
             // 
@@ -142,6 +143,7 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Adicionar ao Menu";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnAddFoto
             // 
@@ -255,6 +257,7 @@
             this.buttonRemvEngrediente.TabIndex = 38;
             this.buttonRemvEngrediente.Text = "Remover Engrediente";
             this.buttonRemvEngrediente.UseVisualStyleBackColor = true;
+            this.buttonRemvEngrediente.Click += new System.EventHandler(this.buttonRemvEngrediente_Click);
             // 
             // comboBoxCategoria
             // 

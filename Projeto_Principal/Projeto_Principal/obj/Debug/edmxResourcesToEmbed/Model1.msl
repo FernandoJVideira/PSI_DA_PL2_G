@@ -156,5 +156,13 @@
         <ScalarProperty Name="Id" ColumnName="ItemMenuPedido_ItemMenu_Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="RestauranteItemMenu" TypeName="Model1.RestauranteItemMenu" StoreEntitySet="RestauranteItemMenu">
+      <EndProperty Name="Restaurante">
+        <ScalarProperty Name="Id" ColumnName="Restaurante_Id" />
+      </EndProperty>
+      <EndProperty Name="ItemMenu">
+        <ScalarProperty Name="Id" ColumnName="RestauranteItemMenu_Restaurante_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
