@@ -154,5 +154,69 @@ namespace Projeto_Principal
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnRemoverRestaurante_Click(object sender, EventArgs e)
+        {
+            Restaurante restaurante = GetRestaurante();
+            Morada morada = GetMorada(restaurante.Id);
+
+            model.Morada.Remove(morada);
+            model.Restaurante.Remove(restaurante);
+            model.SaveChanges();
+
+            LerDados();
+        }
+
+        private void btnRemoverCategoria_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = GetCategoria();
+            model.Categoria.Remove(categoria);
+            model.SaveChanges();
+
+            LerDados();
+        }
+
+        private void btnRemoverMetodoPagamento_Click(object sender, EventArgs e)
+        {
+            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+            model.MetodoPagamento.Remove(metodoPagamento);
+            model.SaveChanges();
+
+            LerDados();
+        }
+
+        private Restaurante GetRestaurante()
+        {
+            int row = dgvRestaurantes.SelectedCells[0].RowIndex;
+            int id = (int)dgvRestaurantes.Rows[row].Cells["id"].Value;
+            Restaurante data = model.Restaurante.First(r => r.Id == id);
+
+            return data;
+        }
+
+        private Morada GetMorada(int id)
+        {
+            Morada data = model.Morada.First(m => m.Id == id);
+
+            return data;
+        }
+
+        private Categoria GetCategoria()
+        {
+            int row = dgvCategorias.SelectedCells[0].RowIndex;
+            int id = (int)dgvCategorias.Rows[row].Cells["id"].Value;
+            Categoria data = model.Categoria.First(c => c.Id == id);
+
+            return data;
+        }
+
+        private MetodoPagamento GetMetodoPagamento()
+        {
+            int row = dgvMetodosPagamento.SelectedCells[0].RowIndex;
+            int id = (int)dgvMetodosPagamento.Rows[row].Cells["id"].Value;
+            MetodoPagamento data = model.MetodoPagamento.First(m => m.Id == id);
+
+            return data;
+        } 
     }
 }
