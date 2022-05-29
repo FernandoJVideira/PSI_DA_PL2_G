@@ -106,6 +106,8 @@ namespace Projeto_Principal
             model.Pessoa.Remove(userdata);
             model.SaveChanges();
             dataGridViewCliente.DataSource = model.Pessoa.ToList();
+
+            ClearTxtBox();
         }
         private void btnEditCliente_Click(object sender, EventArgs e)
         {
@@ -159,8 +161,8 @@ namespace Projeto_Principal
 
         private Cliente GetCliente()
         {
-            var clientID = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
-            var userdata = model.Pessoa.First(c => c.Id == clientID) as Cliente;
+            int clientID = (int)dataGridViewCliente.SelectedRows[0].Cells["id"].Value;
+            Cliente userdata = model.Pessoa.First(c => c.Id == clientID) as Cliente;
 
             return userdata;
         }
