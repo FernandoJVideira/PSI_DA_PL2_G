@@ -166,5 +166,10 @@ namespace Projeto_Principal
 
             return userdata;
         }
+
+        private void dataGridViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

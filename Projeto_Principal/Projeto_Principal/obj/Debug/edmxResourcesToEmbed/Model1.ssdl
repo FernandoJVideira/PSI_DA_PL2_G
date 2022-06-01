@@ -42,10 +42,6 @@
       <End Role="Pagamento" EntitySet="Pagamento" />
       <End Role="MetodoPagamento" EntitySet="MetodoPagamento" />
     </AssociationSet>
-    <AssociationSet Name="PagamentoPedido" Association="Model1.Store.PagamentoPedido">
-      <End Role="Pagamento" EntitySet="Pagamento" />
-      <End Role="Pedido" EntitySet="Pedido" />
-    </AssociationSet>
     <AssociationSet Name="FK_ItemMenuPedido_ItemMenu" Association="Model1.Store.FK_ItemMenuPedido_ItemMenu">
       <End Role="ItemMenu" EntitySet="ItemMenu" />
       <End Role="ItemMenuPedido" EntitySet="ItemMenuPedido" />
@@ -65,6 +61,10 @@
     <AssociationSet Name="FK_RestauranteItemMenu_ItemMenu" Association="Model1.Store.FK_RestauranteItemMenu_ItemMenu">
       <End Role="ItemMenu" EntitySet="ItemMenu" />
       <End Role="RestauranteItemMenu" EntitySet="RestauranteItemMenu" />
+    </AssociationSet>
+    <AssociationSet Name="PedidoPagamento" Association="Model1.Store.PedidoPagamento">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Pagamento" EntitySet="Pagamento" />
     </AssociationSet>
     <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="Model1.Store.FK_Trabalhador_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoa" />
@@ -109,7 +109,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ValorTotal" Type="decimal" Nullable="false" />
     <Property Name="EstadoId" Type="int" Nullable="false" />
-    <Property Name="PagamentoId" Type="int" Nullable="false" />
     <Property Name="Trabalhador_Id" Type="int" Nullable="false" />
     <Property Name="Cliente_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -118,16 +117,16 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Pronto" Type="bit" Nullable="false" />
+    <Property Name="Pronto" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pagamento">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Valor" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Nullable="false" />
+    <Property Name="PedidoId" Type="int" Nullable="false" />
     <Property Name="MetodoPagamento_Id" Type="int" Nullable="false" />
-    <Property Name="Pedido_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MetodoPagamento">
     <Key>
@@ -274,18 +273,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="PagamentoPedido">
-    <End Role="Pagamento" Type="Model1.Store.Pagamento" Multiplicity="*" />
-    <End Role="Pedido" Type="Model1.Store.Pedido" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Pedido">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pagamento">
-        <PropertyRef Name="Pedido_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="CategoriaItemMenu">
     <End Role="Categoria" Type="Model1.Store.Categoria" Multiplicity="1" />
     <End Role="ItemMenu" Type="Model1.Store.ItemMenu" Multiplicity="*" />
@@ -295,6 +282,18 @@
       </Principal>
       <Dependent Role="ItemMenu">
         <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PedidoPagamento">
+    <End Role="Pedido" Type="Model1.Store.Pedido" Multiplicity="1" />
+    <End Role="Pagamento" Type="Model1.Store.Pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pagamento">
+        <PropertyRef Name="PedidoId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -280,6 +280,7 @@
             // 
             this.labelpath.AutoSize = true;
             this.labelpath.Location = new System.Drawing.Point(94, 189);
+            this.labelpath.MaximumSize = new System.Drawing.Size(100, 0);
             this.labelpath.Name = "labelpath";
             this.labelpath.Size = new System.Drawing.Size(50, 13);
             this.labelpath.TabIndex = 41;

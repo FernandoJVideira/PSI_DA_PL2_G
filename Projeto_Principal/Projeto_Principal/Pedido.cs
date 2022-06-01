@@ -23,7 +23,6 @@ namespace Projeto_Principal
         public int Id { get; set; }
         public decimal ValorTotal { get; set; }
         public int EstadoId { get; set; }
-        public int PagamentoId { get; set; }
     
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
