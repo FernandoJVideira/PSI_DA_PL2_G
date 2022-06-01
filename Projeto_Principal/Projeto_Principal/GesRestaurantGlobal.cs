@@ -154,5 +154,127 @@ namespace Projeto_Principal
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private Restaurante GetRestaurante()
+        {
+            int row = dgvRestaurantes.SelectedCells[0].RowIndex;
+            int id = (int)dgvRestaurantes.Rows[row].Cells["id"].Value;
+            Restaurante data = model.Restaurante.First(r => r.Id == id);
+
+            return data;
+        }
+
+        private Categoria GetCategoria()
+        {
+            int row = dgvCategorias.SelectedCells[0].RowIndex;
+            int id = (int)dgvCategorias.Rows[row].Cells["id"].Value;
+            Categoria data = model.Categoria.First(c => c.Id == id);
+
+            return data;
+        }
+
+        private MetodoPagamento GetMetodoPagamento()
+        {
+            int row = dgvMetodosPagamento.SelectedCells[0].RowIndex;
+            int id = (int)dgvMetodosPagamento.Rows[row].Cells["id"].Value;
+            MetodoPagamento data = model.MetodoPagamento.First(m => m.Id == id);
+
+            return data;
+        }
+
+        private void btnRemoverRestaurante_Click(object sender, EventArgs e)
+        {
+            Restaurante restaurante = GetRestaurante();
+
+            model.Morada.Remove(restaurante.Morada);
+            model.Restaurante.Remove(restaurante);
+            model.SaveChanges();
+
+            LerDados();
+        }
+
+        private void btnRemoverCategoria_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = GetCategoria();
+
+            model.Categoria.Remove(categoria);
+            model.SaveChanges();
+
+            LerDados();
+        }
+
+        private void btnRemoverMetodoPagamento_Click(object sender, EventArgs e)
+        {
+            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+            model.MetodoPagamento.Remove(metodoPagamento);
+            model.SaveChanges();
+
+            LerDados();
+        }       
+
+        private void dgvRestaurantes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Restaurante restaurante = GetRestaurante();
+            Morada morada = restaurante.Morada;
+
+            txtNome.Text = restaurante.Nome;
+            txtRua.Text = morada.Rua;
+            txtCidade.Text = morada.Cidade;
+            txtPostalCod.Text = morada.CodPostal;
+            txtPais.Text = morada.Pais;
+        }
+
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Categoria categoria = GetCategoria();
+
+            txtNomeCategoria.Text = categoria.Nome;
+            cbDisponibilidadeCategoria.Text = categoria.Ativo == true ? "Disponível" : "Indisponível";
+        }
+
+        private void dgvMetodosPagamento_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+
+            txtNomeMetodoPagamento.Text = metodoPagamento.Nome;
+            cbDisponibilidadeMetodoPagamento.Text = metodoPagamento.Ativo == true ? "Disponível" : "Indisponível";
+        }
+
+        private void btnSalvarRestaurante_Click(object sender, EventArgs e)
+        {
+            Restaurante restaurante = GetRestaurante();
+            Morada morada = restaurante.Morada;
+
+            restaurante.Nome = txtNome.Text;
+            morada.Rua = txtRua.Text;
+            morada.Cidade = txtCidade.Text;
+            morada.CodPostal = txtPostalCod.Text;
+            morada.Pais = txtPais.Text;
+
+            model.SaveChanges();
+            LerDados();
+        }
+
+        private void btnSalvarCategoria_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = GetCategoria();
+
+            categoria.Nome = txtNomeCategoria.Text;
+            categoria.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;
+
+            model.SaveChanges();
+            LerDados();
+        }
+
+        private void btnSalvarMetodoPagamento_Click(object sender, EventArgs e)
+        {
+            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+
+            metodoPagamento.Nome = txtNomeMetodoPagamento.Text;
+            metodoPagamento.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;
+
+            model.SaveChanges();
+            LerDados();
+        }
     }
 }

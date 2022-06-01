@@ -23,7 +23,7 @@ namespace Projeto_Principal
 
         public override string ToString()
         {
-            string str = $"{this.Rua}, {this.Cidade}, {this.Pais} - {this.CodPostal}";
+            string str = $"{this.Rua}, {this.Cidade}, {this.Pais}, {this.CodPostal}";
 
             return str;
         }
