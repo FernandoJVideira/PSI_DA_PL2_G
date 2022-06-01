@@ -135,9 +135,6 @@ namespace Projeto_Principal
             model.SaveChanges();
 
             Lerdados();
-
-
-
         }
 
         private void GesMenu_Load(object sender, EventArgs e)
@@ -192,6 +189,26 @@ namespace Projeto_Principal
 
             item.Ativo = false;
             model.SaveChanges();
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
+
+            txtNome.Text = item.Nome;
+            txtPreco.Text = item.Preco.ToString();
+            comboBoxCategoria.SelectedItem = item.CategoriaId;
+            string[] ingredientes = item.Ingredientes.Split(',');
+
+            foreach (string ingrediente in ingredientes)
+            {
+                listBoxIngredientes.Items.Add(ingrediente);
+            }
         }
     }
 }
