@@ -193,12 +193,7 @@ namespace Projeto_Principal
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
+            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
 
             txtNome.Text = item.Nome;
             txtPreco.Text = item.Preco.ToString();
@@ -207,8 +202,33 @@ namespace Projeto_Principal
 
             foreach (string ingrediente in ingredientes)
             {
-                listBoxIngredientes.Items.Add(ingrediente);
+                listBoxIngredientes.Items.Add(ingrediente.Trim());
             }
+        }
+
+        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            ItemMenu menuItem = (ItemMenu)listBoxPratosInativos.SelectedItem;
+            string ingredientes = "";
+
+            menuItem.Nome = txtNome.Text;
+            menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
+            
+            foreach (string item in listBoxIngredientes.Items)
+            {
+                if (item.Trim() == "") { return; }
+
+                ingredientes = ingredientes + item + ", ";
+
+            }
+
+            ingredientes = ingredientes.Remove(ingredientes.Length - 2);
+            menuItem.Ingredientes = ingredientes;
         }
     }
 }
