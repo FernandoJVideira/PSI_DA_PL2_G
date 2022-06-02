@@ -102,7 +102,7 @@ namespace Projeto_Principal
 
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
-            Cliente userdata = GetCliente();
+            Cliente userdata = GetSelectedCliente();
             model.Pessoa.Remove(userdata);
             model.SaveChanges();
             dataGridViewCliente.DataSource = model.Pessoa.ToList();
@@ -111,7 +111,7 @@ namespace Projeto_Principal
         }
         private void btnEditCliente_Click(object sender, EventArgs e)
         {
-            Cliente userdata = GetCliente();
+            Cliente userdata = GetSelectedCliente();
 
             userdata.Nome = txtNome.Text;
             userdata.Telemovel = txtTelemovel.Text;
@@ -129,7 +129,7 @@ namespace Projeto_Principal
         {
             try
             {
-                Cliente userdata = GetCliente();
+                Cliente userdata = GetSelectedCliente();
 
                 txtNome.Text = userdata.Nome;
                 txtTelemovel.Text = userdata.Telemovel;
@@ -159,7 +159,7 @@ namespace Projeto_Principal
             txtTelemovel.Text = "";
         }
 
-        private Cliente GetCliente()
+        private Cliente GetSelectedCliente()
         {
             int row = dataGridViewCliente.SelectedCells[0].RowIndex;
             int id = (int)dataGridViewCliente.Rows[row].Cells["id"].Value;

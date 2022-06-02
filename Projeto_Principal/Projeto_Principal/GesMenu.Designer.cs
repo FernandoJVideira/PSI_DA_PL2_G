@@ -56,6 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelpath = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -327,11 +328,23 @@
             this.btnAtualizar.UseVisualStyleBackColor = true;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(115, 722);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(127, 35);
+            this.btnSave.TabIndex = 43;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 803);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.labelpath);
             this.Controls.Add(this.label1);
@@ -394,5 +407,6 @@
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.Label labelpath;
         private System.Windows.Forms.Button btnAtualizar;
+        private System.Windows.Forms.Button btnSave;
     }
 }
