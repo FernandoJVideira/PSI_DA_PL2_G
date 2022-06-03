@@ -57,14 +57,17 @@
             this.labelpath = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.itemPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.lblNomeRest = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxMenu
             // 
             this.listBoxMenu.FormattingEnabled = true;
             this.listBoxMenu.ItemHeight = 20;
-            this.listBoxMenu.Location = new System.Drawing.Point(752, 131);
+            this.listBoxMenu.Location = new System.Drawing.Point(750, 148);
             this.listBoxMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxMenu.Name = "listBoxMenu";
             this.listBoxMenu.Size = new System.Drawing.Size(384, 524);
@@ -73,12 +76,13 @@
             // lblNomeRestaurante
             // 
             this.lblNomeRestaurante.AutoSize = true;
-            this.lblNomeRestaurante.Location = new System.Drawing.Point(747, 74);
+            this.lblNomeRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblNomeRestaurante.Location = new System.Drawing.Point(745, 62);
             this.lblNomeRestaurante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeRestaurante.Name = "lblNomeRestaurante";
-            this.lblNomeRestaurante.Size = new System.Drawing.Size(180, 20);
+            this.lblNomeRestaurante.Size = new System.Drawing.Size(248, 29);
             this.lblNomeRestaurante.TabIndex = 1;
-            this.lblNomeRestaurante.Text = "Menu do Restaurante ...";
+            this.lblNomeRestaurante.Text = "Menu do Restaurante:";
             // 
             // txtNome
             // 
@@ -129,7 +133,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(748, 677);
+            this.btnRemove.Location = new System.Drawing.Point(750, 705);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(386, 35);
@@ -142,16 +146,15 @@
             // 
             this.listBoxPratosInativos.FormattingEnabled = true;
             this.listBoxPratosInativos.ItemHeight = 20;
-            this.listBoxPratosInativos.Location = new System.Drawing.Point(404, 131);
+            this.listBoxPratosInativos.Location = new System.Drawing.Point(404, 388);
             this.listBoxPratosInativos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxPratosInativos.Name = "listBoxPratosInativos";
-            this.listBoxPratosInativos.Size = new System.Drawing.Size(278, 524);
+            this.listBoxPratosInativos.Size = new System.Drawing.Size(278, 284);
             this.listBoxPratosInativos.TabIndex = 8;
-            this.listBoxPratosInativos.SelectedIndexChanged += new System.EventHandler(this.listBoxPratosInativos_SelectedIndexChanged);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(398, 677);
+            this.btnAdd.Location = new System.Drawing.Point(402, 705);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(280, 35);
@@ -319,10 +322,10 @@
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(197, 677);
+            this.btnAtualizar.Location = new System.Drawing.Point(192, 677);
             this.btnAtualizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(127, 35);
+            this.btnAtualizar.Size = new System.Drawing.Size(136, 35);
             this.btnAtualizar.TabIndex = 42;
             this.btnAtualizar.Text = "Atualizar Prato";
             this.btnAtualizar.UseVisualStyleBackColor = true;
@@ -333,17 +336,40 @@
             this.btnSave.Location = new System.Drawing.Point(115, 722);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(127, 35);
+            this.btnSave.Size = new System.Drawing.Size(141, 35);
             this.btnSave.TabIndex = 43;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // itemPic
+            // 
+            this.itemPic.Location = new System.Drawing.Point(433, 107);
+            this.itemPic.Name = "itemPic";
+            this.itemPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.itemPic.ShadowDecoration.Parent = this.itemPic;
+            this.itemPic.Size = new System.Drawing.Size(220, 222);
+            this.itemPic.TabIndex = 44;
+            this.itemPic.TabStop = false;
+            // 
+            // lblNomeRest
+            // 
+            this.lblNomeRest.AutoSize = true;
+            this.lblNomeRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblNomeRest.Location = new System.Drawing.Point(828, 107);
+            this.lblNomeRest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeRest.Name = "lblNomeRest";
+            this.lblNomeRest.Size = new System.Drawing.Size(79, 29);
+            this.lblNomeRest.TabIndex = 45;
+            this.lblNomeRest.Text = "Nome";
             // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 803);
+            this.Controls.Add(this.lblNomeRest);
+            this.Controls.Add(this.itemPic);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.labelpath);
@@ -374,6 +400,7 @@
             this.Text = "GesMenu";
             this.Load += new System.EventHandler(this.GesMenu_Load);
             this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.itemPic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,5 +435,7 @@
         private System.Windows.Forms.Label labelpath;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnSave;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox itemPic;
+        private System.Windows.Forms.Label lblNomeRest;
     }
 }

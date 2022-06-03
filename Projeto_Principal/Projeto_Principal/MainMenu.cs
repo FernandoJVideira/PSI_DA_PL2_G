@@ -99,9 +99,13 @@ namespace Projeto_Principal
             {
                 Model1Container model1 = new Model1Container();
                 Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+                btnGesPedidos.Enabled = true;
+                btnGesRestaurant.Enabled = true;
+                btnGesMenu.Enabled = true;
 
                 lblNomeRestaurante.Text = restaurante.Nome;
             }
+
         }
 
     }

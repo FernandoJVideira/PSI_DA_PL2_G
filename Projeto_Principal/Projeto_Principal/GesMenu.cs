@@ -17,6 +17,7 @@ namespace Projeto_Principal
         private Point offset;
         private Model1Container model;
         private static string filepath = "";
+        public static int IdRestaurate = 0;
 
         public GesMenu()
         {
@@ -55,7 +56,7 @@ namespace Projeto_Principal
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void Lerdados()
+        private void LerDados()
         {
             listBoxMenu.Items.Clear();
             listBoxPratosInativos.Items.Clear();
@@ -134,17 +135,13 @@ namespace Projeto_Principal
             model.ItemMenu.Add(itemMenu);
             model.SaveChanges();
 
-            Lerdados();
+            LerDados();
         }
 
         private void GesMenu_Load(object sender, EventArgs e)
         {
-            Lerdados();
-        }
-
-        private string getPath(string path)
-        {
-            return path;
+            LerDados();
+            SetRestName();
         }
 
         private void btnAddFoto_Click(object sender, EventArgs e)
@@ -160,9 +157,6 @@ namespace Projeto_Principal
             {
                 filepath = openFileDialog.FileName.ToString();
             }
-
-
-
         }
 
         private void buttonRemvEngrediente_Click(object sender, EventArgs e)
@@ -183,20 +177,31 @@ namespace Projeto_Principal
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
-            listBoxPratosInativos.Items.Add(item);
-            listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
+            try
+            {
+                ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
+                listBoxPratosInativos.Items.Remove(item);
+                listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
 
-            item.Ativo = false;
-            model.SaveChanges();
+                item.Ativo = false;
+                model.SaveChanges();
+            }
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("Não Existem Itens Ativos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+            listBoxIngredientes.Items.Clear();
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
 
             txtNome.Text = item.Nome;
             txtPreco.Text = item.Preco.ToString();
+
+            GetItemPicture(item.Fotografia);
+            
             comboBoxCategoria.SelectedItem = item.CategoriaId;
             string[] ingredientes = item.Ingredientes.Split(',');
 
@@ -206,10 +211,18 @@ namespace Projeto_Principal
             }
         }
 
-        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetItemPicture(byte[] imageSource)
         {
-            
+            Bitmap image;
+            Bitmap resizedImg;
+            using (MemoryStream stream = new MemoryStream(imageSource))
+            {
+                image = new Bitmap(stream);
+                resizedImg = new Bitmap(image, new Size(200,200));
+            }
+            itemPic.Image = resizedImg;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -218,7 +231,11 @@ namespace Projeto_Principal
 
             menuItem.Nome = txtNome.Text;
             menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
-            
+            byte[] imageBytes = File.ReadAllBytes(filepath);
+
+
+            menuItem.Fotografia = imageBytes;
+
             foreach (string item in listBoxIngredientes.Items)
             {
                 if (item.Trim() == "") { return; }
@@ -229,6 +246,20 @@ namespace Projeto_Principal
 
             ingredientes = ingredientes.Remove(ingredientes.Length - 2);
             menuItem.Ingredientes = ingredientes;
+
+            model.SaveChanges();
+            btnAtualizar_Click(sender, e);
+        }
+
+        private void SetRestName()
+        {
+            if (IdRestaurate != 0)
+            {
+                Model1Container model1 = new Model1Container();
+                Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+
+                lblNomeRest.Text = restaurante.Nome;
+            }
         }
     }
 }

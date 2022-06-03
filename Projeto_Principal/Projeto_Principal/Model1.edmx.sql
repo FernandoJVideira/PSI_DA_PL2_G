@@ -1,8 +1,9 @@
+
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2022 21:54:04
--- Generated from EDMX file: C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
+-- Date Created: 06/03/2022 09:34:25
+-- Generated from EDMX file: D:\ProjetoDA\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -54,6 +55,9 @@ IF OBJECT_ID(N'[dbo].[FK_RestauranteItemMenu_ItemMenu]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_PedidoPagamento]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pagamento] DROP CONSTRAINT [FK_PedidoPagamento];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RestaurantePedido]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pedido] DROP CONSTRAINT [FK_RestaurantePedido];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Trabalhador_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoa_Trabalhador] DROP CONSTRAINT [FK_Trabalhador_inherits_Pessoa];
@@ -142,6 +146,7 @@ CREATE TABLE [dbo].[Pedido] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ValorTotal] decimal(18,0)  NOT NULL,
     [EstadoId] int  NOT NULL,
+    [RestauranteId] int  NOT NULL,
     [Trabalhador_Id] int  NOT NULL,
     [Cliente_Id] int  NOT NULL
 );
@@ -489,6 +494,21 @@ GO
 CREATE INDEX [IX_FK_PedidoPagamento]
 ON [dbo].[Pagamento]
     ([PedidoId]);
+GO
+
+-- Creating foreign key on [RestauranteId] in table 'Pedido'
+ALTER TABLE [dbo].[Pedido]
+ADD CONSTRAINT [FK_RestaurantePedido]
+    FOREIGN KEY ([RestauranteId])
+    REFERENCES [dbo].[Restaurante]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RestaurantePedido'
+CREATE INDEX [IX_FK_RestaurantePedido]
+ON [dbo].[Pedido]
+    ([RestauranteId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoa_Trabalhador'

@@ -66,6 +66,10 @@
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="Pagamento" EntitySet="Pagamento" />
     </AssociationSet>
+    <AssociationSet Name="RestaurantePedido" Association="Model1.Store.RestaurantePedido">
+      <End Role="Restaurante" EntitySet="Restaurante" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
     <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="Model1.Store.FK_Trabalhador_inherits_Pessoa">
       <End Role="Pessoa" EntitySet="Pessoa" />
       <End Role="Trabalhador" EntitySet="Pessoa_Trabalhador" />
@@ -109,6 +113,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ValorTotal" Type="decimal" Nullable="false" />
     <Property Name="EstadoId" Type="int" Nullable="false" />
+    <Property Name="RestauranteId" Type="int" Nullable="false" />
     <Property Name="Trabalhador_Id" Type="int" Nullable="false" />
     <Property Name="Cliente_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -294,6 +299,18 @@
       </Principal>
       <Dependent Role="Pagamento">
         <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RestaurantePedido">
+    <End Role="Restaurante" Type="Model1.Store.Restaurante" Multiplicity="1" />
+    <End Role="Pedido" Type="Model1.Store.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurante">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="RestauranteId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

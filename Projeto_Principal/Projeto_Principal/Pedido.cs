@@ -23,10 +23,12 @@ namespace Projeto_Principal
         public int Id { get; set; }
         public decimal ValorTotal { get; set; }
         public int EstadoId { get; set; }
+        public int RestauranteId { get; set; }
     
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemMenu> ItemMenu { get; set; }
+        public virtual Restaurante Restaurante { get; set; }
     }
 }
