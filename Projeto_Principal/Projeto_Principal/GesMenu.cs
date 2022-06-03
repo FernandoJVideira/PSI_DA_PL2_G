@@ -194,6 +194,7 @@ namespace Projeto_Principal
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+            listBoxIngredientes.Items.Clear();
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
 
             txtNome.Text = item.Nome;
@@ -210,10 +211,18 @@ namespace Projeto_Principal
             }
         }
 
-        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetItemPicture(byte[] imageSource)
         {
-            
+            Bitmap image;
+            Bitmap resizedImg;
+            using (MemoryStream stream = new MemoryStream(imageSource))
+            {
+                image = new Bitmap(stream);
+                resizedImg = new Bitmap(image, new Size(200,200));
+            }
+            itemPic.Image = resizedImg;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -222,7 +231,11 @@ namespace Projeto_Principal
 
             menuItem.Nome = txtNome.Text;
             menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
-            
+            byte[] imageBytes = File.ReadAllBytes(filepath);
+
+
+            menuItem.Fotografia = imageBytes;
+
             foreach (string item in listBoxIngredientes.Items)
             {
                 if (item.Trim() == "") { return; }
@@ -233,6 +246,20 @@ namespace Projeto_Principal
 
             ingredientes = ingredientes.Remove(ingredientes.Length - 2);
             menuItem.Ingredientes = ingredientes;
+
+            model.SaveChanges();
+            btnAtualizar_Click(sender, e);
+        }
+
+        private void SetRestName()
+        {
+            if (IdRestaurate != 0)
+            {
+                Model1Container model1 = new Model1Container();
+                Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+
+                lblNomeRest.Text = restaurante.Nome;
+            }
         }
     }
 }

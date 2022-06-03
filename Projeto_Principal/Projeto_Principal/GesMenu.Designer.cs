@@ -57,6 +57,8 @@
             this.labelpath = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.itemPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.lblNomeRest = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             this.SuspendLayout();
@@ -334,17 +336,40 @@
             this.btnSave.Location = new System.Drawing.Point(115, 722);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(127, 35);
+            this.btnSave.Size = new System.Drawing.Size(141, 35);
             this.btnSave.TabIndex = 43;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // itemPic
+            // 
+            this.itemPic.Location = new System.Drawing.Point(433, 107);
+            this.itemPic.Name = "itemPic";
+            this.itemPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.itemPic.ShadowDecoration.Parent = this.itemPic;
+            this.itemPic.Size = new System.Drawing.Size(220, 222);
+            this.itemPic.TabIndex = 44;
+            this.itemPic.TabStop = false;
+            // 
+            // lblNomeRest
+            // 
+            this.lblNomeRest.AutoSize = true;
+            this.lblNomeRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblNomeRest.Location = new System.Drawing.Point(828, 107);
+            this.lblNomeRest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeRest.Name = "lblNomeRest";
+            this.lblNomeRest.Size = new System.Drawing.Size(79, 29);
+            this.lblNomeRest.TabIndex = 45;
+            this.lblNomeRest.Text = "Nome";
             // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 803);
+            this.Controls.Add(this.lblNomeRest);
+            this.Controls.Add(this.itemPic);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.labelpath);
@@ -410,5 +435,7 @@
         private System.Windows.Forms.Label labelpath;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnSave;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox itemPic;
+        private System.Windows.Forms.Label lblNomeRest;
     }
 }
