@@ -233,6 +233,7 @@
             // dataGridViewCliente
             // 
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
             this.dataGridViewCliente.Location = new System.Drawing.Point(298, 49);
             this.dataGridViewCliente.MultiSelect = false;
             this.dataGridViewCliente.Name = "dataGridViewCliente";
@@ -250,6 +251,10 @@
             this.btnEditCliente.Text = "Editar Cliente";
             this.btnEditCliente.UseVisualStyleBackColor = true;
             this.btnEditCliente.Click += new System.EventHandler(this.btnEditCliente_Click);
+
+
+            this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
+
             // 
             // GesClientes
             // 

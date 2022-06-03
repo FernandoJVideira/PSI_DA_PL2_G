@@ -16,6 +16,7 @@ namespace Projeto_Principal
         bool mouseDown;
         private Point offset;
         private Model1Container model;
+        private static string filepath = "";
 
         public GesMenu()
         {
@@ -56,21 +57,27 @@ namespace Projeto_Principal
 
         private void Lerdados()
         {
+            listBoxMenu.Items.Clear();
+            listBoxPratosInativos.Items.Clear();
             model = new Model1Container();
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
 
             IEnumerable<ItemMenu> itemsInativos = from item in items
                                                   where item.Ativo == false
+                                                  where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
                                                   select item;
 
-            IEnumerable<ItemMenu> itemsAtivos = from item in items
-                                                  where item.Ativo == true
-                                                  select item;
 
-            foreach(ItemMenu item in itemsInativos)
+            foreach (ItemMenu item in itemsInativos)
             {
                 listBoxPratosInativos.Items.Add(item);
             }
+
+
+            IEnumerable<ItemMenu> itemsAtivos = from item in items
+                                                  where item.Ativo == true
+                                                where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
+                                                select item;
 
             foreach (ItemMenu item in itemsAtivos)
             {
@@ -96,7 +103,7 @@ namespace Projeto_Principal
 
         private void btnRegistar_Click(object sender, EventArgs e)
         {
-            Lerdados();
+
             Categoria categoria = (Categoria)comboBoxCategoria.SelectedItem;
             string ingredientes = "";
             ItemMenu itemMenu = new ItemMenu();
@@ -109,11 +116,7 @@ namespace Projeto_Principal
             itemMenu.CategoriaId = categoria.Id;
             itemMenu.Restaurante.Add(restaurante);
 
-            
-
-            string path = labelpath.Text;
-            byte [] imageBytes = File.ReadAllBytes(path);
-
+            byte [] imageBytes = File.ReadAllBytes(filepath);
 
 
             itemMenu.Fotografia = imageBytes;
@@ -133,8 +136,8 @@ namespace Projeto_Principal
             model.ItemMenu.Add(itemMenu);
             model.SaveChanges();
 
+            Lerdados();
 
-            
 
 
         }
@@ -142,6 +145,11 @@ namespace Projeto_Principal
         private void GesMenu_Load(object sender, EventArgs e)
         {
             Lerdados();
+        }
+
+        private string getPath(string path)
+        {
+            return path;
         }
 
         private void btnAddFoto_Click(object sender, EventArgs e)
@@ -152,12 +160,12 @@ namespace Projeto_Principal
             openFileDialog.Filter = "All Images|*.jpg; *.bmp; *.png";
             openFileDialog.ShowDialog(this);
 
+
             if (openFileDialog.FileName.ToString() != "")  
             {
-                labelpath.Text = openFileDialog.FileName.ToString();
-                labelpath.Visible = true;
+                filepath = openFileDialog.FileName.ToString();
             }
-            
+
 
 
         }

@@ -15,7 +15,8 @@ namespace Projeto_Principal
     public partial class Pagamento
     {
         public int Id { get; set; }
-        public string Valor { get; set; }
+        public decimal Valor { get; set; }
+        public int PedidoId { get; set; }
     
         public virtual MetodoPagamento MetodoPagamento { get; set; }
         public virtual Pedido Pedido { get; set; }

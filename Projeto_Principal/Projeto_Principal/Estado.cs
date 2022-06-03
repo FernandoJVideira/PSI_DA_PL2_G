@@ -15,6 +15,6 @@ namespace Projeto_Principal
     public partial class Estado
     {
         public int Id { get; set; }
-        public bool Pronto { get; set; }
+        public string Pronto { get; set; }
     }
 }
