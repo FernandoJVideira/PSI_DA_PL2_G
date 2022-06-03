@@ -75,8 +75,12 @@ namespace Projeto_Principal
                 new MainMenu().Show();
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Não existem restaurantes registados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            MessageBox.Show("Não existem restaurantes registados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
 
         }
 
