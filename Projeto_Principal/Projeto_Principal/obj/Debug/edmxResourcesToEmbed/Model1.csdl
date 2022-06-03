@@ -54,6 +54,10 @@
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="Pagamento" EntitySet="Pagamento" />
     </AssociationSet>
+    <AssociationSet Name="RestaurantePedido" Association="Model1.RestaurantePedido">
+      <End Role="Restaurante" EntitySet="Restaurante" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pessoa">
     <Key>
@@ -122,6 +126,7 @@
     <NavigationProperty Name="Cliente" Relationship="Model1.PedidoCliente" FromRole="Pedido" ToRole="Cliente" />
     <Property Name="EstadoId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ItemMenu" Relationship="Model1.ItemMenuPedido" FromRole="Pedido" ToRole="ItemMenu" />
+    <Property Name="RestauranteId" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="PedidoTrabalhador">
     <End Type="Model1.Pedido" Role="Pedido" Multiplicity="*" />
@@ -222,6 +227,18 @@
       </Principal>
       <Dependent Role="Pagamento">
         <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RestaurantePedido">
+    <End Type="Model1.Restaurante" Role="Restaurante" Multiplicity="1" />
+    <End Type="Model1.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurante">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="RestauranteId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

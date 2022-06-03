@@ -64,6 +64,7 @@ namespace Projeto_Principal
 
             IEnumerable<ItemMenu> itemsInativos = from item in items
                                                   where item.Ativo == false
+                                                  where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
                                                   select item;
 
 
@@ -75,7 +76,8 @@ namespace Projeto_Principal
 
             IEnumerable<ItemMenu> itemsAtivos = from item in items
                                                   where item.Ativo == true
-                                                  select item;
+                                                where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
+                                                select item;
 
             foreach (ItemMenu item in itemsAtivos)
             {

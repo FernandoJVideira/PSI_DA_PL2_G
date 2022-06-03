@@ -50,6 +50,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
           <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+          <ScalarProperty Name="RestauranteId" ColumnName="RestauranteId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

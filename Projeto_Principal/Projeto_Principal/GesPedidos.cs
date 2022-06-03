@@ -60,8 +60,11 @@ namespace Projeto_Principal
             listBoxProcessing.Items.Clear();
 
             List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
+
+
             IEnumerable<Pedido> PedidosAndando = from pedido in listaPedidos
                                                  where pedido.EstadoId == 1
+                                                 where pedido.RestauranteId == MainMenu.IdRestaurate
                                                  select pedido;
 
             foreach (Pedido pedido in PedidosAndando)
@@ -73,6 +76,7 @@ namespace Projeto_Principal
 
             IEnumerable<Pedido> PedidosPorPagar = from pedido in listaPedidos
                                                   where pedido.EstadoId == 2
+                                                  where pedido.RestauranteId == MainMenu.IdRestaurate
                                                  select pedido;
 
             foreach (Pedido pedido in PedidosPorPagar)
@@ -130,10 +134,7 @@ namespace Projeto_Principal
 
             //--------------- load metodos
 
-            foreach (MetodoPagamento metodo in listaMetodoPagamentos)
-            {
-                checkedListBoxMethods.Items.Add(metodo);
-            }
+            comboBox1.DataSource = listaMetodoPagamentos;
 
             
         }
@@ -145,8 +146,8 @@ namespace Projeto_Principal
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
+            if (listBoxTrabalhadores.SelectedItem == null) { return; }
             Pedido pedido = new Pedido();
-            Pagamento pagamento = new Pagamento();
             decimal total = 0;
 
             pedido.Trabalhador = (Trabalhador)listBoxTrabalhadores.SelectedItem;
@@ -162,13 +163,8 @@ namespace Projeto_Principal
             
             pedido.EstadoId = 1;
 
-            pagamento.Valor = total;
-            pagamento.MetodoPagamento = (MetodoPagamento)checkedListBoxMethods.SelectedItem;
-            pagamento.Pedido = pedido;
-            pagamento.PedidoId = pedido.Id;
+            pedido.RestauranteId = MainMenu.IdRestaurate;
             
-
-            model.Pagamento.Add(pagamento);
             
             model.Pedido.Add(pedido);
             model.SaveChanges();
@@ -189,15 +185,11 @@ namespace Projeto_Principal
 
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
-            if(listBoxMenu.SelectedItem == null)
-            {
-                return;
-            }
-            else
-            {
-                listBoxItems.Items.Add(listBoxMenu.SelectedItem);
-                listBoxMenu.SelectedItem = null;
-            }
+            if(listBoxMenu.SelectedItem == null){ return; }
+
+            listBoxItems.Items.Add(listBoxMenu.SelectedItem);
+            listBoxMenu.SelectedItem = null;
+ 
 
 
         }
@@ -218,6 +210,88 @@ namespace Projeto_Principal
             model.SaveChanges();
             RefreshPedidos();
 
+        }
+
+        private void buttonConcluir_Click(object sender, EventArgs e)
+        {
+            if (listBoxPayment.SelectedItem == null) { return; }
+            Pedido pedido = (Pedido)listBoxPayment.SelectedItem;
+            pedido.EstadoId = 4;
+
+            foreach(Pagamento pagamento in listBoxMetodosUsados.Items)
+            {
+                model.Pagamento.Add(pagamento);
+            }
+
+            model.SaveChanges();
+            RefreshPedidos();
+
+            listBoxMetodosUsados.Items.Clear();
+            listBoxPayment.Visible = true;
+            labelinfo.Visible = false;
+
+        }
+
+        private void buttonValor_Click(object sender, EventArgs e)
+        {
+            Pagamento pagamento = new Pagamento();
+            if(listBoxPayment.SelectedItem == null) { return; }
+            Pedido pedido = (Pedido)listBoxPayment.SelectedItem;
+            decimal Total = Convert.ToDecimal(labelValor.Text);
+
+
+            try
+            {
+                pagamento.Valor = Convert.ToDecimal(textBoxValor.Text);
+
+              
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Introduza um valor valido!!");
+                return;
+            }
+
+            pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
+            pagamento.PedidoId = pedido.Id;
+
+            if(Total < Convert.ToDecimal(textBoxValor.Text) || 0 >= Convert.ToDecimal(textBoxValor.Text))
+            {
+                MessageBox.Show("Valor introduzido acima");
+                return;
+            }
+
+           
+            decimal Restante = Convert.ToDecimal(labelValor.Text) - pagamento.Valor; 
+
+            labelValor.Text = Restante.ToString();
+            listBoxMetodosUsados.Items.Add(pagamento);
+            listBoxPayment.Visible = false;
+            labelinfo.Visible = true;
+            textBoxValor.Clear();
+            
+        }
+
+        private void listBoxPayment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxPayment.SelectedIndex == -1) { return; }
+
+            int index = listBoxPayment.SelectedIndex;
+            Pedido pedido = (Pedido)listBoxPayment.SelectedItem;
+            labelValor.Text = pedido.ValorTotal.ToString();
+
+            if (listBoxMetodosUsados.Items.Count > 0)
+            {
+                MessageBox.Show("Termine o pagamento do pedido selecionado antes de avançar");
+                listBoxPayment.SelectedIndex = index;
+            }
+        }
+
+        private void buttonRemMetodo_Click(object sender, EventArgs e)
+        {
+            if (listBoxMetodosUsados.SelectedItem == null) { return; }
+            listBoxMetodosUsados.Items.Remove(listBoxMetodosUsados.SelectedItem);
         }
     }
 }
