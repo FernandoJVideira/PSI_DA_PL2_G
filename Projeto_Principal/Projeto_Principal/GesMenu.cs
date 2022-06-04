@@ -192,50 +192,33 @@ namespace Projeto_Principal
             }
         }
 
-        private void btnAtualizar_Click(object sender, EventArgs e)
-        {
-            listBoxIngredientes.Items.Clear();
-            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
-
-            txtNome.Text = item.Nome;
-            txtPreco.Text = item.Preco.ToString();
-
-            GetItemPicture(item.Fotografia);
-            
-            comboBoxCategoria.SelectedItem = item.CategoriaId;
-            string[] ingredientes = item.Ingredientes.Split(',');
-
-            foreach (string ingrediente in ingredientes)
-            {
-                listBoxIngredientes.Items.Add(ingrediente.Trim());
-            }
-        }
-
         private void GetItemPicture(byte[] imageSource)
         {
-            Bitmap image;
             Bitmap resizedImg;
             using (MemoryStream stream = new MemoryStream(imageSource))
             {
-                image = new Bitmap(stream);
+                Bitmap image = new Bitmap(stream);
                 resizedImg = new Bitmap(image, new Size(200,200));
             }
             itemPic.Image = resizedImg;
         }
 
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
             ItemMenu menuItem = (ItemMenu)listBoxPratosInativos.SelectedItem;
             string ingredientes = "";
 
             menuItem.Nome = txtNome.Text;
             menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
-            byte[] imageBytes = File.ReadAllBytes(filepath);
+            if(filepath != "")
+            {
+                byte[] imageBytes = File.ReadAllBytes(filepath);
 
 
-            menuItem.Fotografia = imageBytes;
-
+                menuItem.Fotografia = imageBytes;
+            }     
+                
             foreach (string item in listBoxIngredientes.Items)
             {
                 if (item.Trim() == "") { return; }
@@ -248,7 +231,7 @@ namespace Projeto_Principal
             menuItem.Ingredientes = ingredientes;
 
             model.SaveChanges();
-            btnAtualizar_Click(sender, e);
+            GetData();
         }
 
         private void SetRestName()
@@ -259,6 +242,30 @@ namespace Projeto_Principal
                 Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
 
                 lblNomeRest.Text = restaurante.Nome;
+            }
+        }
+
+        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void GetData()
+        {
+            listBoxIngredientes.Items.Clear();
+            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+
+            txtNome.Text = item.Nome;
+            txtPreco.Text = item.Preco.ToString();
+
+            GetItemPicture(item.Fotografia);
+
+            comboBoxCategoria.SelectedItem = item.CategoriaId;
+            string[] ingredientes = item.Ingredientes.Split(',');
+
+            foreach (string ingrediente in ingredientes)
+            {
+                listBoxIngredientes.Items.Add(ingrediente.Trim());
             }
         }
     }
