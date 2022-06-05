@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/03/2022 11:18:47
+-- Date Created: 06/05/2022 15:02:31
 -- Generated from EDMX file: C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
 -- --------------------------------------------------
 
@@ -181,10 +181,9 @@ CREATE TABLE [dbo].[ItemMenu] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CategoriaId] int  NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [Fotografia] nvarchar(max)  NOT NULL,
+    [Fotografia] varbinary(max)  NOT NULL,
     [Ingredientes] nvarchar(max)  NOT NULL,
-    [Preco] decimal(18,0)  NOT NULL,
-    [Ativo] bit  NOT NULL
+    [Preco] decimal(18,0)  NOT NULL
 );
 GO
 
@@ -217,6 +216,13 @@ GO
 CREATE TABLE [dbo].[ItemMenuPedido] (
     [ItemMenu_Id] int  NOT NULL,
     [ItemMenuPedido_ItemMenu_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'RestauranteItemMenu'
+CREATE TABLE [dbo].[RestauranteItemMenu] (
+    [Restaurante_Id] int  NOT NULL,
+    [RestauranteItemMenu_Restaurante_Id] int  NOT NULL
 );
 GO
 
@@ -294,6 +300,12 @@ GO
 ALTER TABLE [dbo].[ItemMenuPedido]
 ADD CONSTRAINT [PK_ItemMenuPedido]
     PRIMARY KEY CLUSTERED ([ItemMenu_Id], [ItemMenuPedido_ItemMenu_Id] ASC);
+GO
+
+-- Creating primary key on [Restaurante_Id], [RestauranteItemMenu_Restaurante_Id] in table 'RestauranteItemMenu'
+ALTER TABLE [dbo].[RestauranteItemMenu]
+ADD CONSTRAINT [PK_RestauranteItemMenu]
+    PRIMARY KEY CLUSTERED ([Restaurante_Id], [RestauranteItemMenu_Restaurante_Id] ASC);
 GO
 
 -- --------------------------------------------------

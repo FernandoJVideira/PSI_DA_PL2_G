@@ -187,7 +187,6 @@
     <Property Name="Fotografia" Type="Binary" Nullable="false" />
     <Property Name="Ingredientes" Type="String" Nullable="false" />
     <Property Name="Preco" Type="Decimal" Nullable="false" />
-    <Property Name="Ativo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Restaurante" Relationship="Model1.RestauranteItemMenu" FromRole="ItemMenu" ToRole="Restaurante" />
   </EntityType>
   <Association Name="ItemMenuPedido">

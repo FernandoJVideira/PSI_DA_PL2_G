@@ -56,26 +56,45 @@ namespace Projeto_Principal
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
         {
-            Morada moradaCliente = new Morada();
-            Cliente cliente = new Cliente();
+            try
+            {
 
-            moradaCliente.Rua = txtRua.Text;
-            moradaCliente.Cidade = txtCidade.Text;
-            moradaCliente.Pais = txtPais.Text;
-            moradaCliente.CodPostal = txtPostalCod.Text;
+                Morada moradaCliente = new Morada();
+                Cliente cliente = new Cliente();
 
-            cliente.NIF = txtNumCont.Text;
-            cliente.TotalGasto = 0;
-            cliente.Morada = moradaCliente;
-            cliente.Nome = txtNome.Text;
-            cliente.Telemovel = txtTelemovel.Text;
+                string rua = txtRua.Text;
+                string cidade = txtCidade.Text;
+                string pais = txtPais.Text;
+                string codpostal = txtPostalCod.Text;
 
-            model.Morada.Add(moradaCliente);
-            model.Pessoa.Add(cliente);
+                string nif = txtNumCont.Text;
+                string nome = txtNome.Text;
+                string tele = txtTelemovel.Text;
 
-            model.SaveChanges();
-            LerDados();
-            ClearTxtBox();
+                if (nome.Trim() == "" || nif.Trim() == "" || tele.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+
+                moradaCliente.Rua = rua;
+                moradaCliente.Cidade = cidade;
+                moradaCliente.Pais = pais;
+                moradaCliente.CodPostal = codpostal;
+
+                cliente.NIF = nif;
+                cliente.TotalGasto = 0;
+                cliente.Morada = moradaCliente;
+                cliente.Nome = nome;
+                cliente.Telemovel = tele;
+
+                model.Morada.Add(moradaCliente);
+                model.Pessoa.Add(cliente);
+
+                model.SaveChanges();
+                LerDados();
+                ClearTxtBox();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void LerDados()
         {

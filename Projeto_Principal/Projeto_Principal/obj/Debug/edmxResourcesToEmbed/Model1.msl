@@ -89,7 +89,6 @@
           <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
           <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

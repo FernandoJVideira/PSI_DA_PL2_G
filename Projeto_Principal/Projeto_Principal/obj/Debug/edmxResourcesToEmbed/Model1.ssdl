@@ -151,7 +151,6 @@
     <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
     <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Preco" Type="decimal" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>

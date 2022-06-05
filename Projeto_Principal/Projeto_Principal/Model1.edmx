@@ -156,7 +156,6 @@
     <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
     <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Preco" Type="decimal" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
@@ -586,7 +585,6 @@
           <Property Name="Fotografia" Type="Binary" Nullable="false" />
           <Property Name="Ingredientes" Type="String" Nullable="false" />
           <Property Name="Preco" Type="Decimal" Nullable="false" />
-          <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Restaurante" Relationship="Model1.RestauranteItemMenu" FromRole="ItemMenu" ToRole="Restaurante" />
         </EntityType>
         <Association Name="ItemMenuPedido">
@@ -735,7 +733,6 @@
           <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
           <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
           <ScalarProperty Name="Preco" ColumnName="Preco" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

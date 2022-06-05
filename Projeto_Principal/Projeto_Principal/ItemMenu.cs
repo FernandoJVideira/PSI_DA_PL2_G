@@ -26,7 +26,6 @@ namespace Projeto_Principal
         public byte[] Fotografia { get; set; }
         public string Ingredientes { get; set; }
         public decimal Preco { get; set; }
-        public bool Ativo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurante> Restaurante { get; set; }

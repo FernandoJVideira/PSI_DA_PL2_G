@@ -61,11 +61,13 @@ namespace Projeto_Principal
             listBoxPratosInativos.Items.Clear();
             model = new Model1Container();
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
+            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
 
-            IEnumerable<ItemMenu> itemsInativos = from item in items
-                                                  where item.Ativo == false
-                                                  where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
-                                                  select item;
+            IEnumerable <ItemMenu> itemsAtivos = from item in items
+                                                where item.Restaurante.Contains(restaurante)
+                                                select item;
+
+            IEnumerable<ItemMenu> itemsInativos = model.ItemMenu.ToList<ItemMenu>().Except<ItemMenu>(itemsAtivos);
 
 
             foreach (ItemMenu item in itemsInativos)
@@ -73,11 +75,6 @@ namespace Projeto_Principal
                 listBoxPratosInativos.Items.Add(item);
             }
 
-
-            IEnumerable<ItemMenu> itemsAtivos = from item in items
-                                                  where item.Ativo == true
-                                                where item.Restaurante.Contains(model.Restaurante.Find(MainMenu.IdRestaurate))
-                                                select item;
 
             foreach (ItemMenu item in itemsAtivos)
             {
@@ -103,18 +100,14 @@ namespace Projeto_Principal
 
         private void btnRegistar_Click(object sender, EventArgs e)
         {
-
             Categoria categoria = (Categoria)comboBoxCategoria.SelectedItem;
             string ingredientes = "";
             ItemMenu itemMenu = new ItemMenu();
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
 
 
             itemMenu.Nome = txtNome.Text;
             itemMenu.Preco = Convert.ToDecimal(txtPreco.Text);
-            itemMenu.Ativo = false;
             itemMenu.CategoriaId = categoria.Id;
-            itemMenu.Restaurante.Add(restaurante);
 
             byte [] imageBytes = File.ReadAllBytes(filepath);
 
@@ -178,21 +171,24 @@ namespace Projeto_Principal
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
             listBoxMenu.Items.Add(item);
             listBoxPratosInativos.Items.Remove(listBoxPratosInativos.SelectedItem);
 
-            item.Ativo = true;
+
+            item.Restaurante.Add(restaurante);
             model.SaveChanges();
 
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
             ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
             listBoxPratosInativos.Items.Add(item);
             listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
 
-            item.Ativo = false;
+            item.Restaurante.Remove(restaurante);
             model.SaveChanges();
         }
     }

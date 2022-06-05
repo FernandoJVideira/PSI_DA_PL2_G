@@ -15,6 +15,7 @@ namespace Projeto_Principal
         bool mouseDown;
         private Point offset;
         public static int IdRestaurate = 0;
+        Model1Container model = new Model1Container();
 
         public MainMenu()
         {
@@ -74,7 +75,19 @@ namespace Projeto_Principal
 
         private void buttonGesMenu_Click(object sender, EventArgs e)
         {
-            ShowMenuForm(new GesMenu());
+            try
+            {
+                List<Categoria> categorias = model.Categoria.ToList<Categoria>();
+                if (categorias.Count == 0) { throw new Exception("Não existem categorias de pratos registadas"); }
+
+                ShowMenuForm(new GesMenu());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowMenuForm(new GesRestaurantGlobal());
+
+            }
         }
 
         private void buttonGesPedidos_Click(object sender, EventArgs e)
@@ -95,6 +108,35 @@ namespace Projeto_Principal
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            List<Estado> estados = model.Estado.ToList<Estado>();
+
+            if(estados.Count == 0)
+            {
+                for (int i = 1; i < 5; i++)
+                {
+                    Estado estado = new Estado();
+                    estado.Id = i;
+
+                    switch (i)
+                    {
+                        case 1:
+                            estado.Pronto = "Recebido";
+                            break;
+                        case 2:
+                            estado.Pronto = "Em Processamento";
+                            break ;
+                        case 3:
+                            estado.Pronto = "Cancelado";
+                            break;
+                        case 4:
+                            estado.Pronto = "Concluido";
+                            break;
+                    }
+                    model.Estado.Add(estado);
+                }
+                model.SaveChanges();
+            }
+
             if (IdRestaurate != 0)
             {
                 Model1Container model1 = new Model1Container();

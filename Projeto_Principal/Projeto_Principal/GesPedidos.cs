@@ -85,6 +85,12 @@ namespace Projeto_Principal
             }
         }
 
+        private void Erro(string msg, Form form)
+        {
+            MessageBox.Show(msg);
+            form.Show();
+        }
+
         private void Lerdados()
         {
             model = new Model1Container();
@@ -94,6 +100,11 @@ namespace Projeto_Principal
             List<Cliente> listaCLientes = new List<Cliente>();
             List<Trabalhador> listaTrabalhadores = new List<Trabalhador>();
             List<MetodoPagamento> listaMetodoPagamentos = model.MetodoPagamento.ToList<MetodoPagamento>();
+
+            IEnumerable<ItemMenu> itemsAtivos = from item in items
+                                                where item.Restaurante.Contains(restaurante)
+                                                select item;
+
 
             RefreshPedidos();
             //--------------- load clientes
@@ -110,21 +121,41 @@ namespace Projeto_Principal
                     Trabalhador trabalhador = (Trabalhador)pessoa;
                     if(trabalhador.RestauranteId == restaurante.Id)
                     {
+                        listaTrabalhadores.Add(trabalhador);
                         listBoxTrabalhadores.Items.Add(trabalhador);
                     }
                     
                 }
 
+
             }
-            
+
+            if (listaTrabalhadores.Count == 0)
+            {
+                Erro("Não existem trabalhadores registados", new GerirRestaurante());
+                this.Close();
+            }
+            else if (listaCLientes.Count == 0)
+            {
+                Erro("Não existem clientes registados", new GesClientes());
+                this.Close();
+            }            
+            else if (listaMetodoPagamentos.Count == 0)
+            {
+                Erro("Não existem metodos de pagamento registados ou ativos", new GesRestaurantGlobal());
+                this.Close();
+            }
+            else if (itemsAtivos.Count<ItemMenu>() == 0)
+            {
+                Erro("Não existem pratos registados ou ativos", new GesMenu());
+                this.Close();
+            }
+
+
             dataGridViewClientes.DataSource = listaCLientes;
 
             //--------------- load Lista menu
 
-            IEnumerable<ItemMenu> itemsAtivos = from item in items
-                                                where item.Ativo == true
-                                                where item.Restaurante.Contains(restaurante)
-                                                select item;
 
             foreach (ItemMenu item in itemsAtivos)
             {
@@ -147,6 +178,8 @@ namespace Projeto_Principal
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             if (listBoxTrabalhadores.SelectedItem == null) { return; }
+            if (listBoxItems.Items.Count == 0) { return; }
+
             Pedido pedido = new Pedido();
             decimal total = 0;
 
@@ -160,6 +193,8 @@ namespace Projeto_Principal
 
             pedido.ValorTotal = total;
             pedido.Cliente = GetCliente();
+
+            if (pedido.Cliente == null) { return; }
             
             pedido.EstadoId = 1;
 
@@ -169,6 +204,7 @@ namespace Projeto_Principal
             model.Pedido.Add(pedido);
             model.SaveChanges();
 
+            listBoxItems.Items.Clear();
             RefreshPedidos();
 
             
@@ -176,6 +212,7 @@ namespace Projeto_Principal
 
         private Cliente GetCliente()
         {
+
             int row = dataGridViewClientes.SelectedCells[0].RowIndex;
             int id = (int)dataGridViewClientes.Rows[row].Cells["id"].Value;
             Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
@@ -290,8 +327,20 @@ namespace Projeto_Principal
 
         private void buttonRemMetodo_Click(object sender, EventArgs e)
         {
+            Pagamento pagamento = (Pagamento)listBoxMetodosUsados.SelectedItem;
+
             if (listBoxMetodosUsados.SelectedItem == null) { return; }
             listBoxMetodosUsados.Items.Remove(listBoxMetodosUsados.SelectedItem);
+
+            if(listBoxMetodosUsados.Items.Count == 0) 
+            {
+                listBoxPayment.Visible = true;
+                labelinfo.Visible = false;
+            }
+
+            decimal novoTotal = Convert.ToDecimal(labelValor.Text) + pagamento.Valor;
+
+            labelValor.Text = Convert.ToString(novoTotal);
         }
     }
 }
