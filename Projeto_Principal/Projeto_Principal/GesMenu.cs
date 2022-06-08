@@ -255,17 +255,20 @@ namespace Projeto_Principal
             listBoxIngredientes.Items.Clear();
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
 
-            txtNome.Text = item.Nome;
-            txtPreco.Text = item.Preco.ToString();
-
-            GetItemPicture(item.Fotografia);
-
-            comboBoxCategoria.SelectedItem = item.CategoriaId;
-            string[] ingredientes = item.Ingredientes.Split(',');
-
-            foreach (string ingrediente in ingredientes)
+            if(item != null)
             {
-                listBoxIngredientes.Items.Add(ingrediente.Trim());
+                txtNome.Text = item.Nome;
+                txtPreco.Text = item.Preco.ToString();
+
+                GetItemPicture(item.Fotografia);
+
+                comboBoxCategoria.SelectedItem = item.CategoriaId;
+                string[] ingredientes = item.Ingredientes.Split(',');
+
+                foreach (string ingrediente in ingredientes)
+                {
+                    listBoxIngredientes.Items.Add(ingrediente.Trim());
+                }
             }
         }
     }
