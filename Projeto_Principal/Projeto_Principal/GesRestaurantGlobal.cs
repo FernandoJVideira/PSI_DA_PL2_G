@@ -186,31 +186,126 @@ namespace Projeto_Principal
         {
             Restaurante restaurante = GetRestaurante();
 
-            model.Morada.Remove(restaurante.Morada);
-            model.Restaurante.Remove(restaurante);
-            model.SaveChanges();
+            if (VerifyPresenceRestaurante(restaurante))
+            {
+                MessageBox.Show("Não pode apagar o Restaurante selecionado pois está a ser utlizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.Morada.Remove(restaurante.Morada);
+                model.Restaurante.Remove(restaurante);
+                model.SaveChanges();
 
-            LerDados();
+                LerDados();
+            }
+
         }
 
-        private void btnRemoverCategoria_Click(object sender, EventArgs e)
+
+        private bool VerifyPresenceRestaurante(Restaurante restaurante)
         {
+            List<Pessoa> pessoas = model.Pessoa.ToList<Pessoa>();
+            List<Pedido> pedidos = model.Pedido.ToList<Pedido>();
+            
+            foreach (Pessoa pessoa in pessoas)
+            {
+                if(pessoa is Trabalhador)
+                {
+                    Trabalhador trabalhador = (Trabalhador)pessoa;
+
+                    if(trabalhador.RestauranteId == restaurante.Id)
+                    {
+                        return true;
+                        
+                    }
+                }
+            }
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.RestauranteId == restaurante.Id)
+                {
+                    return true;
+                }
+            }
+
+
+            if (restaurante.Id == MainMenu.IdRestaurate)
+            {
+                return true;
+            }
+            
+
+            return false;
+        }
+
+
+        private void btnRemoverCategoria_Click(object sender, EventArgs e)
+        {         
             Categoria categoria = GetCategoria();
 
-            model.Categoria.Remove(categoria);
-            model.SaveChanges();
+            if (VerifyPresenceCategoria(categoria))
+            {
+                MessageBox.Show("Não pode apagar a Categoria selecionada pois está a ser utlizada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
 
-            LerDados();
+                model.Categoria.Remove(categoria);
+                model.SaveChanges();
+
+                LerDados();
+            }
+
+
+        }
+
+        private bool VerifyPresenceCategoria(Categoria categoria)
+        {
+            List<ItemMenu> lista = model.ItemMenu.ToList();
+
+            foreach (ItemMenu item in lista)
+            {
+                if(item.CategoriaId == categoria.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void btnRemoverMetodoPagamento_Click(object sender, EventArgs e)
-        {
+        { 
             MetodoPagamento metodoPagamento = GetMetodoPagamento();
-            model.MetodoPagamento.Remove(metodoPagamento);
-            model.SaveChanges();
 
-            LerDados();
-        }       
+            if (VerifyPresenceMetodo(metodoPagamento))
+            {
+                MessageBox.Show("Não pode apagar o Metodo de Pagamento selecionado pois está a ser utlizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.MetodoPagamento.Remove(metodoPagamento);
+                model.SaveChanges();
+
+                LerDados();
+            }
+        }
+
+        private bool VerifyPresenceMetodo(MetodoPagamento metodoP)
+        {
+            List<Pagamento> pagamentos = model.Pagamento.ToList();
+
+            foreach (Pagamento pagamento in pagamentos)
+            {
+                if(pagamento.MetodoPagamento == metodoP)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         private void dgvRestaurantes_CellClick(object sender, DataGridViewCellEventArgs e)
         {

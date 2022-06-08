@@ -120,9 +120,44 @@ namespace Projeto_Principal
             }
         }
 
+        private Trabalhador GetSelectedTrabalhador()
+        {
+            int row = dataGridViewTrabalhadores.SelectedCells[0].RowIndex;
+            int id = (int)dataGridViewTrabalhadores.Rows[row].Cells["id"].Value;
+            Trabalhador data = model.Pessoa.First(c => c.Id == id) as Trabalhador;
+
+            return data;
+        }
+
         private void txtRemove_Click(object sender, EventArgs e)
         {
+            Trabalhador trabalhador = GetSelectedTrabalhador();
 
+            if (VerifyPresence(trabalhador))
+            {
+                MessageBox.Show("Não pode apagar o Trabalhador pois ele já efetuou um pedido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.Pessoa.Remove(trabalhador);
+                model.SaveChanges();
+                LerDados();
+            }
+        }
+
+        private bool VerifyPresence(Trabalhador trabalhador)
+        {
+            List<Pedido> pedidos = model.Pedido.ToList<Pedido>();
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.Trabalhador == trabalhador)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

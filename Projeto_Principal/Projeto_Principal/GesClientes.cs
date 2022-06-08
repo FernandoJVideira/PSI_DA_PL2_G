@@ -122,12 +122,41 @@ namespace Projeto_Principal
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
             Cliente userdata = GetSelectedCliente();
-            model.Pessoa.Remove(userdata);
-            model.SaveChanges();
-            dataGridViewCliente.DataSource = model.Pessoa.ToList();
 
-            ClearTxtBox();
+            if (VerifyPresenceCliente(userdata))
+            {
+                MessageBox.Show("Não pode apagar o Cliente selecionado pois ele já efetuou um pedido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                model.Pessoa.Remove(userdata);
+                model.SaveChanges();
+                LerDados();
+
+                ClearTxtBox();
+            }
+
+
+
         }
+
+
+        private bool VerifyPresenceCliente(Cliente cliente)
+        {
+            List<Pedido> pedidos = model.Pedido.ToList();
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.Cliente == cliente)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void btnEditCliente_Click(object sender, EventArgs e)
         {
             Cliente userdata = GetSelectedCliente();

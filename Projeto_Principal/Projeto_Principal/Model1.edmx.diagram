@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="Model1.Pedido" Width="1.5" PointX="5.625" PointY="6.5" />
         <AssociationConnector Association="Model1.PedidoTrabalhador" />
         <AssociationConnector Association="Model1.PedidoCliente" />
-        <EntityTypeShape EntityType="Model1.Estado" Width="1.5" PointX="8.25" PointY="8.5" />
+        <EntityTypeShape EntityType="Model1.Estado" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
         <AssociationConnector Association="Model1.EstadoPedido" />
         <EntityTypeShape EntityType="Model1.Pagamento" PointX="1" PointY="9.25" Width="1.5" />
         <EntityTypeShape EntityType="Model1.MetodoPagamento" PointX="2.25" PointY="11.75" Width="1.5" />

@@ -105,32 +105,41 @@ namespace Projeto_Principal
             string ingredientes = "";
             ItemMenu itemMenu = new ItemMenu();
 
-
-            itemMenu.Nome = txtNome.Text;
-            itemMenu.Preco = Convert.ToDecimal(txtPreco.Text);
-            itemMenu.CategoriaId = categoria.Id;
-
-            byte [] imageBytes = File.ReadAllBytes(filepath);
-
-
-            itemMenu.Fotografia = imageBytes;
-
-            foreach (string item in listBoxIngredientes.Items)
+            try
             {
-                if(item.Trim() == "") { return;}
-                
-                ingredientes = ingredientes + item + ", ";
+                string nome = txtNome.Text;
+                decimal preco = Convert.ToDecimal(txtPreco.Text);
 
+                byte[] imageBytes = File.ReadAllBytes(filepath);
+
+                if(nome.Trim() == "" || preco < 0 || imageBytes == null) { throw new Exception("Preencha todos os campos corretamente"); }
+
+                foreach (string item in listBoxIngredientes.Items)
+                {
+                    if (item.Trim() == "") { return; }
+
+                    ingredientes = ingredientes + item + ", ";
+
+                }
+
+                itemMenu.Nome = nome;
+                itemMenu.Preco = preco;
+                ingredientes = ingredientes.Remove(ingredientes.Length - 2);
+                itemMenu.Ingredientes = ingredientes;
+                itemMenu.CategoriaId = categoria.Id;
+                itemMenu.Fotografia = imageBytes;
+
+                model.ItemMenu.Add(itemMenu);
+                model.SaveChanges();
+
+                LerDados();
             }
+            catch (Exception ex)
+            {
 
-            ingredientes = ingredientes.Remove(ingredientes.Length - 2);
-            itemMenu.Ingredientes = ingredientes;
-            itemMenu.CategoriaId = categoria.Id;
-
-            model.ItemMenu.Add(itemMenu);
-            model.SaveChanges();
-
-            LerDados();
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void GesMenu_Load(object sender, EventArgs e)
@@ -249,18 +258,60 @@ namespace Projeto_Principal
             listBoxIngredientes.Items.Clear();
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
 
-            txtNome.Text = item.Nome;
-            txtPreco.Text = item.Preco.ToString();
-
-            GetItemPicture(item.Fotografia);
-
-            comboBoxCategoria.SelectedItem = item.CategoriaId;
-            string[] ingredientes = item.Ingredientes.Split(',');
-
-            foreach (string ingrediente in ingredientes)
+            if (item != null)
             {
-                listBoxIngredientes.Items.Add(ingrediente.Trim());
+                txtNome.Text = item.Nome;
+                txtPreco.Text = item.Preco.ToString();
+
+                GetItemPicture(item.Fotografia);
+
+                comboBoxCategoria.SelectedItem = item.CategoriaId;
+                string[] ingredientes = item.Ingredientes.Split(',');
+
+                foreach (string ingrediente in ingredientes)
+                {
+                    listBoxIngredientes.Items.Add(ingrediente.Trim());
+                }
             }
+            
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+
+            if (VerifyPresenceItem(item))
+            {
+                MessageBox.Show("Não pode apagar este Prato pois ele está a ser utilizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.ItemMenu.Remove(item);
+                model.SaveChanges();
+                LerDados();
+            }
+
+        }
+
+        private bool VerifyPresenceItem(ItemMenu itemMenu)
+        {
+            List<Pedido> pedidos = model.Pedido.ToList();
+            
+            if(itemMenu.Restaurante.Count > 0)
+            {
+                return true;
+            }
+
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.ItemMenu.Contains(itemMenu))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
