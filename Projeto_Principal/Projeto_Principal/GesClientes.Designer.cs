@@ -233,7 +233,6 @@
             // dataGridViewCliente
             // 
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
             this.dataGridViewCliente.Location = new System.Drawing.Point(298, 49);
             this.dataGridViewCliente.MultiSelect = false;
             this.dataGridViewCliente.Name = "dataGridViewCliente";

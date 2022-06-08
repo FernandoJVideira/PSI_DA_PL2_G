@@ -62,6 +62,9 @@
             this.dgvRestaurantes = new System.Windows.Forms.DataGridView();
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.dgvMetodosPagamento = new System.Windows.Forms.DataGridView();
+            this.btnSalvarRestaurante = new System.Windows.Forms.Button();
+            this.btnSalvarCategoria = new System.Windows.Forms.Button();
+            this.btnSalvarMetodoPagamento = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurantes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
@@ -333,6 +336,7 @@
             this.dgvRestaurantes.RowHeadersWidth = 62;
             this.dgvRestaurantes.Size = new System.Drawing.Size(152, 150);
             this.dgvRestaurantes.TabIndex = 52;
+            this.dgvRestaurantes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRestaurantes_CellClick);
             // 
             // dgvCategorias
             // 
@@ -343,6 +347,7 @@
             this.dgvCategorias.RowHeadersWidth = 62;
             this.dgvCategorias.Size = new System.Drawing.Size(152, 150);
             this.dgvCategorias.TabIndex = 53;
+            this.dgvCategorias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategorias_CellClick);
             // 
             // dgvMetodosPagamento
             // 
@@ -353,12 +358,46 @@
             this.dgvMetodosPagamento.RowHeadersWidth = 62;
             this.dgvMetodosPagamento.Size = new System.Drawing.Size(163, 150);
             this.dgvMetodosPagamento.TabIndex = 54;
+            this.dgvMetodosPagamento.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMetodosPagamento_CellClick);
+            // 
+            // btnSalvarRestaurante
+            // 
+            this.btnSalvarRestaurante.Location = new System.Drawing.Point(109, 322);
+            this.btnSalvarRestaurante.Name = "btnSalvarRestaurante";
+            this.btnSalvarRestaurante.Size = new System.Drawing.Size(123, 23);
+            this.btnSalvarRestaurante.TabIndex = 55;
+            this.btnSalvarRestaurante.Text = "Salvar alterações";
+            this.btnSalvarRestaurante.UseVisualStyleBackColor = true;
+            this.btnSalvarRestaurante.Click += new System.EventHandler(this.btnSalvarRestaurante_Click);
+            // 
+            // btnSalvarCategoria
+            // 
+            this.btnSalvarCategoria.Location = new System.Drawing.Point(567, 322);
+            this.btnSalvarCategoria.Name = "btnSalvarCategoria";
+            this.btnSalvarCategoria.Size = new System.Drawing.Size(123, 23);
+            this.btnSalvarCategoria.TabIndex = 56;
+            this.btnSalvarCategoria.Text = "Salvar alterações";
+            this.btnSalvarCategoria.UseVisualStyleBackColor = true;
+            this.btnSalvarCategoria.Click += new System.EventHandler(this.btnSalvarCategoria_Click);
+            // 
+            // btnSalvarMetodoPagamento
+            // 
+            this.btnSalvarMetodoPagamento.Location = new System.Drawing.Point(955, 322);
+            this.btnSalvarMetodoPagamento.Name = "btnSalvarMetodoPagamento";
+            this.btnSalvarMetodoPagamento.Size = new System.Drawing.Size(153, 23);
+            this.btnSalvarMetodoPagamento.TabIndex = 57;
+            this.btnSalvarMetodoPagamento.Text = "Salvar alterações";
+            this.btnSalvarMetodoPagamento.UseVisualStyleBackColor = true;
+            this.btnSalvarMetodoPagamento.Click += new System.EventHandler(this.btnSalvarMetodoPagamento_Click);
             // 
             // GesRestaurantGlobal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 371);
+            this.Controls.Add(this.btnSalvarMetodoPagamento);
+            this.Controls.Add(this.btnSalvarCategoria);
+            this.Controls.Add(this.btnSalvarRestaurante);
             this.Controls.Add(this.dgvMetodosPagamento);
             this.Controls.Add(this.dgvCategorias);
             this.Controls.Add(this.dgvRestaurantes);
@@ -434,5 +473,8 @@
         private System.Windows.Forms.DataGridView dgvRestaurantes;
         private System.Windows.Forms.DataGridView dgvMetodosPagamento;
         private System.Windows.Forms.DataGridView dgvCategorias;
+        private System.Windows.Forms.Button btnSalvarRestaurante;
+        private System.Windows.Forms.Button btnSalvarCategoria;
+        private System.Windows.Forms.Button btnSalvarMetodoPagamento;
     }
 }

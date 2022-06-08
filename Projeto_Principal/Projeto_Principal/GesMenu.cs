@@ -17,6 +17,7 @@ namespace Projeto_Principal
         private Point offset;
         private Model1Container model;
         private static string filepath = "";
+        public static int IdRestaurate = 0;
 
         public GesMenu()
         {
@@ -55,7 +56,7 @@ namespace Projeto_Principal
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void Lerdados()
+        private void LerDados()
         {
             listBoxMenu.Items.Clear();
             listBoxPratosInativos.Items.Clear();
@@ -129,20 +130,13 @@ namespace Projeto_Principal
             model.ItemMenu.Add(itemMenu);
             model.SaveChanges();
 
-            Lerdados();
-
-
-
+            LerDados();
         }
 
         private void GesMenu_Load(object sender, EventArgs e)
         {
-            Lerdados();
-        }
-
-        private string getPath(string path)
-        {
-            return path;
+            LerDados();
+            SetRestName();
         }
 
         private void btnAddFoto_Click(object sender, EventArgs e)
@@ -158,9 +152,6 @@ namespace Projeto_Principal
             {
                 filepath = openFileDialog.FileName.ToString();
             }
-
-
-
         }
 
         private void buttonRemvEngrediente_Click(object sender, EventArgs e)
@@ -183,13 +174,93 @@ namespace Projeto_Principal
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+
             Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
             ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
             listBoxPratosInativos.Items.Add(item);
             listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
 
             item.Restaurante.Remove(restaurante);
+
+
+        }
+
+        private void GetItemPicture(byte[] imageSource)
+        {
+            Bitmap resizedImg;
+            using (MemoryStream stream = new MemoryStream(imageSource))
+            {
+                Bitmap image = new Bitmap(stream);
+                resizedImg = new Bitmap(image, new Size(200,200));
+            }
+            itemPic.Image = resizedImg;
+        }
+
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            ItemMenu menuItem = (ItemMenu)listBoxPratosInativos.SelectedItem;
+            string ingredientes = "";
+
+            menuItem.Nome = txtNome.Text;
+            menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
+            if(filepath != "")
+            {
+                byte[] imageBytes = File.ReadAllBytes(filepath);
+
+
+                menuItem.Fotografia = imageBytes;
+            }     
+                
+            foreach (string item in listBoxIngredientes.Items)
+            {
+                if (item.Trim() == "") { return; }
+
+                ingredientes = ingredientes + item + ", ";
+
+            }
+
+            ingredientes = ingredientes.Remove(ingredientes.Length - 2);
+            menuItem.Ingredientes = ingredientes;
+
+
             model.SaveChanges();
+            GetData();
+        }
+
+        private void SetRestName()
+        {
+            if (IdRestaurate != 0)
+            {
+                Model1Container model1 = new Model1Container();
+                Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+
+                lblNomeRest.Text = restaurante.Nome;
+            }
+        }
+
+        private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void GetData()
+        {
+            listBoxIngredientes.Items.Clear();
+            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+
+            txtNome.Text = item.Nome;
+            txtPreco.Text = item.Preco.ToString();
+
+            GetItemPicture(item.Fotografia);
+
+            comboBoxCategoria.SelectedItem = item.CategoriaId;
+            string[] ingredientes = item.Ingredientes.Split(',');
+
+            foreach (string ingrediente in ingredientes)
+            {
+                listBoxIngredientes.Items.Add(ingrediente.Trim());
+            }
         }
     }
 }

@@ -55,63 +55,76 @@
             this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelpath = new System.Windows.Forms.Label();
+            this.btnAtualizar = new System.Windows.Forms.Button();
+            this.itemPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.lblNomeRest = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxMenu
             // 
             this.listBoxMenu.FormattingEnabled = true;
-            this.listBoxMenu.Location = new System.Drawing.Point(501, 85);
+            this.listBoxMenu.ItemHeight = 20;
+            this.listBoxMenu.Location = new System.Drawing.Point(750, 148);
+            this.listBoxMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxMenu.Name = "listBoxMenu";
-            this.listBoxMenu.Size = new System.Drawing.Size(257, 342);
+            this.listBoxMenu.Size = new System.Drawing.Size(384, 524);
             this.listBoxMenu.TabIndex = 0;
             // 
             // lblNomeRestaurante
             // 
             this.lblNomeRestaurante.AutoSize = true;
-            this.lblNomeRestaurante.Location = new System.Drawing.Point(498, 48);
+            this.lblNomeRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblNomeRestaurante.Location = new System.Drawing.Point(745, 62);
+            this.lblNomeRestaurante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeRestaurante.Name = "lblNomeRestaurante";
-            this.lblNomeRestaurante.Size = new System.Drawing.Size(122, 13);
+            this.lblNomeRestaurante.Size = new System.Drawing.Size(248, 29);
             this.lblNomeRestaurante.TabIndex = 1;
-            this.lblNomeRestaurante.Text = "Menu do Restaurante ...";
+            this.lblNomeRestaurante.Text = "Menu do Restaurante:";
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(31, 85);
+            this.txtNome.Location = new System.Drawing.Point(46, 131);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(167, 20);
+            this.txtNome.Size = new System.Drawing.Size(248, 26);
             this.txtNome.TabIndex = 2;
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(31, 146);
+            this.txtPreco.Location = new System.Drawing.Point(46, 225);
+            this.txtPreco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(141, 20);
+            this.txtPreco.Size = new System.Drawing.Size(210, 26);
             this.txtPreco.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 121);
+            this.label2.Location = new System.Drawing.Point(42, 186);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Preço";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 58);
+            this.label3.Location = new System.Drawing.Point(42, 89);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(51, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Nome";
             // 
             // btnRegistar
             // 
-            this.btnRegistar.Location = new System.Drawing.Point(31, 440);
+            this.btnRegistar.Location = new System.Drawing.Point(46, 677);
+            this.btnRegistar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegistar.Name = "btnRegistar";
-            this.btnRegistar.Size = new System.Drawing.Size(167, 23);
+            this.btnRegistar.Size = new System.Drawing.Size(127, 35);
             this.btnRegistar.TabIndex = 6;
             this.btnRegistar.Text = "Registar Prato";
             this.btnRegistar.UseVisualStyleBackColor = true;
@@ -119,9 +132,10 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(499, 440);
+            this.btnRemove.Location = new System.Drawing.Point(750, 705);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(257, 23);
+            this.btnRemove.Size = new System.Drawing.Size(386, 35);
             this.btnRemove.TabIndex = 7;
             this.btnRemove.Text = "Remover";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -130,16 +144,20 @@
             // listBoxPratosInativos
             // 
             this.listBoxPratosInativos.FormattingEnabled = true;
-            this.listBoxPratosInativos.Location = new System.Drawing.Point(269, 85);
+            this.listBoxPratosInativos.ItemHeight = 20;
+            this.listBoxPratosInativos.Location = new System.Drawing.Point(404, 388);
+            this.listBoxPratosInativos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxPratosInativos.Name = "listBoxPratosInativos";
-            this.listBoxPratosInativos.Size = new System.Drawing.Size(187, 342);
+            this.listBoxPratosInativos.Size = new System.Drawing.Size(278, 284);
             this.listBoxPratosInativos.TabIndex = 8;
+            this.listBoxPratosInativos.SelectedIndexChanged += new System.EventHandler(this.listBoxPratosInativos_SelectedIndexChanged);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(265, 440);
+            this.btnAdd.Location = new System.Drawing.Point(402, 705);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(187, 23);
+            this.btnAdd.Size = new System.Drawing.Size(280, 35);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Adicionar ao Menu";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -147,9 +165,10 @@
             // 
             // btnAddFoto
             // 
-            this.btnAddFoto.Location = new System.Drawing.Point(188, 184);
+            this.btnAddFoto.Location = new System.Drawing.Point(282, 283);
+            this.btnAddFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddFoto.Name = "btnAddFoto";
-            this.btnAddFoto.Size = new System.Drawing.Size(30, 23);
+            this.btnAddFoto.Size = new System.Drawing.Size(45, 35);
             this.btnAddFoto.TabIndex = 10;
             this.btnAddFoto.Text = "...";
             this.btnAddFoto.UseVisualStyleBackColor = true;
@@ -158,42 +177,48 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 189);
+            this.label4.Location = new System.Drawing.Point(42, 291);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(82, 20);
             this.label4.TabIndex = 11;
             this.label4.Text = "Fotografia";
             // 
             // listBoxIngredientes
             // 
             this.listBoxIngredientes.FormattingEnabled = true;
-            this.listBoxIngredientes.Location = new System.Drawing.Point(31, 311);
+            this.listBoxIngredientes.ItemHeight = 20;
+            this.listBoxIngredientes.Location = new System.Drawing.Point(46, 478);
+            this.listBoxIngredientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxIngredientes.Name = "listBoxIngredientes";
-            this.listBoxIngredientes.Size = new System.Drawing.Size(187, 82);
+            this.listBoxIngredientes.Size = new System.Drawing.Size(278, 124);
             this.listBoxIngredientes.TabIndex = 12;
             // 
             // txtIngredientes
             // 
-            this.txtIngredientes.Location = new System.Drawing.Point(31, 285);
+            this.txtIngredientes.Location = new System.Drawing.Point(46, 438);
+            this.txtIngredientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtIngredientes.Name = "txtIngredientes";
-            this.txtIngredientes.Size = new System.Drawing.Size(160, 20);
+            this.txtIngredientes.Size = new System.Drawing.Size(238, 26);
             this.txtIngredientes.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 269);
+            this.label5.Location = new System.Drawing.Point(42, 414);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.Size = new System.Drawing.Size(98, 20);
             this.label5.TabIndex = 14;
             this.label5.Text = "Ingredientes";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(178, 149);
+            this.label6.Location = new System.Drawing.Point(267, 229);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.Size = new System.Drawing.Size(18, 20);
             this.label6.TabIndex = 15;
             this.label6.Text = "$";
             // 
@@ -206,10 +231,11 @@
             this.TopBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.TopBar.Controls.Add(this.btnMinimize);
             this.TopBar.Controls.Add(this.btnClose);
-            this.TopBar.Location = new System.Drawing.Point(-7, 0);
+            this.TopBar.Location = new System.Drawing.Point(-10, 0);
+            this.TopBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TopBar.Name = "TopBar";
             this.TopBar.ShadowDecoration.Parent = this.TopBar;
-            this.TopBar.Size = new System.Drawing.Size(809, 31);
+            this.TopBar.Size = new System.Drawing.Size(1214, 48);
             this.TopBar.TabIndex = 36;
             this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Event);
             this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
@@ -220,9 +246,10 @@
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(740, 5);
+            this.btnMinimize.Location = new System.Drawing.Point(1110, 8);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(20, 20);
+            this.btnMinimize.Size = new System.Drawing.Size(30, 31);
             this.btnMinimize.TabIndex = 18;
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
@@ -232,18 +259,20 @@
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(766, 5);
+            this.btnClose.Location = new System.Drawing.Point(1149, 8);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.Size = new System.Drawing.Size(30, 31);
             this.btnClose.TabIndex = 21;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // buttonAddEngrediente
             // 
-            this.buttonAddEngrediente.Location = new System.Drawing.Point(197, 285);
+            this.buttonAddEngrediente.Location = new System.Drawing.Point(296, 438);
+            this.buttonAddEngrediente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonAddEngrediente.Name = "buttonAddEngrediente";
-            this.buttonAddEngrediente.Size = new System.Drawing.Size(21, 23);
+            this.buttonAddEngrediente.Size = new System.Drawing.Size(32, 35);
             this.buttonAddEngrediente.TabIndex = 37;
             this.buttonAddEngrediente.Text = "+";
             this.buttonAddEngrediente.UseVisualStyleBackColor = true;
@@ -251,9 +280,10 @@
             // 
             // buttonRemvEngrediente
             // 
-            this.buttonRemvEngrediente.Location = new System.Drawing.Point(31, 399);
+            this.buttonRemvEngrediente.Location = new System.Drawing.Point(46, 614);
+            this.buttonRemvEngrediente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonRemvEngrediente.Name = "buttonRemvEngrediente";
-            this.buttonRemvEngrediente.Size = new System.Drawing.Size(187, 23);
+            this.buttonRemvEngrediente.Size = new System.Drawing.Size(280, 35);
             this.buttonRemvEngrediente.TabIndex = 38;
             this.buttonRemvEngrediente.Text = "Remover Engrediente";
             this.buttonRemvEngrediente.UseVisualStyleBackColor = true;
@@ -262,36 +292,74 @@
             // comboBoxCategoria
             // 
             this.comboBoxCategoria.FormattingEnabled = true;
-            this.comboBoxCategoria.Location = new System.Drawing.Point(97, 230);
+            this.comboBoxCategoria.Location = new System.Drawing.Point(146, 354);
+            this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
-            this.comboBoxCategoria.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCategoria.Size = new System.Drawing.Size(180, 28);
             this.comboBoxCategoria.TabIndex = 39;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 233);
+            this.label1.Location = new System.Drawing.Point(42, 358);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 40;
             this.label1.Text = "Categoria";
             // 
             // labelpath
             // 
             this.labelpath.AutoSize = true;
-            this.labelpath.Location = new System.Drawing.Point(94, 189);
-            this.labelpath.MaximumSize = new System.Drawing.Size(100, 0);
+            this.labelpath.Location = new System.Drawing.Point(141, 291);
+            this.labelpath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelpath.MaximumSize = new System.Drawing.Size(150, 0);
             this.labelpath.Name = "labelpath";
-            this.labelpath.Size = new System.Drawing.Size(50, 13);
+            this.labelpath.Size = new System.Drawing.Size(74, 20);
             this.labelpath.TabIndex = 41;
             this.labelpath.Text = "labelpath";
             this.labelpath.Visible = false;
             // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.Location = new System.Drawing.Point(192, 677);
+            this.btnAtualizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(136, 35);
+            this.btnAtualizar.TabIndex = 42;
+            this.btnAtualizar.Text = "Atualizar Prato";
+            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            // 
+            // itemPic
+            // 
+            this.itemPic.Location = new System.Drawing.Point(433, 107);
+            this.itemPic.Name = "itemPic";
+            this.itemPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.itemPic.ShadowDecoration.Parent = this.itemPic;
+            this.itemPic.Size = new System.Drawing.Size(220, 222);
+            this.itemPic.TabIndex = 44;
+            this.itemPic.TabStop = false;
+            // 
+            // lblNomeRest
+            // 
+            this.lblNomeRest.AutoSize = true;
+            this.lblNomeRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblNomeRest.Location = new System.Drawing.Point(828, 107);
+            this.lblNomeRest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeRest.Name = "lblNomeRest";
+            this.lblNomeRest.Size = new System.Drawing.Size(79, 29);
+            this.lblNomeRest.TabIndex = 45;
+            this.lblNomeRest.Text = "Nome";
+            // 
             // GesMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 522);
+            this.ClientSize = new System.Drawing.Size(1184, 803);
+            this.Controls.Add(this.lblNomeRest);
+            this.Controls.Add(this.itemPic);
+            this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.labelpath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxCategoria);
@@ -315,10 +383,12 @@
             this.Controls.Add(this.lblNomeRestaurante);
             this.Controls.Add(this.listBoxMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "GesMenu";
             this.Text = "GesMenu";
             this.Load += new System.EventHandler(this.GesMenu_Load);
             this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.itemPic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,5 +421,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.Label labelpath;
+        private System.Windows.Forms.Button btnAtualizar;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox itemPic;
+        private System.Windows.Forms.Label lblNomeRest;
     }
 }

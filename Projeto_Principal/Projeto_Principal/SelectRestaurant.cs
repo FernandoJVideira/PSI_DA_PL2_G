@@ -72,6 +72,7 @@ namespace Projeto_Principal
             if(restaurante != null)
             {
                 MainMenu.IdRestaurate = restaurante.Id;
+                GesMenu.IdRestaurate = restaurante.Id;
                 new MainMenu().Show();
                 this.Close();
             }
