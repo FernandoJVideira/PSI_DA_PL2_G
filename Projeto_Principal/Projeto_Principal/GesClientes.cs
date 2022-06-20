@@ -220,5 +220,20 @@ namespace Projeto_Principal
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Cliente userdata = GetSelectedCliente();
+
+            History.id = userdata.Id;
+
+            ShowMenuForm(new History());
+        }
+
+        private void ShowMenuForm(Form form)
+        {
+            form.Show();
+            this.Close();
+        }
     }
 }

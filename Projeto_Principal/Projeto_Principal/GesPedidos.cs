@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -202,12 +203,79 @@ namespace Projeto_Principal
             
             
             model.Pedido.Add(pedido);
-            model.SaveChanges();
 
+            model.SaveChanges();
+            WriteToFile(pedido);
             listBoxItems.Items.Clear();
             RefreshPedidos();
 
-            
+        }
+
+        private void WriteToFile(Pedido pedido)
+        {
+            Cliente cliente = pedido.Cliente;
+            string currentDir = Environment.CurrentDirectory;
+
+            string fileName = pedido.Id + ".txt";
+            string path = currentDir + @"\pedidos\" + fileName;
+            FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
+
+            StreamWriter sw = new StreamWriter(fs);
+
+            sw.WriteLine("Cliente: "+cliente.Nome +" ("+ cliente.NIF + ") em recebido em " + DateTime.Now.ToString());
+            sw.WriteLine("--------------------------------------------------------------------");
+            sw.WriteLine("");
+            sw.WriteLine("Artigos:");
+
+
+            foreach (ItemMenu item in listBoxItems.Items)
+            {
+                sw.WriteLine("\t"+item.Nome +" " +item.Preco +" €");
+                sw.WriteLine("");
+            }
+            sw.WriteLine("--------------------------------------------------------------------");
+            sw.WriteLine("");
+            sw.WriteLine("O total do cliente é: " + pedido.ValorTotal.ToString() + " €");
+
+            sw.Close();
+        }
+
+        private void ChangeFile(Pedido pedido)
+        {
+            Cliente cliente = pedido.Cliente;
+            string currentDir = Environment.CurrentDirectory;
+
+            string fileName = pedido.Id + ".txt";
+            string path = currentDir + @"\pedidos\" + fileName;
+            FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
+
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("");
+
+            switch (pedido.EstadoId)
+            {
+                case 3:
+                    sw.WriteLine("Pedido Cancelado: " + DateTime.Now.ToString());
+                    break;
+
+                case 2:
+                    sw.WriteLine("Pedido em Processamento: " + DateTime.Now.ToString());
+                    break;
+
+                case 4:
+                    sw.WriteLine("Pedido Finalizado: " + DateTime.Now.ToString());
+                    sw.WriteLine("");
+                    sw.WriteLine("Métodos de Pagamento:");
+
+                    foreach (Pagamento pagamento in listBoxMetodosUsados.Items)
+                    {
+                        sw.WriteLine("\t"+ pagamento.Valor.ToString() + "€ via " + pagamento.MetodoPagamento.Nome);
+                    }
+
+                    break;
+            }
+
+            sw.Close();
         }
 
         private Cliente GetCliente()
@@ -237,6 +305,7 @@ namespace Projeto_Principal
             listBoxProcessing.Items.Remove(listBoxProcessing.SelectedItem);
             pedido.EstadoId = 3;
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
         }
 
@@ -245,9 +314,12 @@ namespace Projeto_Principal
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             pedido.EstadoId = 2;
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
 
         }
+
+
 
         private void buttonConcluir_Click(object sender, EventArgs e)
         {
@@ -261,6 +333,7 @@ namespace Projeto_Principal
             }
 
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
 
             listBoxMetodosUsados.Items.Clear();
@@ -342,5 +415,19 @@ namespace Projeto_Principal
 
             labelValor.Text = Convert.ToString(novoTotal);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            ShowMenuForm(new History());
+        }
+
+        private void ShowMenuForm(Form form)
+        {
+            form.Show();
+            this.Close();
+        }
+
+
     }
 }

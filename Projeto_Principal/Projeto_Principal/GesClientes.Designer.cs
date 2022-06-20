@@ -52,6 +52,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.btnEditCliente = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
@@ -164,9 +165,9 @@
             // 
             // btnApagarCliente
             // 
-            this.btnApagarCliente.Location = new System.Drawing.Point(313, 364);
+            this.btnApagarCliente.Location = new System.Drawing.Point(298, 364);
             this.btnApagarCliente.Name = "btnApagarCliente";
-            this.btnApagarCliente.Size = new System.Drawing.Size(131, 23);
+            this.btnApagarCliente.Size = new System.Drawing.Size(110, 23);
             this.btnApagarCliente.TabIndex = 19;
             this.btnApagarCliente.Text = "Apagar Cliente";
             this.btnApagarCliente.UseVisualStyleBackColor = true;
@@ -240,26 +241,34 @@
             this.dataGridViewCliente.Size = new System.Drawing.Size(328, 310);
             this.dataGridViewCliente.TabIndex = 23;
             this.dataGridViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellClick);
+            this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
             // 
             // btnEditCliente
             // 
-            this.btnEditCliente.Location = new System.Drawing.Point(486, 365);
+            this.btnEditCliente.Location = new System.Drawing.Point(518, 365);
             this.btnEditCliente.Name = "btnEditCliente";
-            this.btnEditCliente.Size = new System.Drawing.Size(131, 23);
+            this.btnEditCliente.Size = new System.Drawing.Size(108, 23);
             this.btnEditCliente.TabIndex = 24;
             this.btnEditCliente.Text = "Editar Cliente";
             this.btnEditCliente.UseVisualStyleBackColor = true;
             this.btnEditCliente.Click += new System.EventHandler(this.btnEditCliente_Click);
-
-
-            this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
-
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(414, 364);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Consultar Cliente";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // GesClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 415);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditCliente);
             this.Controls.Add(this.dataGridViewCliente);
             this.Controls.Add(this.TopBar);
@@ -314,5 +323,6 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEditCliente;
+        private System.Windows.Forms.Button button1;
     }
 }

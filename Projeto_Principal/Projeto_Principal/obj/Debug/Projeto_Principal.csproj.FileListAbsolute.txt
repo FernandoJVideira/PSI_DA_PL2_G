@@ -169,3 +169,4 @@ C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\ob
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.CopyComplete
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.exe
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.pdb
+C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.History.resources

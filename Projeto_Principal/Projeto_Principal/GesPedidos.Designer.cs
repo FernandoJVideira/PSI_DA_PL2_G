@@ -33,6 +33,7 @@
             this.buttonConcluir = new System.Windows.Forms.Button();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
+            this.buttonHistory = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.listBoxPayment = new System.Windows.Forms.ListBox();
@@ -81,6 +82,7 @@
             // TopBar
             // 
             this.TopBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TopBar.Controls.Add(this.buttonHistory);
             this.TopBar.Controls.Add(this.btnMinimize);
             this.TopBar.Controls.Add(this.btnClose);
             this.TopBar.Location = new System.Drawing.Point(-4, 0);
@@ -91,6 +93,16 @@
             this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Event);
             this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
             this.TopBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseUp);
+            // 
+            // buttonHistory
+            // 
+            this.buttonHistory.Location = new System.Drawing.Point(24, 4);
+            this.buttonHistory.Name = "buttonHistory";
+            this.buttonHistory.Size = new System.Drawing.Size(284, 23);
+            this.buttonHistory.TabIndex = 69;
+            this.buttonHistory.Text = "Consultar Histórico de Pedidos";
+            this.buttonHistory.UseVisualStyleBackColor = true;
+            this.buttonHistory.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnMinimize
             // 
@@ -290,7 +302,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 63;
-            this.label9.Text = "$";
+            this.label9.Text = "€";
             // 
             // labelValor
             // 
@@ -415,5 +427,6 @@
         private System.Windows.Forms.Label labelValor;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelinfo;
+        private System.Windows.Forms.Button buttonHistory;
     }
 }

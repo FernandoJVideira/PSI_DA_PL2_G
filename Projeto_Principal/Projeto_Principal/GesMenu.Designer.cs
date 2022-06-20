@@ -59,6 +59,7 @@
             this.itemPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.lblNomeRest = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             this.SuspendLayout();
@@ -202,7 +203,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 15;
-            this.label6.Text = "$";
+            this.label6.Text = "€";
             // 
             // RoundedBorders
             // 
@@ -307,7 +308,7 @@
             // itemPic
             // 
             this.itemPic.Location = new System.Drawing.Point(289, 70);
-            this.itemPic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.itemPic.Margin = new System.Windows.Forms.Padding(2);
             this.itemPic.Name = "itemPic";
             this.itemPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.itemPic.ShadowDecoration.Parent = this.itemPic;
@@ -335,11 +336,22 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(32, 478);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(187, 23);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Consultar Categorias";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 522);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.lblNomeRest);
             this.Controls.Add(this.itemPic);
@@ -408,5 +420,6 @@
         private Guna.UI2.WinForms.Guna2CirclePictureBox itemPic;
         private System.Windows.Forms.Label lblNomeRest;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button button1;
     }
 }

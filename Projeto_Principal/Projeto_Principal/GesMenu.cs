@@ -313,5 +313,18 @@ namespace Projeto_Principal
 
             return false;
         }
+
+        private void ShowMenuForm(Form form)
+        {
+            form.Show();
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            ShowMenuForm(new GesRestaurantGlobal());
+
+        }
     }
 }
