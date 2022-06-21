@@ -79,6 +79,8 @@ namespace Projeto_Principal
             else
             {
                 MessageBox.Show("Não existem restaurantes registados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new MainMenu().Show();
+                this.Close();
             }
 
             

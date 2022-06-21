@@ -60,6 +60,8 @@ namespace Projeto_Principal
             listBoxPayment.Items.Clear();
             listBoxProcessing.Items.Clear();
 
+            if(model.Pedido == null) { return; }
+
             List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
 
 
@@ -301,6 +303,7 @@ namespace Projeto_Principal
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            if (listBoxProcessing.SelectedItems == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             listBoxProcessing.Items.Remove(listBoxProcessing.SelectedItem);
             pedido.EstadoId = 3;
@@ -311,6 +314,7 @@ namespace Projeto_Principal
 
         private void buttonFinalizar_Click(object sender, EventArgs e)
         {
+            if (listBoxProcessing.SelectedItems == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             pedido.EstadoId = 2;
             model.SaveChanges();

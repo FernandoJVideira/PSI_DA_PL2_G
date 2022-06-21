@@ -108,6 +108,9 @@ namespace Projeto_Principal
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            string currentDir = Environment.CurrentDirectory;
+            System.IO.Directory.CreateDirectory(currentDir+@"\pedidos");
+
             List<Estado> estados = model.Estado.ToList<Estado>();
 
             if(estados.Count == 0)
