@@ -19,5 +19,11 @@ namespace Projeto_Principal
         public int RestauranteId { get; set; }
     
         public virtual Restaurante Restaurante { get; set; }
+
+        public override string ToString()
+        {
+            string str = $"{this.Nome}";
+            return str;
+        }
     }
 }

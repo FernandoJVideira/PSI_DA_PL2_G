@@ -95,7 +95,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" Nullable="false" />
     <NavigationProperty Name="Morada" Relationship="Model1.RestauranteMorada" FromRole="Restaurante" ToRole="Morada" />
-    <NavigationProperty Name="Pedido" Relationship="Model1.RestaurantePedido" FromRole="Restaurante" ToRole="Pedido" />
   </EntityType>
   <Association Name="RestauranteMorada">
     <End Type="Model1.Restaurante" Role="Restaurante" Multiplicity="0..1" />

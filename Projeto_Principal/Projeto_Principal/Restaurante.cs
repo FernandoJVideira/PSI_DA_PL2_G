@@ -14,17 +14,15 @@ namespace Projeto_Principal
     
     public partial class Restaurante
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Restaurante()
-        {
-            this.Pedido = new HashSet<Pedido>();
-        }
-    
         public int Id { get; set; }
         public string Nome { get; set; }
     
         public virtual Morada Morada { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
+
+        public override string ToString()
+        {
+            string str = $"{this.Nome}";
+            return str;
+        }
     }
 }

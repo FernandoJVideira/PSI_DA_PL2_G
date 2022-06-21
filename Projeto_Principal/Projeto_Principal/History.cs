@@ -12,6 +12,9 @@ namespace Projeto_Principal
 {
     public partial class History : Form
     {
+        bool mouseDown;
+        private Point offset;
+
         private Model1Container model;
         public static int id;
         public History()
@@ -83,6 +86,32 @@ namespace Projeto_Principal
 
             MessageBox.Show(System.IO.File.ReadAllText(path));
             
+        }
+
+        private void MouseDown_Event(object sender, MouseEventArgs e)
+        {
+            offset.X = e.X;
+            offset.Y = e.Y;
+            mouseDown = true;
+        }
+
+        private void MouseMove_Event(object sender, MouseEventArgs e)
+        {
+            if (mouseDown == true)
+            {
+                Point currentScreenPos = PointToScreen(e.Location);
+                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+            }
+        }
+
+        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

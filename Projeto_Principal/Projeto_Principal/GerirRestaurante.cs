@@ -64,6 +64,7 @@ namespace Projeto_Principal
         {
             model = new Model1Container();
             LerDados();
+            AjustDataColumns();
         }
 
         public void LerDados()
@@ -158,6 +159,12 @@ namespace Projeto_Principal
             }
 
             return false;
+        }
+
+        private void AjustDataColumns()
+        {
+            dataGridViewTrabalhadores.Columns["Id"].DisplayIndex = 0;
+            dataGridViewTrabalhadores.Columns["Nome"].DisplayIndex = 1;
         }
     }
 }
