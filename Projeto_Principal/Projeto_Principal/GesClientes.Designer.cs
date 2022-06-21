@@ -32,9 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GesClientes));
             this.label2 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtTelemovel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPostalCod = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,7 +42,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnRegistarCliente = new System.Windows.Forms.Button();
             this.btnApagarCliente = new System.Windows.Forms.Button();
-            this.txtNumCont = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
@@ -53,6 +50,9 @@
             this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.btnEditCliente = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtTelemovel = new System.Windows.Forms.MaskedTextBox();
+            this.txtNumCont = new System.Windows.Forms.MaskedTextBox();
+            this.txtPostalCod = new System.Windows.Forms.MaskedTextBox();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
@@ -73,13 +73,6 @@
             this.txtNome.Size = new System.Drawing.Size(123, 20);
             this.txtNome.TabIndex = 2;
             // 
-            // txtTelemovel
-            // 
-            this.txtTelemovel.Location = new System.Drawing.Point(137, 106);
-            this.txtTelemovel.Name = "txtTelemovel";
-            this.txtTelemovel.Size = new System.Drawing.Size(123, 20);
-            this.txtTelemovel.TabIndex = 4;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -88,13 +81,6 @@
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Telemovel";
-            // 
-            // txtPostalCod
-            // 
-            this.txtPostalCod.Location = new System.Drawing.Point(137, 273);
-            this.txtPostalCod.Name = "txtPostalCod";
-            this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
-            this.txtPostalCod.TabIndex = 13;
             // 
             // label4
             // 
@@ -172,13 +158,6 @@
             this.btnApagarCliente.Text = "Apagar Cliente";
             this.btnApagarCliente.UseVisualStyleBackColor = true;
             this.btnApagarCliente.Click += new System.EventHandler(this.btnApagarCliente_Click);
-            // 
-            // txtNumCont
-            // 
-            this.txtNumCont.Location = new System.Drawing.Point(137, 142);
-            this.txtNumCont.Name = "txtNumCont";
-            this.txtNumCont.Size = new System.Drawing.Size(123, 20);
-            this.txtNumCont.TabIndex = 21;
             // 
             // label3
             // 
@@ -263,28 +242,53 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txtTelemovel
+            // 
+            this.txtTelemovel.Location = new System.Drawing.Point(137, 106);
+            this.txtTelemovel.Mask = "990000000";
+            this.txtTelemovel.Name = "txtTelemovel";
+            this.txtTelemovel.Size = new System.Drawing.Size(123, 20);
+            this.txtTelemovel.TabIndex = 26;
+            // 
+            // txtNumCont
+            // 
+            this.txtNumCont.Location = new System.Drawing.Point(137, 145);
+            this.txtNumCont.Mask = "000000000";
+            this.txtNumCont.Name = "txtNumCont";
+            this.txtNumCont.Size = new System.Drawing.Size(123, 20);
+            this.txtNumCont.TabIndex = 27;
+            // 
+            // txtPostalCod
+            // 
+            this.txtPostalCod.Location = new System.Drawing.Point(137, 269);
+            this.txtPostalCod.Mask = "0000-999";
+            this.txtPostalCod.Name = "txtPostalCod";
+            this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
+            this.txtPostalCod.TabIndex = 28;
+            // 
             // GesClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(652, 415);
+            this.Controls.Add(this.txtPostalCod);
+            this.Controls.Add(this.txtNumCont);
+            this.Controls.Add(this.txtTelemovel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditCliente);
             this.Controls.Add(this.dataGridViewCliente);
             this.Controls.Add(this.TopBar);
-            this.Controls.Add(this.txtNumCont);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnApagarCliente);
             this.Controls.Add(this.btnRegistarCliente);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCidade);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtRua);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtTelemovel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label2);
@@ -303,9 +307,7 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtTelemovel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPostalCod;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.Label label5;
@@ -315,7 +317,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnRegistarCliente;
         private System.Windows.Forms.Button btnApagarCliente;
-        private System.Windows.Forms.TextBox txtNumCont;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
@@ -324,5 +325,8 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEditCliente;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MaskedTextBox txtPostalCod;
+        private System.Windows.Forms.MaskedTextBox txtNumCont;
+        private System.Windows.Forms.MaskedTextBox txtTelemovel;
     }
 }

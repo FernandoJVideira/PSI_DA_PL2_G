@@ -53,7 +53,6 @@
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonAddItem = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBoxValor = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelValor = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@
             this.buttonRemMetodo = new System.Windows.Forms.Button();
             this.buttonValor = new System.Windows.Forms.Button();
             this.labelinfo = new System.Windows.Forms.Label();
+            this.textBoxValor = new System.Windows.Forms.MaskedTextBox();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientes)).BeginInit();
             this.SuspendLayout();
@@ -279,13 +279,6 @@
             this.comboBox1.Size = new System.Drawing.Size(245, 21);
             this.comboBox1.TabIndex = 59;
             // 
-            // textBoxValor
-            // 
-            this.textBoxValor.Location = new System.Drawing.Point(935, 367);
-            this.textBoxValor.Name = "textBoxValor";
-            this.textBoxValor.Size = new System.Drawing.Size(245, 20);
-            this.textBoxValor.TabIndex = 60;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -352,11 +345,20 @@
             this.labelinfo.Text = "Termine o Pagamento para poder selecionar outro pedido";
             this.labelinfo.Visible = false;
             // 
+            // textBoxValor
+            // 
+            this.textBoxValor.Location = new System.Drawing.Point(935, 373);
+            this.textBoxValor.Mask = "0000.00";
+            this.textBoxValor.Name = "textBoxValor";
+            this.textBoxValor.Size = new System.Drawing.Size(245, 20);
+            this.textBoxValor.TabIndex = 69;
+            // 
             // GesPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1218, 594);
+            this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.labelinfo);
             this.Controls.Add(this.buttonValor);
             this.Controls.Add(this.buttonRemMetodo);
@@ -364,7 +366,6 @@
             this.Controls.Add(this.labelValor);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonAddItem);
             this.Controls.Add(this.buttonCreate);
@@ -419,7 +420,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonAddItem;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxValor;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonValor;
         private System.Windows.Forms.Button buttonRemMetodo;
@@ -428,5 +428,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelinfo;
         private System.Windows.Forms.Button buttonHistory;
+        private System.Windows.Forms.MaskedTextBox textBoxValor;
     }
 }

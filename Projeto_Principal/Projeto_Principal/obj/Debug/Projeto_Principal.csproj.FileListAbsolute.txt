@@ -195,3 +195,4 @@ D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.CopyComplete
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.exe
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.pdb
+E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.History.resources

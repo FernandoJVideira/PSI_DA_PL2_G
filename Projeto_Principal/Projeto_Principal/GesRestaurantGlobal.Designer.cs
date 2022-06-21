@@ -33,7 +33,6 @@
             this.btnRegistar = new System.Windows.Forms.Button();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPostalCod = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,6 +64,7 @@
             this.btnSalvarRestaurante = new System.Windows.Forms.Button();
             this.btnSalvarCategoria = new System.Windows.Forms.Button();
             this.btnSalvarMetodoPagamento = new System.Windows.Forms.Button();
+            this.txtPostalCod = new System.Windows.Forms.MaskedTextBox();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRestaurantes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
@@ -96,13 +96,6 @@
             this.label7.Size = new System.Drawing.Size(27, 13);
             this.label7.TabIndex = 32;
             this.label7.Text = "Pais";
-            // 
-            // txtPostalCod
-            // 
-            this.txtPostalCod.Location = new System.Drawing.Point(109, 214);
-            this.txtPostalCod.Name = "txtPostalCod";
-            this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
-            this.txtPostalCod.TabIndex = 31;
             // 
             // label4
             // 
@@ -390,11 +383,20 @@
             this.btnSalvarMetodoPagamento.UseVisualStyleBackColor = true;
             this.btnSalvarMetodoPagamento.Click += new System.EventHandler(this.btnSalvarMetodoPagamento_Click);
             // 
+            // txtPostalCod
+            // 
+            this.txtPostalCod.Location = new System.Drawing.Point(109, 218);
+            this.txtPostalCod.Mask = "0000-999";
+            this.txtPostalCod.Name = "txtPostalCod";
+            this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
+            this.txtPostalCod.TabIndex = 58;
+            // 
             // GesRestaurantGlobal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 371);
+            this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.btnSalvarMetodoPagamento);
             this.Controls.Add(this.btnSalvarCategoria);
             this.Controls.Add(this.btnSalvarRestaurante);
@@ -417,7 +419,6 @@
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCidade);
             this.Controls.Add(this.label5);
@@ -444,7 +445,6 @@
         private System.Windows.Forms.Button btnRegistar;
         private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtPostalCod;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.Label label5;
@@ -476,5 +476,6 @@
         private System.Windows.Forms.Button btnSalvarRestaurante;
         private System.Windows.Forms.Button btnSalvarCategoria;
         private System.Windows.Forms.Button btnSalvarMetodoPagamento;
+        private System.Windows.Forms.MaskedTextBox txtPostalCod;
     }
 }

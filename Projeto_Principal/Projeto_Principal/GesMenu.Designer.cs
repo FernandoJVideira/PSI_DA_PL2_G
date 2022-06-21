@@ -33,7 +33,6 @@
             this.listBoxMenu = new System.Windows.Forms.ListBox();
             this.lblNomeRestaurante = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtPreco = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRegistar = new System.Windows.Forms.Button();
@@ -60,6 +59,7 @@
             this.lblNomeRest = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtPreco = new System.Windows.Forms.MaskedTextBox();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             this.SuspendLayout();
@@ -88,13 +88,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(167, 20);
             this.txtNome.TabIndex = 2;
-            // 
-            // txtPreco
-            // 
-            this.txtPreco.Location = new System.Drawing.Point(31, 146);
-            this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(141, 20);
-            this.txtPreco.TabIndex = 3;
             // 
             // label2
             // 
@@ -199,7 +192,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(178, 149);
+            this.label6.Location = new System.Drawing.Point(125, 121);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 15;
@@ -346,11 +339,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txtPreco
+            // 
+            this.txtPreco.Location = new System.Drawing.Point(67, 118);
+            this.txtPreco.Mask = "000.00";
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(49, 20);
+            this.txtPreco.TabIndex = 48;
+            // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 522);
+            this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.lblNomeRest);
@@ -374,7 +376,6 @@
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblNomeRestaurante);
             this.Controls.Add(this.listBoxMenu);
@@ -394,7 +395,6 @@
         private System.Windows.Forms.ListBox listBoxMenu;
         private System.Windows.Forms.Label lblNomeRestaurante;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRegistar;
@@ -421,5 +421,6 @@
         private System.Windows.Forms.Label lblNomeRest;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MaskedTextBox txtPreco;
     }
 }
