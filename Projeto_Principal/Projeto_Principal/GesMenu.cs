@@ -108,7 +108,9 @@ namespace Projeto_Principal
             try
             {
                 string nome = txtNome.Text;
-                decimal preco = Convert.ToDecimal(txtPreco.Text);
+                string texto = txtPreco.Text;
+                texto = texto.Replace(".", ",");
+                decimal preco = Convert.ToDecimal(texto);
 
                 byte[] imageBytes = File.ReadAllBytes(filepath);
 
@@ -212,6 +214,10 @@ namespace Projeto_Principal
             string ingredientes = "";
 
             menuItem.Nome = txtNome.Text;
+            string texto = txtPreco.Text;
+            texto = texto.Replace(".", ",");
+            menuItem.Preco = Convert.ToDecimal(texto);
+
             menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
             if(filepath != "")
             {

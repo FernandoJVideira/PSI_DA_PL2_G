@@ -245,7 +245,7 @@
             // 
             // btnEditCliente
             // 
-            this.btnEditCliente.Location = new System.Drawing.Point(518, 365);
+            this.btnEditCliente.Location = new System.Drawing.Point(518, 364);
             this.btnEditCliente.Name = "btnEditCliente";
             this.btnEditCliente.Size = new System.Drawing.Size(108, 23);
             this.btnEditCliente.TabIndex = 24;
@@ -255,9 +255,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(414, 364);
+            this.button1.Location = new System.Drawing.Point(408, 364);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 25;
             this.button1.Text = "Consultar Cliente";
             this.button1.UseVisualStyleBackColor = true;

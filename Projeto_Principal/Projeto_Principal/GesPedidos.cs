@@ -303,7 +303,7 @@ namespace Projeto_Principal
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            if (listBoxProcessing.SelectedItems == null) { return; }
+            if (listBoxProcessing.SelectedItem == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             listBoxProcessing.Items.Remove(listBoxProcessing.SelectedItem);
             pedido.EstadoId = 3;
@@ -314,7 +314,7 @@ namespace Projeto_Principal
 
         private void buttonFinalizar_Click(object sender, EventArgs e)
         {
-            if (listBoxProcessing.SelectedItems == null) { return; }
+            if (listBoxProcessing.SelectedItem == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             pedido.EstadoId = 2;
             model.SaveChanges();
@@ -349,41 +349,46 @@ namespace Projeto_Principal
         private void buttonValor_Click(object sender, EventArgs e)
         {
             Pagamento pagamento = new Pagamento();
-            if(listBoxPayment.SelectedItem == null) { return; }
+            if(listBoxPayment.SelectedItem == null) 
+            { 
+                MessageBox.Show("Selecione um pedido antes de fazer uma pagamento!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
             Pedido pedido = (Pedido)listBoxPayment.SelectedItem;
             decimal Total = Convert.ToDecimal(labelValor.Text);
 
 
             try
             {
-                pagamento.Valor = Convert.ToDecimal(textBoxValor.Text);
+                string texto = textBoxValor.Text;
+                texto = texto.Replace(".", ",");
+                pagamento.Valor = Convert.ToDecimal(texto);
+                pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
+                pagamento.PedidoId = pedido.Id;
 
-              
+                if (Total < Convert.ToDecimal(texto) || 0 >= Convert.ToDecimal(texto))
+                {
+                    MessageBox.Show("Valor introduzido acima do valor do pedido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                decimal Restante = Convert.ToDecimal(labelValor.Text) - pagamento.Valor;
+
+                labelValor.Text = Restante.ToString();
+                listBoxMetodosUsados.Items.Add(pagamento);
+                listBoxPayment.Visible = false;
+                labelinfo.Visible = true;
+                textBoxValor.Clear();
+
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Introduza um valor valido!!");
+                MessageBox.Show("Introduza um valor válido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
-            pagamento.PedidoId = pedido.Id;
-
-            if(Total < Convert.ToDecimal(textBoxValor.Text) || 0 >= Convert.ToDecimal(textBoxValor.Text))
-            {
-                MessageBox.Show("Valor introduzido acima");
-                return;
-            }
-
-           
-            decimal Restante = Convert.ToDecimal(labelValor.Text) - pagamento.Valor; 
-
-            labelValor.Text = Restante.ToString();
-            listBoxMetodosUsados.Items.Add(pagamento);
-            listBoxPayment.Visible = false;
-            labelinfo.Visible = true;
-            textBoxValor.Clear();
             
         }
 

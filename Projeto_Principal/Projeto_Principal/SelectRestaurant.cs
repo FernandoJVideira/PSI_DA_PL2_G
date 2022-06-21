@@ -86,10 +86,5 @@ namespace Projeto_Principal
             
 
         }
-
-        private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

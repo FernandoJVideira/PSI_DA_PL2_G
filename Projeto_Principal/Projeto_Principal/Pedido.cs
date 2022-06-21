@@ -29,11 +29,5 @@ namespace Projeto_Principal
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemMenu> ItemMenu { get; set; }
-
-        public override string ToString()
-        {
-            string str = $"{this.Id}";
-            return str;
-        }
     }
 }

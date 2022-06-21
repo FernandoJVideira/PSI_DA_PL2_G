@@ -103,7 +103,10 @@ namespace Projeto_Principal
                 morada.CodPostal = txtPostalCod.Text;
                 
                 trabalhador.Posicao = txtPosicao.Text;
-                trabalhador.Salario = Convert.ToDecimal(txtSalario.Text);
+
+                string texto = txtSalario.Text;
+                texto = texto.Replace(".", ",");
+                trabalhador.Salario = Convert.ToDecimal(texto);
                 trabalhador.Morada = morada;
                 trabalhador.Nome = txtNome.Text;
                 trabalhador.Telemovel = txtTelemovel.Text;

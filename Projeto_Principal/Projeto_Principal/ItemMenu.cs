@@ -29,11 +29,5 @@ namespace Projeto_Principal
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurante> Restaurante { get; set; }
-
-        public override string ToString()
-        {
-            string str = $"{this.Nome} - {this.Preco}€";
-            return str;
-        }
     }
 }

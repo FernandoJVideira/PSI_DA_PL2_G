@@ -38,6 +38,7 @@
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.btnMinimize = new System.Windows.Forms.Button();
             this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
+            this.comboBoxEstados = new System.Windows.Forms.ComboBox();
             this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,11 +72,11 @@
             // labelTotal
             // 
             this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(358, 39);
+            this.labelTotal.Location = new System.Drawing.Point(355, 42);
             this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(50, 13);
+            this.labelTotal.Size = new System.Drawing.Size(53, 13);
             this.labelTotal.TabIndex = 4;
-            this.labelTotal.Text = "labelTipo";
+            this.labelTotal.Text = "labelTotal";
             // 
             // btnClose
             // 
@@ -119,11 +120,23 @@
             this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
             this.TopBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseUp);
             // 
+            // comboBoxEstados
+            // 
+            this.comboBoxEstados.FormattingEnabled = true;
+            this.comboBoxEstados.Items.AddRange(new object[] {
+            "Todos"});
+            this.comboBoxEstados.Location = new System.Drawing.Point(287, 39);
+            this.comboBoxEstados.Name = "comboBoxEstados";
+            this.comboBoxEstados.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEstados.TabIndex = 24;
+            this.comboBoxEstados.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstados_SelectedIndexChanged);
+            // 
             // History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 450);
+            this.Controls.Add(this.comboBoxEstados);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.label1);
@@ -149,5 +162,6 @@
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
         private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.ComboBox comboBoxEstados;
     }
 }

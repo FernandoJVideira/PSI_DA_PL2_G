@@ -37,12 +37,16 @@ namespace Projeto_Principal
                     listBoxHistory.Items.Add(pedido);
                 }
 
+                comboBoxEstados.DataSource = model.Estado.ToList<Estado>();
+            
+
             }
             else
             {
                 decimal total = 0;
                 Cliente cliente = (Cliente)model.Pessoa.Find(id);
                 List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
+                comboBoxEstados.Visible = false;
 
                 IEnumerable<Pedido> Pedidos = from pedido in listaPedidos
                                                     where pedido.Cliente == cliente
@@ -112,6 +116,48 @@ namespace Projeto_Principal
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void comboBoxEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBoxEstados.SelectedItem == null) { return; }
+            Estado estado = (Estado)comboBoxEstados.SelectedItem;
+            List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
+            IEnumerable<Pedido> Pedidos = Enumerable.Empty<Pedido>();
+
+            switch (estado.Id)
+            {
+                case 1:
+                    Pedidos = from pedido in listaPedidos
+                                                  where pedido.EstadoId == 1
+                                                  select pedido;
+                    break;
+
+                case 2:
+                    Pedidos = from pedido in listaPedidos
+                              where pedido.EstadoId == 2
+                              select pedido;
+                    break;
+
+                case 3:
+                    Pedidos = from pedido in listaPedidos
+                              where pedido.EstadoId == 3
+                              select pedido;
+                    break;
+
+                case 4:
+                    Pedidos = from pedido in listaPedidos
+                              where pedido.EstadoId == 4
+                              select pedido;
+                    break;
+            }
+
+            listBoxHistory.Items.Clear();
+
+            foreach (Pedido pedido in Pedidos)
+            {
+                listBoxHistory.Items.Add(pedido);
+            }
         }
     }
 }
