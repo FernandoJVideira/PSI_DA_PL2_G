@@ -13,45 +13,11 @@ namespace Projeto_Principal
 {
     public partial class GesClientes : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
 
         public GesClientes()
         {
             InitializeComponent();
-        }
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         private void btnRegistarCliente_Click(object sender, EventArgs e)
@@ -72,6 +38,9 @@ namespace Projeto_Principal
                 string tele = txtTelemovel.Text;
 
                 if (nome.Trim() == "" || nif.Trim() == "" || tele.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal"); }
+                if (!txtTelemovel.MaskCompleted) { txtTelemovel.Focus(); throw new Exception("Preencha corretamente o número de telemóvel"); }
+                if (!txtNumCont.MaskCompleted) { txtNumCont.Focus(); throw new Exception("Preencha corretamente o NIF"); }
 
                 moradaCliente.Rua = rua;
                 moradaCliente.Cidade = cidade;
@@ -121,34 +90,81 @@ namespace Projeto_Principal
 
         private void btnApagarCliente_Click(object sender, EventArgs e)
         {
-            Cliente userdata = GetCliente();
-            model.Pessoa.Remove(userdata);
-            model.SaveChanges();
-            dataGridViewCliente.DataSource = model.Pessoa.ToList();
+            Cliente userdata = GetSelectedCliente();
 
-            ClearTxtBox();
+            if (VerifyPresenceCliente(userdata))
+            {
+                MessageBox.Show("Não pode apagar o Cliente selecionado pois ele já efetuou um pedido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.Pessoa.Remove(userdata);
+                model.SaveChanges();
+                LerDados();
+
+                ClearTxtBox();
+            }
         }
+
+        private bool VerifyPresenceCliente(Cliente cliente)
+        {
+            List<Pedido> pedidos = model.Pedido.ToList();
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.Cliente == cliente)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void btnEditCliente_Click(object sender, EventArgs e)
         {
-            Cliente userdata = GetCliente();
+            try
+            { 
+                Cliente userdata = GetSelectedCliente();
 
-            userdata.Nome = txtNome.Text;
-            userdata.Telemovel = txtTelemovel.Text;
-            userdata.Morada.Cidade = txtCidade.Text;
-            userdata.NIF = txtNumCont.Text;
-            userdata.Morada.CodPostal = txtPostalCod.Text;
-            userdata.Morada.Rua = txtRua.Text;
-            userdata.Morada.Pais = txtPais.Text;
+                string rua = txtRua.Text;
+                string cidade = txtCidade.Text;
+                string pais = txtPais.Text;
+                string codpostal = txtPostalCod.Text;
 
-            model.SaveChanges();
+                string nif = txtNumCont.Text;
+                string nome = txtNome.Text;
+                string tele = txtTelemovel.Text;
 
-            LerDados();
+                if (nome.Trim() == "" || nif.Trim() == "" || tele.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos!"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal!"); }
+                if (!txtTelemovel.MaskCompleted) { txtTelemovel.Focus(); throw new Exception("Preencha corretamente o número de telemóvel!"); }
+                if (!txtNumCont.MaskCompleted) { txtNumCont.Focus(); throw new Exception("Preencha corretamente o NIF!"); }
+
+                userdata.Nome = nome;
+                userdata.Telemovel = tele;
+                userdata.Morada.Cidade = cidade;
+                userdata.NIF = nif;
+                userdata.Morada.CodPostal = codpostal;
+                userdata.Morada.Rua = rua;
+                userdata.Morada.Pais = pais;
+
+                model.SaveChanges();
+
+                LerDados();
+                ClearTxtBox();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void dataGridViewCliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                Cliente userdata = GetCliente();
+                Cliente userdata = GetSelectedCliente();
 
                 txtNome.Text = userdata.Nome;
                 txtTelemovel.Text = userdata.Telemovel;
@@ -178,18 +194,35 @@ namespace Projeto_Principal
             txtTelemovel.Text = "";
         }
 
-        private Cliente GetCliente()
+        private Cliente GetSelectedCliente()
         {
-            int row = dataGridViewCliente.SelectedCells[0].RowIndex;
-            int id = (int)dataGridViewCliente.Rows[row].Cells["id"].Value;
-            Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
-
-            return data;
+            try
+            {
+                int row = dataGridViewCliente.SelectedCells[0].RowIndex;
+                int id = (int)dataGridViewCliente.Rows[row].Cells["id"].Value;
+                Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
+                return data;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Selecione um Cliente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
-        private void dataGridViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Cliente userdata = GetSelectedCliente();
+                History.id = userdata.Id;
 
+                Form menu = this.Parent.FindForm();
+                Form form = new History(menu);
+                form.Show();
+                menu.Hide();
+            }
+            catch (Exception){}
         }
     }
 }

@@ -70,10 +70,10 @@
   </EntityType>
   <EntityType Name="Cliente" BaseType="Model1.Pessoa">
     <Property Name="NIF" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="TotalGasto" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TotalGasto" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
   </EntityType>
   <EntityType Name="Trabalhador" BaseType="Model1.Pessoa">
-    <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Salario" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
     <Property Name="Posicao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Restaurante" Relationship="Model1.RestauranteTrabalhador" FromRole="Trabalhador" ToRole="Restaurante" />
     <Property Name="RestauranteId" Type="Int32" Nullable="false" />
@@ -121,7 +121,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ValorTotal" Type="Decimal" Nullable="false" />
+    <Property Name="ValorTotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
     <NavigationProperty Name="Trabalhador" Relationship="Model1.PedidoTrabalhador" FromRole="Pedido" ToRole="Trabalhador" />
     <NavigationProperty Name="Cliente" Relationship="Model1.PedidoCliente" FromRole="Pedido" ToRole="Cliente" />
     <Property Name="EstadoId" Type="Int32" Nullable="false" />
@@ -160,7 +160,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-    <Property Name="Valor" Nullable="false" Type="Decimal" />
+    <Property Name="Valor" Nullable="false" Type="Decimal" Precision="7" Scale="2" />
     <NavigationProperty Name="MetodoPagamento" Relationship="Model1.PagamentoMetodoPagamento" FromRole="Pagamento" ToRole="MetodoPagamento" />
     <NavigationProperty Name="Pedido" Relationship="Model1.PedidoPagamento" FromRole="Pagamento" ToRole="Pedido" />
     <Property Name="PedidoId" Type="Int32" Nullable="false" />
@@ -186,7 +186,7 @@
     <Property Name="Nome" Type="String" Nullable="false" />
     <Property Name="Fotografia" Type="Binary" Nullable="false" />
     <Property Name="Ingredientes" Type="String" Nullable="false" />
-    <Property Name="Preco" Type="Decimal" Nullable="false" />
+    <Property Name="Preco" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
     <NavigationProperty Name="Restaurante" Relationship="Model1.RestauranteItemMenu" FromRole="ItemMenu" ToRole="Restaurante" />
   </EntityType>
   <Association Name="ItemMenuPedido">

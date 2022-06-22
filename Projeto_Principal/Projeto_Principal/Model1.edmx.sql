@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/05/2022 15:02:31
+-- Date Created: 06/21/2022 16:00:21
 -- Generated from EDMX file: C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\Model1.edmx
 -- --------------------------------------------------
 
@@ -144,7 +144,7 @@ GO
 -- Creating table 'Pedido'
 CREATE TABLE [dbo].[Pedido] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ValorTotal] decimal(18,0)  NOT NULL,
+    [ValorTotal] decimal(7,2)  NOT NULL,
     [EstadoId] int  NOT NULL,
     [RestauranteId] int  NOT NULL,
     [Trabalhador_Id] int  NOT NULL,
@@ -162,7 +162,7 @@ GO
 -- Creating table 'Pagamento'
 CREATE TABLE [dbo].[Pagamento] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Valor] decimal(18,0)  NOT NULL,
+    [Valor] decimal(7,2)  NOT NULL,
     [PedidoId] int  NOT NULL,
     [MetodoPagamento_Id] int  NOT NULL
 );
@@ -183,7 +183,7 @@ CREATE TABLE [dbo].[ItemMenu] (
     [Nome] nvarchar(max)  NOT NULL,
     [Fotografia] varbinary(max)  NOT NULL,
     [Ingredientes] nvarchar(max)  NOT NULL,
-    [Preco] decimal(18,0)  NOT NULL
+    [Preco] decimal(7,2)  NOT NULL
 );
 GO
 
@@ -197,7 +197,7 @@ GO
 
 -- Creating table 'Pessoa_Trabalhador'
 CREATE TABLE [dbo].[Pessoa_Trabalhador] (
-    [Salario] decimal(18,0)  NOT NULL,
+    [Salario] decimal(7,2)  NOT NULL,
     [Posicao] nvarchar(max)  NOT NULL,
     [RestauranteId] int  NOT NULL,
     [Id] int  NOT NULL
@@ -207,7 +207,7 @@ GO
 -- Creating table 'Pessoa_Cliente'
 CREATE TABLE [dbo].[Pessoa_Cliente] (
     [NIF] nvarchar(max)  NOT NULL,
-    [TotalGasto] decimal(18,0)  NOT NULL,
+    [TotalGasto] decimal(7,2)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

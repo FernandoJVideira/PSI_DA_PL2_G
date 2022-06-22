@@ -12,7 +12,7 @@ namespace Projeto_Principal
             var app = new Program();
             app.EnableVisualStyles = true;
             app.ShutdownStyle = ShutdownMode.AfterAllFormsClose;
-            app.MainForm = new MainMenu();
+            app.MainForm = new NewMenu();
             app.Run(args);
         }
     }

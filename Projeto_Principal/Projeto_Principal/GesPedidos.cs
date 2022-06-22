@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,46 +13,25 @@ namespace Projeto_Principal
 {
     public partial class GesPedidos : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
-        public GesPedidos()
-        {
-            InitializeComponent();
-        }
 
-        private void MouseDown_Event(object sender, MouseEventArgs e)
+        private void LoadTheme()
         {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
+            foreach (Control btns in this.Controls)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
             }
         }
 
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        public GesPedidos()
         {
-            mouseDown = false;
-        }
-
-
-        //-------------------------------------------------------------------------------------//
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
+            InitializeComponent();
         }
 
         private void RefreshPedidos()
@@ -59,12 +39,14 @@ namespace Projeto_Principal
             listBoxPayment.Items.Clear();
             listBoxProcessing.Items.Clear();
 
+            if(model.Pedido == null) { return; }
+
             List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
 
 
             IEnumerable<Pedido> PedidosAndando = from pedido in listaPedidos
                                                  where pedido.EstadoId == 1
-                                                 where pedido.RestauranteId == MainMenu.IdRestaurate
+                                                 where pedido.RestauranteId == NewMenu.IdRestaurante
                                                  select pedido;
 
             foreach (Pedido pedido in PedidosAndando)
@@ -76,8 +58,8 @@ namespace Projeto_Principal
 
             IEnumerable<Pedido> PedidosPorPagar = from pedido in listaPedidos
                                                   where pedido.EstadoId == 2
-                                                  where pedido.RestauranteId == MainMenu.IdRestaurate
-                                                 select pedido;
+                                                  where pedido.RestauranteId == NewMenu.IdRestaurante
+                                                  select pedido;
 
             foreach (Pedido pedido in PedidosPorPagar)
             {
@@ -85,16 +67,15 @@ namespace Projeto_Principal
             }
         }
 
-        private void Erro(string msg, Form form)
+        private void Erro(string msg)
         {
             MessageBox.Show(msg);
-            form.Show();
         }
 
-        private void Lerdados()
+        private void LerDados()
         {
             model = new Model1Container();
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
+            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
             List<Pessoa> pessoas = model.Pessoa.ToList<Pessoa>();
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
             List<Cliente> listaCLientes = new List<Cliente>();
@@ -114,7 +95,7 @@ namespace Projeto_Principal
                 if (pessoa is Cliente)
                 {
                     Cliente cliente = (Cliente)pessoa;
-                    listaCLientes.Add(cliente);
+                    listBoxClientes.Items.Add(cliente);
                 }
                 if (pessoa is Trabalhador)
                 {
@@ -126,33 +107,28 @@ namespace Projeto_Principal
                     }
                     
                 }
-
-
             }
 
             if (listaTrabalhadores.Count == 0)
             {
-                Erro("Não existem trabalhadores registados", new GerirRestaurante());
+                Erro("Não existem trabalhadores registados");
                 this.Close();
             }
-            else if (listaCLientes.Count == 0)
+            else if (listBoxClientes.Items.Count == 0)
             {
-                Erro("Não existem clientes registados", new GesClientes());
+                Erro("Não existem clientes registados");
                 this.Close();
             }            
             else if (listaMetodoPagamentos.Count == 0)
             {
-                Erro("Não existem metodos de pagamento registados ou ativos", new GesRestaurantGlobal());
+                Erro("Não existem metodos de pagamento registados ou ativos");
                 this.Close();
             }
             else if (itemsAtivos.Count<ItemMenu>() == 0)
             {
-                Erro("Não existem pratos registados ou ativos", new GesMenu());
+                Erro("Não existem pratos registados ou ativos");
                 this.Close();
             }
-
-
-            dataGridViewClientes.DataSource = listaCLientes;
 
             //--------------- load Lista menu
 
@@ -172,11 +148,14 @@ namespace Projeto_Principal
 
         private void GesPedidos_Load(object sender, EventArgs e)
         {
-            Lerdados();
+            LerDados();
+            LoadTheme();
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
+            Cliente cliente = (Cliente)listBoxClientes.SelectedItem;
+
             if (listBoxTrabalhadores.SelectedItem == null) { return; }
             if (listBoxItems.Items.Count == 0) { return; }
 
@@ -192,32 +171,89 @@ namespace Projeto_Principal
             }
 
             pedido.ValorTotal = total;
-            pedido.Cliente = GetCliente();
+            pedido.Cliente = cliente;
 
             if (pedido.Cliente == null) { return; }
             
             pedido.EstadoId = 1;
 
-            pedido.RestauranteId = MainMenu.IdRestaurate;
+            pedido.RestauranteId = NewMenu.IdRestaurante;
             
             
             model.Pedido.Add(pedido);
-            model.SaveChanges();
 
+            model.SaveChanges();
+            WriteToFile(pedido);
             listBoxItems.Items.Clear();
             RefreshPedidos();
 
-            
         }
 
-        private Cliente GetCliente()
+        private void WriteToFile(Pedido pedido)
         {
+            Cliente cliente = pedido.Cliente;
+            string currentDir = Environment.CurrentDirectory;
 
-            int row = dataGridViewClientes.SelectedCells[0].RowIndex;
-            int id = (int)dataGridViewClientes.Rows[row].Cells["id"].Value;
-            Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
+            string fileName = pedido.Id + ".txt";
+            string path = currentDir + @"\pedidos\" + fileName;
+            FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
 
-            return data;
+            StreamWriter sw = new StreamWriter(fs);
+
+            sw.WriteLine("Cliente: "+cliente.Nome +" ("+ cliente.NIF + ") em recebido em " + DateTime.Now.ToString());
+            sw.WriteLine("--------------------------------------------------------------------");
+            sw.WriteLine("");
+            sw.WriteLine("Artigos:");
+
+
+            foreach (ItemMenu item in listBoxItems.Items)
+            {
+                sw.WriteLine("\t"+item.Nome +" " +item.Preco +" €");
+                sw.WriteLine("");
+            }
+            sw.WriteLine("--------------------------------------------------------------------");
+            sw.WriteLine("");
+            sw.WriteLine("O total do cliente é: " + pedido.ValorTotal.ToString() + " €");
+
+            sw.Close();
+        }
+
+        private void ChangeFile(Pedido pedido)
+        {
+            Cliente cliente = pedido.Cliente;
+            string currentDir = Environment.CurrentDirectory;
+
+            string fileName = pedido.Id + ".txt";
+            string path = currentDir + @"\pedidos\" + fileName;
+            FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
+
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("");
+
+            switch (pedido.EstadoId)
+            {
+                case 3:
+                    sw.WriteLine("Pedido Cancelado: " + DateTime.Now.ToString());
+                    break;
+
+                case 2:
+                    sw.WriteLine("Pedido em Processamento: " + DateTime.Now.ToString());
+                    break;
+
+                case 4:
+                    sw.WriteLine("Pedido Finalizado: " + DateTime.Now.ToString());
+                    sw.WriteLine("");
+                    sw.WriteLine("Métodos de Pagamento:");
+
+                    foreach (Pagamento pagamento in listBoxMetodosUsados.Items)
+                    {
+                        sw.WriteLine("\t"+ pagamento.Valor.ToString() + "€ via " + pagamento.MetodoPagamento.Nome);
+                    }
+
+                    break;
+            }
+
+            sw.Close();
         }
 
         private void buttonAddItem_Click(object sender, EventArgs e)
@@ -226,28 +262,31 @@ namespace Projeto_Principal
 
             listBoxItems.Items.Add(listBoxMenu.SelectedItem);
             listBoxMenu.SelectedItem = null;
- 
-
-
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            if (listBoxProcessing.SelectedItem == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             listBoxProcessing.Items.Remove(listBoxProcessing.SelectedItem);
             pedido.EstadoId = 3;
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
         }
 
         private void buttonFinalizar_Click(object sender, EventArgs e)
         {
+            if (listBoxProcessing.SelectedItem == null) { return; }
             Pedido pedido = (Pedido)listBoxProcessing.SelectedItem;
             pedido.EstadoId = 2;
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
 
         }
+
+
 
         private void buttonConcluir_Click(object sender, EventArgs e)
         {
@@ -261,6 +300,7 @@ namespace Projeto_Principal
             }
 
             model.SaveChanges();
+            ChangeFile(pedido);
             RefreshPedidos();
 
             listBoxMetodosUsados.Items.Clear();
@@ -272,41 +312,44 @@ namespace Projeto_Principal
         private void buttonValor_Click(object sender, EventArgs e)
         {
             Pagamento pagamento = new Pagamento();
-            if(listBoxPayment.SelectedItem == null) { return; }
+            if(listBoxPayment.SelectedItem == null) 
+            { 
+                MessageBox.Show("Selecione um pedido antes de fazer uma pagamento!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
             Pedido pedido = (Pedido)listBoxPayment.SelectedItem;
             decimal Total = Convert.ToDecimal(labelValor.Text);
 
 
             try
             {
-                pagamento.Valor = Convert.ToDecimal(textBoxValor.Text);
+                pagamento.Valor = Convert.ToDecimal(textBoxValor.Value);
+                pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
+                pagamento.PedidoId = pedido.Id;
 
-              
+                if (Total < textBoxValor.Value || 0 >= textBoxValor.Value)
+                {
+                    MessageBox.Show("Valor introduzido acima do valor do pedido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                decimal Restante = Convert.ToDecimal(labelValor.Text) - pagamento.Valor;
+
+                labelValor.Text = Restante.ToString();
+                listBoxMetodosUsados.Items.Add(pagamento);
+                listBoxPayment.Visible = false;
+                labelinfo.Visible = true;
+                textBoxValor.Value = 0;
+
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Introduza um valor valido!!");
+                MessageBox.Show("Introduza um valor válido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
-            pagamento.PedidoId = pedido.Id;
-
-            if(Total < Convert.ToDecimal(textBoxValor.Text) || 0 >= Convert.ToDecimal(textBoxValor.Text))
-            {
-                MessageBox.Show("Valor introduzido acima");
-                return;
-            }
-
-           
-            decimal Restante = Convert.ToDecimal(labelValor.Text) - pagamento.Valor; 
-
-            labelValor.Text = Restante.ToString();
-            listBoxMetodosUsados.Items.Add(pagamento);
-            listBoxPayment.Visible = false;
-            labelinfo.Visible = true;
-            textBoxValor.Clear();
             
         }
 
@@ -330,6 +373,7 @@ namespace Projeto_Principal
             Pagamento pagamento = (Pagamento)listBoxMetodosUsados.SelectedItem;
 
             if (listBoxMetodosUsados.SelectedItem == null) { return; }
+
             listBoxMetodosUsados.Items.Remove(listBoxMetodosUsados.SelectedItem);
 
             if(listBoxMetodosUsados.Items.Count == 0) 
@@ -341,6 +385,14 @@ namespace Projeto_Principal
             decimal novoTotal = Convert.ToDecimal(labelValor.Text) + pagamento.Valor;
 
             labelValor.Text = Convert.ToString(novoTotal);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form menu = this.Parent.FindForm();
+            Form form = new History(menu);
+            form.Show();
+            menu.Hide();
         }
     }
 }

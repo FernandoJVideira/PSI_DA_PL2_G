@@ -12,48 +12,26 @@ namespace Projeto_Principal
 {
     public partial class GesRestaurantGlobal : Form
     {
-        bool mouseDown;
-        private Point offset;
+
         private Model1Container model;
-        
+
+        private void LoadTheme()
+        {
+            foreach (Control btns in this.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+        }
         public GesRestaurantGlobal()
         {
             InitializeComponent();
         }
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        //-------------------------------------------------------------------------------------//
 
         private void GesRestaurantGlobal_Load(object sender, EventArgs e)
         {
@@ -61,13 +39,14 @@ namespace Projeto_Principal
             LerDados();
             cbDisponibilidadeCategoria.SelectedIndex = 0;
             cbDisponibilidadeMetodoPagamento.SelectedIndex = 0;
+            LoadTheme();
         }
 
         public void LerDados()
         {
-            dgvRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
-            dgvCategorias.DataSource = model.Categoria.ToList<Categoria>();
-            dgvMetodosPagamento.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
+            listBoxRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+            listBoxCat.DataSource = model.Categoria.ToList<Categoria>();
+            listBoxMetodosPag.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
         }
 
         private void btnRegistar_Click(object sender, EventArgs e)
@@ -82,6 +61,7 @@ namespace Projeto_Principal
                 string codpostal = txtPostalCod.Text;
 
                 if (nome.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal"); }
 
                 Restaurante restaurante = new Restaurante();
                 Morada morada = new Morada();
@@ -157,66 +137,192 @@ namespace Projeto_Principal
 
         private void btnRemoverRestaurante_Click(object sender, EventArgs e)
         {
-            Restaurante restaurante = GetRestaurante();
-            Morada morada = GetMorada(restaurante.Id);
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
 
-            model.Morada.Remove(morada);
-            model.Restaurante.Remove(restaurante);
-            model.SaveChanges();
+            if (VerifyPresenceRestaurante(restaurante))
+            {
+                MessageBox.Show("Não pode apagar o Restaurante selecionado pois está a ser utlizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.Morada.Remove(restaurante.Morada);
+                model.Restaurante.Remove(restaurante);
+                model.SaveChanges();
 
-            LerDados();
+                LerDados();
+            }
+
         }
+
+
+        private bool VerifyPresenceRestaurante(Restaurante restaurante)
+        {
+            List<Pessoa> pessoas = model.Pessoa.ToList<Pessoa>();
+            List<Pedido> pedidos = model.Pedido.ToList<Pedido>();
+            
+            foreach (Pessoa pessoa in pessoas)
+            {
+                if(pessoa is Trabalhador)
+                {
+                    Trabalhador trabalhador = (Trabalhador)pessoa;
+
+                    if(trabalhador.RestauranteId == restaurante.Id)
+                    {
+                        return true;
+                        
+                    }
+                }
+            }
+
+            foreach (Pedido pedido in pedidos)
+            {
+                if(pedido.RestauranteId == restaurante.Id)
+                {
+                    return true;
+                }
+            }
+
+
+            if (restaurante.Id == NewMenu.IdRestaurante)
+            {
+                return true;
+            }
+            
+
+            return false;
+        }
+
 
         private void btnRemoverCategoria_Click(object sender, EventArgs e)
         {
-            Categoria categoria = GetCategoria();
-            model.Categoria.Remove(categoria);
-            model.SaveChanges();
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
 
-            LerDados();
+            if (VerifyPresenceCategoria(categoria))
+            {
+                MessageBox.Show("Não pode apagar a Categoria selecionada pois está a ser utlizada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                model.Categoria.Remove(categoria);
+                model.SaveChanges();
+
+                LerDados();
+            }
+
+
+        }
+
+        private bool VerifyPresenceCategoria(Categoria categoria)
+        {
+            List<ItemMenu> lista = model.ItemMenu.ToList();
+
+            foreach (ItemMenu item in lista)
+            {
+                if(item.CategoriaId == categoria.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void btnRemoverMetodoPagamento_Click(object sender, EventArgs e)
         {
-            MetodoPagamento metodoPagamento = GetMetodoPagamento();
-            model.MetodoPagamento.Remove(metodoPagamento);
-            model.SaveChanges();
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
 
+            if (VerifyPresenceMetodo(metodoPagamento))
+            {
+                MessageBox.Show("Não pode apagar o Metodo de Pagamento selecionado pois está a ser utlizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                model.MetodoPagamento.Remove(metodoPagamento);
+                model.SaveChanges();
+
+                LerDados();
+            }
+        }
+
+        private bool VerifyPresenceMetodo(MetodoPagamento metodoP)
+        {
+            List<Pagamento> pagamentos = model.Pagamento.ToList();
+
+            foreach (Pagamento pagamento in pagamentos)
+            {
+                if(pagamento.MetodoPagamento == metodoP)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
+            Morada morada = restaurante.Morada;
+
+            txtNome.Text = restaurante.Nome;
+            txtRua.Text = morada.Rua;
+            txtCidade.Text = morada.Cidade;
+            txtPostalCod.Text = morada.CodPostal;
+            txtPais.Text = morada.Pais;
+        }
+
+        private void listBoxCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
+
+            txtNomeCategoria.Text = categoria.Nome;
+            cbDisponibilidadeCategoria.Text = categoria.Ativo == true ? "Disponível" : "Indisponível";
+        }
+
+        private void listBoxMetodosPag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
+
+            txtNomeMetodoPagamento.Text = metodoPagamento.Nome;
+            cbDisponibilidadeMetodoPagamento.Text = metodoPagamento.Ativo == true ? "Disponível" : "Indisponível";
+        }
+
+        private void btnSalvarRestaurante_Click(object sender, EventArgs e)
+        {
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
+            Morada morada = restaurante.Morada;
+
+            restaurante.Nome = txtNome.Text;
+            morada.Rua = txtRua.Text;
+            morada.Cidade = txtCidade.Text;
+            morada.CodPostal = txtPostalCod.Text;
+            morada.Pais = txtPais.Text;
+
+            model.SaveChanges();
             LerDados();
         }
 
-        private Restaurante GetRestaurante()
+        private void btnSalvarCategoria_Click(object sender, EventArgs e)
         {
-            int row = dgvRestaurantes.SelectedCells[0].RowIndex;
-            int id = (int)dgvRestaurantes.Rows[row].Cells["id"].Value;
-            Restaurante data = model.Restaurante.First(r => r.Id == id);
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
 
-            return data;
+            categoria.Nome = txtNomeCategoria.Text;
+            categoria.Ativo = cbDisponibilidadeCategoria.Text == "Disponível" ? true : false;
+
+            model.SaveChanges();
+            LerDados();
         }
 
-        private Morada GetMorada(int id)
+        private void btnSalvarMetodoPagamento_Click(object sender, EventArgs e)
         {
-            Morada data = model.Morada.First(m => m.Id == id);
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
 
-            return data;
+            metodoPagamento.Nome = txtNomeMetodoPagamento.Text;
+            metodoPagamento.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;
+
+            model.SaveChanges();
+            LerDados();
         }
-
-        private Categoria GetCategoria()
-        {
-            int row = dgvCategorias.SelectedCells[0].RowIndex;
-            int id = (int)dgvCategorias.Rows[row].Cells["id"].Value;
-            Categoria data = model.Categoria.First(c => c.Id == id);
-
-            return data;
-        }
-
-        private MetodoPagamento GetMetodoPagamento()
-        {
-            int row = dgvMetodosPagamento.SelectedCells[0].RowIndex;
-            int id = (int)dgvMetodosPagamento.Rows[row].Cells["id"].Value;
-            MetodoPagamento data = model.MetodoPagamento.First(m => m.Id == id);
-
-            return data;
-        } 
     }
 }
