@@ -12,44 +12,24 @@ namespace Projeto_Principal
 {
     public partial class SelectRestaurant : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
         public SelectRestaurant()
         {
             InitializeComponent();
         }
 
-        private void MouseDown_Event(object sender, MouseEventArgs e)
+        private void LoadTheme()
         {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
+            foreach (Control btns in this.Controls)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
             }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         //-------------------------------------------------------------------------------------//
@@ -58,6 +38,7 @@ namespace Projeto_Principal
         {
             model = new Model1Container();
             LerDados();
+            LoadTheme();
         }
 
         public void LerDados()
@@ -71,19 +52,14 @@ namespace Projeto_Principal
             
             if(restaurante != null)
             {
-                MainMenu.IdRestaurate = restaurante.Id;
-                GesMenu.IdRestaurate = restaurante.Id;
-                new MainMenu().Show();
-                this.Close();
+                NewMenu.IdRestaurante = restaurante.Id;
+                GesMenu.IdRestaurante = restaurante.Id;
+                MessageBox.Show($"Restaurante {restaurante.Nome} Selecionado", "Seleção com Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("Não existem restaurantes registados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                new MainMenu().Show();
-                this.Close();
             }
-
-            
 
         }
     }

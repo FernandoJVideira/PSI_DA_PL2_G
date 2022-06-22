@@ -13,47 +13,27 @@ namespace Projeto_Principal
 {
     public partial class GesMenu : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
         private static string filepath = "";
-        public static int IdRestaurate = 0;
+        public static int IdRestaurante = 0;
 
         public GesMenu()
         {
             InitializeComponent();
-            
         }
 
-        private void MouseDown_Event(object sender, MouseEventArgs e)
+        private void LoadTheme()
         {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
+            foreach (Control btns in this.Controls)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
             }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         private void LerDados()
@@ -62,7 +42,7 @@ namespace Projeto_Principal
             listBoxPratosInativos.Items.Clear();
             model = new Model1Container();
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
+            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
 
             IEnumerable <ItemMenu> itemsAtivos = from item in items
                                                 where item.Restaurante.Contains(restaurante)
@@ -148,6 +128,7 @@ namespace Projeto_Principal
         {
             LerDados();
             SetRestName();
+            LoadTheme();
         }
 
         private void btnAddFoto_Click(object sender, EventArgs e)
@@ -173,7 +154,7 @@ namespace Projeto_Principal
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
+            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
             listBoxMenu.Items.Add(item);
             listBoxPratosInativos.Items.Remove(listBoxPratosInativos.SelectedItem);
 
@@ -186,7 +167,7 @@ namespace Projeto_Principal
         private void btnRemove_Click(object sender, EventArgs e)
         {
 
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
+            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
             ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
             listBoxPratosInativos.Items.Add(item);
             listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
@@ -202,7 +183,7 @@ namespace Projeto_Principal
             using (MemoryStream stream = new MemoryStream(imageSource))
             {
                 Bitmap image = new Bitmap(stream);
-                resizedImg = new Bitmap(image, new Size(200,200));
+                resizedImg = new Bitmap(image, new Size(150,150));
             }
             itemPic.Image = resizedImg;
         }
@@ -245,10 +226,10 @@ namespace Projeto_Principal
 
         private void SetRestName()
         {
-            if (IdRestaurate != 0)
+            if (IdRestaurante != 0)
             {
                 Model1Container model1 = new Model1Container();
-                Restaurante restaurante = model1.Restaurante.Find(IdRestaurate);
+                Restaurante restaurante = model1.Restaurante.Find(IdRestaurante);
 
                 lblNomeRest.Text = restaurante.Nome;
             }

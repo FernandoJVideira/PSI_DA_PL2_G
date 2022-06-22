@@ -13,46 +13,25 @@ namespace Projeto_Principal
 {
     public partial class GesPedidos : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
-        public GesPedidos()
-        {
-            InitializeComponent();
-        }
 
-        private void MouseDown_Event(object sender, MouseEventArgs e)
+        private void LoadTheme()
         {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
+            foreach (Control btns in this.Controls)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
             }
         }
 
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        public GesPedidos()
         {
-            mouseDown = false;
-        }
-
-
-        //-------------------------------------------------------------------------------------//
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
+            InitializeComponent();
         }
 
         private void RefreshPedidos()
@@ -67,7 +46,7 @@ namespace Projeto_Principal
 
             IEnumerable<Pedido> PedidosAndando = from pedido in listaPedidos
                                                  where pedido.EstadoId == 1
-                                                 where pedido.RestauranteId == MainMenu.IdRestaurate
+                                                 where pedido.RestauranteId == NewMenu.IdRestaurante
                                                  select pedido;
 
             foreach (Pedido pedido in PedidosAndando)
@@ -79,8 +58,8 @@ namespace Projeto_Principal
 
             IEnumerable<Pedido> PedidosPorPagar = from pedido in listaPedidos
                                                   where pedido.EstadoId == 2
-                                                  where pedido.RestauranteId == MainMenu.IdRestaurate
-                                                 select pedido;
+                                                  where pedido.RestauranteId == NewMenu.IdRestaurante
+                                                  select pedido;
 
             foreach (Pedido pedido in PedidosPorPagar)
             {
@@ -88,16 +67,15 @@ namespace Projeto_Principal
             }
         }
 
-        private void Erro(string msg, Form form)
+        private void Erro(string msg)
         {
             MessageBox.Show(msg);
-            form.Show();
         }
 
-        private void Lerdados()
+        private void LerDados()
         {
             model = new Model1Container();
-            Restaurante restaurante = model.Restaurante.Find(MainMenu.IdRestaurate);
+            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
             List<Pessoa> pessoas = model.Pessoa.ToList<Pessoa>();
             List<ItemMenu> items = model.ItemMenu.ToList<ItemMenu>();
             List<Cliente> listaCLientes = new List<Cliente>();
@@ -117,7 +95,7 @@ namespace Projeto_Principal
                 if (pessoa is Cliente)
                 {
                     Cliente cliente = (Cliente)pessoa;
-                    listaCLientes.Add(cliente);
+                    listBoxClientes.Items.Add(cliente);
                 }
                 if (pessoa is Trabalhador)
                 {
@@ -129,33 +107,28 @@ namespace Projeto_Principal
                     }
                     
                 }
-
-
             }
 
             if (listaTrabalhadores.Count == 0)
             {
-                Erro("Não existem trabalhadores registados", new GerirRestaurante());
+                Erro("Não existem trabalhadores registados");
                 this.Close();
             }
-            else if (listaCLientes.Count == 0)
+            else if (listBoxClientes.Items.Count == 0)
             {
-                Erro("Não existem clientes registados", new GesClientes());
+                Erro("Não existem clientes registados");
                 this.Close();
             }            
             else if (listaMetodoPagamentos.Count == 0)
             {
-                Erro("Não existem metodos de pagamento registados ou ativos", new GesRestaurantGlobal());
+                Erro("Não existem metodos de pagamento registados ou ativos");
                 this.Close();
             }
             else if (itemsAtivos.Count<ItemMenu>() == 0)
             {
-                Erro("Não existem pratos registados ou ativos", new GesMenu());
+                Erro("Não existem pratos registados ou ativos");
                 this.Close();
             }
-
-
-            dataGridViewClientes.DataSource = listaCLientes;
 
             //--------------- load Lista menu
 
@@ -175,11 +148,14 @@ namespace Projeto_Principal
 
         private void GesPedidos_Load(object sender, EventArgs e)
         {
-            Lerdados();
+            LerDados();
+            LoadTheme();
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
+            Cliente cliente = (Cliente)listBoxClientes.SelectedItem;
+
             if (listBoxTrabalhadores.SelectedItem == null) { return; }
             if (listBoxItems.Items.Count == 0) { return; }
 
@@ -195,13 +171,13 @@ namespace Projeto_Principal
             }
 
             pedido.ValorTotal = total;
-            pedido.Cliente = GetCliente();
+            pedido.Cliente = cliente;
 
             if (pedido.Cliente == null) { return; }
             
             pedido.EstadoId = 1;
 
-            pedido.RestauranteId = MainMenu.IdRestaurate;
+            pedido.RestauranteId = NewMenu.IdRestaurante;
             
             
             model.Pedido.Add(pedido);
@@ -278,16 +254,6 @@ namespace Projeto_Principal
             }
 
             sw.Close();
-        }
-
-        private Cliente GetCliente()
-        {
-
-            int row = dataGridViewClientes.SelectedCells[0].RowIndex;
-            int id = (int)dataGridViewClientes.Rows[row].Cells["id"].Value;
-            Cliente data = model.Pessoa.First(c => c.Id == id) as Cliente;
-
-            return data;
         }
 
         private void buttonAddItem_Click(object sender, EventArgs e)
@@ -412,6 +378,7 @@ namespace Projeto_Principal
             Pagamento pagamento = (Pagamento)listBoxMetodosUsados.SelectedItem;
 
             if (listBoxMetodosUsados.SelectedItem == null) { return; }
+
             listBoxMetodosUsados.Items.Remove(listBoxMetodosUsados.SelectedItem);
 
             if(listBoxMetodosUsados.Items.Count == 0) 
@@ -427,16 +394,10 @@ namespace Projeto_Principal
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            ShowMenuForm(new History());
-        }
-
-        private void ShowMenuForm(Form form)
-        {
+            Form menu = this.Parent.FindForm();
+            Form form = new History(menu);
             form.Show();
-            this.Close();
+            menu.Hide();
         }
-
-
     }
 }

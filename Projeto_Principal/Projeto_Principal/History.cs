@@ -12,13 +12,27 @@ namespace Projeto_Principal
 {
     public partial class History : Form
     {
-        bool mouseDown;
-        private Point offset;
 
         private Model1Container model;
         public static int id;
-        public History()
+        Form menu = null;
+
+        private void LoadTheme()
         {
+            foreach (Control btns in this.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+        }
+        public History(Form prevMenu)
+        {
+            menu = prevMenu;
             InitializeComponent();
         }
 
@@ -32,7 +46,11 @@ namespace Projeto_Principal
 
                 List<Pedido> listaPedidos = model.Pedido.ToList<Pedido>();
 
-                foreach (Pedido pedido in listaPedidos)
+                IEnumerable<Pedido> pedidosRestaurante = from pedido in listaPedidos
+                                                         where pedido.RestauranteId == NewMenu.IdRestaurante
+                                                         select pedido;
+
+                foreach (Pedido pedido in pedidosRestaurante)
                 {
                     listBoxHistory.Items.Add(pedido);
                 }
@@ -66,16 +84,9 @@ namespace Projeto_Principal
                 labelTotal.Text = total.ToString() + " €";
             }
 
-            
+            LoadTheme();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            id = 0;
-            this.Close();
-           
-        }
 
         private void buttonView_Click(object sender, EventArgs e)
         {
@@ -90,32 +101,6 @@ namespace Projeto_Principal
 
             MessageBox.Show(System.IO.File.ReadAllText(path));
             
-        }
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         private void comboBoxEstados_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,6 +143,11 @@ namespace Projeto_Principal
             {
                 listBoxHistory.Items.Add(pedido);
             }
+        }
+
+        private void History_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            menu.Show();
         }
     }
 }

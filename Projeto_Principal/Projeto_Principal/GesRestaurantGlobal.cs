@@ -12,48 +12,26 @@ namespace Projeto_Principal
 {
     public partial class GesRestaurantGlobal : Form
     {
-        bool mouseDown;
-        private Point offset;
+
         private Model1Container model;
-        
+
+        private void LoadTheme()
+        {
+            foreach (Control btns in this.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+        }
         public GesRestaurantGlobal()
         {
             InitializeComponent();
         }
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        //-------------------------------------------------------------------------------------//
 
         private void GesRestaurantGlobal_Load(object sender, EventArgs e)
         {
@@ -61,13 +39,14 @@ namespace Projeto_Principal
             LerDados();
             cbDisponibilidadeCategoria.SelectedIndex = 0;
             cbDisponibilidadeMetodoPagamento.SelectedIndex = 0;
+            LoadTheme();
         }
 
         public void LerDados()
         {
-            dgvRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
-            dgvCategorias.DataSource = model.Categoria.ToList<Categoria>();
-            dgvMetodosPagamento.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
+            listBoxRestaurantes.DataSource = model.Restaurante.ToList<Restaurante>();
+            listBoxCat.DataSource = model.Categoria.ToList<Categoria>();
+            listBoxMetodosPag.DataSource = model.MetodoPagamento.ToList<MetodoPagamento>();
         }
 
         private void btnRegistar_Click(object sender, EventArgs e)
@@ -155,36 +134,9 @@ namespace Projeto_Principal
             }
         }
 
-        private Restaurante GetRestaurante()
-        {
-            int row = dgvRestaurantes.SelectedCells[0].RowIndex;
-            int id = (int)dgvRestaurantes.Rows[row].Cells["id"].Value;
-            Restaurante data = model.Restaurante.First(r => r.Id == id);
-
-            return data;
-        }
-
-        private Categoria GetCategoria()
-        {
-            int row = dgvCategorias.SelectedCells[0].RowIndex;
-            int id = (int)dgvCategorias.Rows[row].Cells["id"].Value;
-            Categoria data = model.Categoria.First(c => c.Id == id);
-
-            return data;
-        }
-
-        private MetodoPagamento GetMetodoPagamento()
-        {
-            int row = dgvMetodosPagamento.SelectedCells[0].RowIndex;
-            int id = (int)dgvMetodosPagamento.Rows[row].Cells["id"].Value;
-            MetodoPagamento data = model.MetodoPagamento.First(m => m.Id == id);
-
-            return data;
-        }
-
         private void btnRemoverRestaurante_Click(object sender, EventArgs e)
         {
-            Restaurante restaurante = GetRestaurante();
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
 
             if (VerifyPresenceRestaurante(restaurante))
             {
@@ -230,7 +182,7 @@ namespace Projeto_Principal
             }
 
 
-            if (restaurante.Id == MainMenu.IdRestaurate)
+            if (restaurante.Id == NewMenu.IdRestaurante)
             {
                 return true;
             }
@@ -241,8 +193,8 @@ namespace Projeto_Principal
 
 
         private void btnRemoverCategoria_Click(object sender, EventArgs e)
-        {         
-            Categoria categoria = GetCategoria();
+        {
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
 
             if (VerifyPresenceCategoria(categoria))
             {
@@ -276,8 +228,8 @@ namespace Projeto_Principal
         }
 
         private void btnRemoverMetodoPagamento_Click(object sender, EventArgs e)
-        { 
-            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+        {
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
 
             if (VerifyPresenceMetodo(metodoPagamento))
             {
@@ -307,9 +259,9 @@ namespace Projeto_Principal
             return false;
         }
 
-        private void dgvRestaurantes_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void listBoxRestaurantes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Restaurante restaurante = GetRestaurante();
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
             Morada morada = restaurante.Morada;
 
             txtNome.Text = restaurante.Nome;
@@ -319,17 +271,17 @@ namespace Projeto_Principal
             txtPais.Text = morada.Pais;
         }
 
-        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void listBoxCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Categoria categoria = GetCategoria();
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
 
             txtNomeCategoria.Text = categoria.Nome;
             cbDisponibilidadeCategoria.Text = categoria.Ativo == true ? "Disponível" : "Indisponível";
         }
 
-        private void dgvMetodosPagamento_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void listBoxMetodosPag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
 
             txtNomeMetodoPagamento.Text = metodoPagamento.Nome;
             cbDisponibilidadeMetodoPagamento.Text = metodoPagamento.Ativo == true ? "Disponível" : "Indisponível";
@@ -337,7 +289,7 @@ namespace Projeto_Principal
 
         private void btnSalvarRestaurante_Click(object sender, EventArgs e)
         {
-            Restaurante restaurante = GetRestaurante();
+            Restaurante restaurante = (Restaurante)listBoxRestaurantes.SelectedItem;
             Morada morada = restaurante.Morada;
 
             restaurante.Nome = txtNome.Text;
@@ -352,10 +304,10 @@ namespace Projeto_Principal
 
         private void btnSalvarCategoria_Click(object sender, EventArgs e)
         {
-            Categoria categoria = GetCategoria();
+            Categoria categoria = (Categoria)listBoxCat.SelectedItem;
 
             categoria.Nome = txtNomeCategoria.Text;
-            categoria.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;
+            categoria.Ativo = cbDisponibilidadeCategoria.Text == "Disponível" ? true : false;
 
             model.SaveChanges();
             LerDados();
@@ -363,7 +315,7 @@ namespace Projeto_Principal
 
         private void btnSalvarMetodoPagamento_Click(object sender, EventArgs e)
         {
-            MetodoPagamento metodoPagamento = GetMetodoPagamento();
+            MetodoPagamento metodoPagamento = (MetodoPagamento)listBoxMetodosPag.SelectedItem;
 
             metodoPagamento.Nome = txtNomeMetodoPagamento.Text;
             metodoPagamento.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;

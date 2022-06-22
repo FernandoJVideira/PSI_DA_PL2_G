@@ -72,6 +72,12 @@
     <Compile Include="Estado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewMenu.Designer.cs">
+      <DependentUpon>NewMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="History.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,12 +86,6 @@
     </Compile>
     <Compile Include="ItemMenu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MainMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="GerirRestaurante.cs">
       <SubType>Form</SubType>
@@ -158,15 +158,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeColor.cs" />
     <Compile Include="ToStrings.cs" />
     <Compile Include="Trabalhador.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GerirRestaurante.resx">
       <DependentUpon>GerirRestaurante.cs</DependentUpon>
@@ -183,6 +181,9 @@
     <EmbeddedResource Include="GesRestaurantGlobal.resx">
       <DependentUpon>GesRestaurantGlobal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewMenu.resx">
+      <DependentUpon>NewMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -191,6 +192,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SelectRestaurant.resx">
       <DependentUpon>SelectRestaurant.cs</DependentUpon>
@@ -229,6 +231,13 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\close.png" />
+    <None Include="Resources\spanner21.png" />
+    <None Include="Resources\restaurant_11.png" />
+    <None Include="Resources\restaurant1.png" />
+    <None Include="Resources\clients1.png" />
+    <None Include="Resources\menu.png" />
+    <None Include="Resources\list.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

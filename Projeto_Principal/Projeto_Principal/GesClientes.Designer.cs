@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GesClientes));
             this.label2 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,16 +43,12 @@
             this.btnApagarCliente = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.btnEditCliente = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtTelemovel = new System.Windows.Forms.MaskedTextBox();
             this.txtNumCont = new System.Windows.Forms.MaskedTextBox();
             this.txtPostalCod = new System.Windows.Forms.MaskedTextBox();
-            this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,9 +136,9 @@
             // 
             // btnRegistarCliente
             // 
-            this.btnRegistarCliente.Location = new System.Drawing.Point(46, 364);
+            this.btnRegistarCliente.Location = new System.Drawing.Point(31, 364);
             this.btnRegistarCliente.Name = "btnRegistarCliente";
-            this.btnRegistarCliente.Size = new System.Drawing.Size(159, 23);
+            this.btnRegistarCliente.Size = new System.Drawing.Size(110, 23);
             this.btnRegistarCliente.TabIndex = 16;
             this.btnRegistarCliente.Text = "Registar Cliente";
             this.btnRegistarCliente.UseVisualStyleBackColor = true;
@@ -151,7 +146,7 @@
             // 
             // btnApagarCliente
             // 
-            this.btnApagarCliente.Location = new System.Drawing.Point(298, 364);
+            this.btnApagarCliente.Location = new System.Drawing.Point(31, 410);
             this.btnApagarCliente.Name = "btnApagarCliente";
             this.btnApagarCliente.Size = new System.Drawing.Size(110, 23);
             this.btnApagarCliente.TabIndex = 19;
@@ -172,69 +167,31 @@
             // 
             this.RoundedBorders.TargetControl = this;
             // 
-            // TopBar
-            // 
-            this.TopBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TopBar.Controls.Add(this.btnMinimize);
-            this.TopBar.Controls.Add(this.btnClose);
-            this.TopBar.Location = new System.Drawing.Point(-53, -1);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.ShadowDecoration.Parent = this.TopBar;
-            this.TopBar.Size = new System.Drawing.Size(709, 31);
-            this.TopBar.TabIndex = 22;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Event);
-            this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
-            this.TopBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseUp);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(650, 5);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(20, 20);
-            this.btnMinimize.TabIndex = 18;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(676, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
-            this.btnClose.TabIndex = 21;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // dataGridViewCliente
             // 
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCliente.Location = new System.Drawing.Point(298, 49);
+            this.dataGridViewCliente.Location = new System.Drawing.Point(303, 65);
             this.dataGridViewCliente.MultiSelect = false;
             this.dataGridViewCliente.Name = "dataGridViewCliente";
             this.dataGridViewCliente.RowHeadersWidth = 62;
-            this.dataGridViewCliente.Size = new System.Drawing.Size(328, 310);
+            this.dataGridViewCliente.Size = new System.Drawing.Size(662, 405);
             this.dataGridViewCliente.TabIndex = 23;
             this.dataGridViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellClick);
             this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
             // 
             // btnEditCliente
             // 
-            this.btnEditCliente.Location = new System.Drawing.Point(518, 364);
+            this.btnEditCliente.Location = new System.Drawing.Point(161, 364);
             this.btnEditCliente.Name = "btnEditCliente";
             this.btnEditCliente.Size = new System.Drawing.Size(108, 23);
             this.btnEditCliente.TabIndex = 24;
-            this.btnEditCliente.Text = "Editar Cliente";
+            this.btnEditCliente.Text = "Salvar Alterações ";
             this.btnEditCliente.UseVisualStyleBackColor = true;
             this.btnEditCliente.Click += new System.EventHandler(this.btnEditCliente_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(408, 364);
+            this.button1.Location = new System.Drawing.Point(161, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 25;
@@ -270,15 +227,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(652, 415);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1013, 545);
             this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.txtNumCont);
             this.Controls.Add(this.txtTelemovel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditCliente);
             this.Controls.Add(this.dataGridViewCliente);
-            this.Controls.Add(this.TopBar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnApagarCliente);
             this.Controls.Add(this.btnRegistarCliente);
@@ -294,9 +250,8 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GesClientes";
-            this.Text = "Form2";
+            this.Text = "Gerir Clientes";
             this.Load += new System.EventHandler(this.GesClientes_Load);
-            this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -319,10 +274,7 @@
         private System.Windows.Forms.Button btnApagarCliente;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
-        private Guna.UI2.WinForms.Guna2Panel TopBar;
         private System.Windows.Forms.DataGridView dataGridViewCliente;
-        private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEditCliente;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MaskedTextBox txtPostalCod;

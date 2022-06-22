@@ -12,48 +12,12 @@ namespace Projeto_Principal
 {
     public partial class GerirRestaurante : Form
     {
-        bool mouseDown;
-        private Point offset;
         private Model1Container model;
 
         public GerirRestaurante()
         {
             InitializeComponent();
         }
-
-        private void MouseDown_Event(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            mouseDown = true;
-        }
-
-        private void MouseMove_Event(object sender, MouseEventArgs e)
-        {
-            if (mouseDown == true)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            new MainMenu().Show();
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        //-------------------------------------------------------------------------------------//
 
         private void listBoxTrabalhadores_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,7 +41,7 @@ namespace Projeto_Principal
                 if (pessoa is Trabalhador)
                 {
                     Trabalhador trabalhador = (Trabalhador)pessoa;
-                    if(trabalhador.RestauranteId == MainMenu.IdRestaurate)
+                    if(trabalhador.RestauranteId == NewMenu.IdRestaurante)
                     {
                         listaTrabalhadores.Add(trabalhador);
 
@@ -110,17 +74,18 @@ namespace Projeto_Principal
                 trabalhador.Morada = morada;
                 trabalhador.Nome = txtNome.Text;
                 trabalhador.Telemovel = txtTelemovel.Text;
-                trabalhador.RestauranteId = MainMenu.IdRestaurate;
+                trabalhador.RestauranteId = NewMenu.IdRestaurante;
 
                 model.Morada.Add(morada);
                 model.Pessoa.Add(trabalhador);
 
                 model.SaveChanges();
                 LerDados();
+                ClearTxb();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Salario invalido!!");
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -147,6 +112,7 @@ namespace Projeto_Principal
                 model.SaveChanges();
                 LerDados();
             }
+            ClearTxb();
         }
 
         private bool VerifyPresence(Trabalhador trabalhador)
@@ -168,6 +134,67 @@ namespace Projeto_Principal
         {
             dataGridViewTrabalhadores.Columns["Id"].DisplayIndex = 0;
             dataGridViewTrabalhadores.Columns["Nome"].DisplayIndex = 1;
+        }
+
+        private void btnAtualizarDados_Click(object sender, EventArgs e)
+        {
+            Trabalhador userdata = GetSelectedTrabalhador();
+
+            userdata.Nome = txtNome.Text;
+            userdata.Telemovel = txtTelemovel.Text;
+            userdata.Morada.Cidade = txtCidade.Text;
+
+
+            string texto = txtSalario.Text;
+            texto = texto.Replace(".", ",");
+            userdata.Salario = Convert.ToDecimal(texto);
+
+            userdata.Posicao = txtPosicao.Text;
+
+            userdata.Morada.CodPostal = txtPostalCod.Text;
+            userdata.Morada.Rua = txtRua.Text;
+            userdata.Morada.Pais = txtPais.Text;
+
+            model.SaveChanges();
+
+            LerDados();
+            ClearTxb();
+        }
+
+        private void dataGridViewTrabalhadores_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Trabalhador userdata = GetSelectedTrabalhador();
+
+                txtNome.Text = userdata.Nome;
+                txtTelemovel.Text = userdata.Telemovel;
+                txtCidade.Text = userdata.Morada.Cidade;
+
+                txtPosicao.Text = userdata.Posicao;
+                
+                string texto = userdata.Salario.ToString();
+                texto = texto.Replace(",", ".");
+                txtSalario.Text = texto;
+                
+                
+                txtPostalCod.Text = userdata.Morada.CodPostal;
+                txtRua.Text = userdata.Morada.Rua;
+                txtPais.Text = userdata.Morada.Pais;
+            }
+            catch { }
+        }
+
+        private void ClearTxb()
+        {
+           txtNome.Text = "";
+           txtTelemovel.Text = "";
+           txtCidade.Text = "";
+           txtSalario.Text = "";
+           txtPosicao.Text = "";
+           txtPostalCod.Text = "";
+           txtRua.Text = "";
+           txtPais.Text = "";
         }
     }
 }

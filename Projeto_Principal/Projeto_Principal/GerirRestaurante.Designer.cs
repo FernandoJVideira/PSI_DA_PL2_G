@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerirRestaurante));
             this.txtRemove = new System.Windows.Forms.Button();
             this.txtPosicao = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAddTrabalhador = new System.Windows.Forms.Button();
             this.RoundedBorders = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.TopBar = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,15 +49,15 @@
             this.txtTelemovel = new System.Windows.Forms.MaskedTextBox();
             this.txtPostalCod = new System.Windows.Forms.MaskedTextBox();
             this.txtSalario = new System.Windows.Forms.MaskedTextBox();
-            this.TopBar.SuspendLayout();
+            this.btnAtualizarDados = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRemove
             // 
-            this.txtRemove.Location = new System.Drawing.Point(445, 397);
+            this.txtRemove.Location = new System.Drawing.Point(184, 397);
             this.txtRemove.Name = "txtRemove";
-            this.txtRemove.Size = new System.Drawing.Size(216, 23);
+            this.txtRemove.Size = new System.Drawing.Size(90, 23);
             this.txtRemove.TabIndex = 1;
             this.txtRemove.Text = "Remover";
             this.txtRemove.UseVisualStyleBackColor = true;
@@ -96,53 +92,15 @@
             // 
             this.btnAddTrabalhador.Location = new System.Drawing.Point(49, 397);
             this.btnAddTrabalhador.Name = "btnAddTrabalhador";
-            this.btnAddTrabalhador.Size = new System.Drawing.Size(216, 23);
+            this.btnAddTrabalhador.Size = new System.Drawing.Size(129, 23);
             this.btnAddTrabalhador.TabIndex = 28;
-            this.btnAddTrabalhador.Text = "Adicionar Trabalhador";
+            this.btnAddTrabalhador.Text = "Registar Trabalhador";
             this.btnAddTrabalhador.UseVisualStyleBackColor = true;
             this.btnAddTrabalhador.Click += new System.EventHandler(this.btnAddTrabalhador_Click);
             // 
             // RoundedBorders
             // 
             this.RoundedBorders.TargetControl = this;
-            // 
-            // TopBar
-            // 
-            this.TopBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TopBar.Controls.Add(this.btnMinimize);
-            this.TopBar.Controls.Add(this.btnClose);
-            this.TopBar.Location = new System.Drawing.Point(-4, 0);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.ShadowDecoration.Parent = this.TopBar;
-            this.TopBar.Size = new System.Drawing.Size(809, 31);
-            this.TopBar.TabIndex = 38;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Event);
-            this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove_Event);
-            this.TopBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseUp);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(741, 5);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(20, 20);
-            this.btnMinimize.TabIndex = 18;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(767, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
-            this.btnClose.TabIndex = 21;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // txtPais
             // 
@@ -220,10 +178,11 @@
             // dataGridViewTrabalhadores
             // 
             this.dataGridViewTrabalhadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTrabalhadores.Location = new System.Drawing.Point(334, 80);
+            this.dataGridViewTrabalhadores.Location = new System.Drawing.Point(302, 51);
             this.dataGridViewTrabalhadores.Name = "dataGridViewTrabalhadores";
-            this.dataGridViewTrabalhadores.Size = new System.Drawing.Size(423, 288);
+            this.dataGridViewTrabalhadores.Size = new System.Drawing.Size(662, 405);
             this.dataGridViewTrabalhadores.TabIndex = 44;
+            this.dataGridViewTrabalhadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTrabalhadores_CellClick);
             // 
             // label1
             // 
@@ -258,18 +217,28 @@
             this.txtSalario.Size = new System.Drawing.Size(123, 20);
             this.txtSalario.TabIndex = 70;
             // 
+            // btnAtualizarDados
+            // 
+            this.btnAtualizarDados.Location = new System.Drawing.Point(49, 433);
+            this.btnAtualizarDados.Name = "btnAtualizarDados";
+            this.btnAtualizarDados.Size = new System.Drawing.Size(225, 23);
+            this.btnAtualizarDados.TabIndex = 71;
+            this.btnAtualizarDados.Text = "Salvar Alterações";
+            this.btnAtualizarDados.UseVisualStyleBackColor = true;
+            this.btnAtualizarDados.Click += new System.EventHandler(this.btnAtualizarDados_Click);
+            // 
             // GerirRestaurante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1013, 545);
+            this.Controls.Add(this.btnAtualizarDados);
             this.Controls.Add(this.txtSalario);
             this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.txtTelemovel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewTrabalhadores);
             this.Controls.Add(this.txtPais);
-            this.Controls.Add(this.TopBar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnAddTrabalhador);
             this.Controls.Add(this.txtPosicao);
@@ -285,9 +254,8 @@
             this.Controls.Add(this.txtRemove);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GerirRestaurante";
-            this.Text = "Form2";
+            this.Text = "Gerir Funcionários";
             this.Load += new System.EventHandler(this.GerirRestaurante_Load);
-            this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -301,9 +269,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnAddTrabalhador;
         private Guna.UI2.WinForms.Guna2Elipse RoundedBorders;
-        private Guna.UI2.WinForms.Guna2Panel TopBar;
-        private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
@@ -318,5 +283,6 @@
         private System.Windows.Forms.MaskedTextBox txtTelemovel;
         private System.Windows.Forms.MaskedTextBox txtPostalCod;
         private System.Windows.Forms.MaskedTextBox txtSalario;
+        private System.Windows.Forms.Button btnAtualizarDados;
     }
 }

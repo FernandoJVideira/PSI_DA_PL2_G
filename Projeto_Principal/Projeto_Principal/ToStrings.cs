@@ -14,6 +14,14 @@ namespace Projeto_Principal
             return str;
         }
     }
+    public partial class Cliente
+    {
+        public override string ToString()
+        {
+            string str = $"{this.Nome} ({this.Telemovel}) - {this.NIF}";
+            return str;
+        }
+    }
 
     public partial class ItemMenu
     {
