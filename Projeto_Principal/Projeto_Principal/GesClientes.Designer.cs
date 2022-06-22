@@ -136,7 +136,8 @@
             // 
             // btnRegistarCliente
             // 
-            this.btnRegistarCliente.Location = new System.Drawing.Point(31, 364);
+            this.btnRegistarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegistarCliente.Location = new System.Drawing.Point(33, 427);
             this.btnRegistarCliente.Name = "btnRegistarCliente";
             this.btnRegistarCliente.Size = new System.Drawing.Size(110, 23);
             this.btnRegistarCliente.TabIndex = 16;
@@ -146,7 +147,8 @@
             // 
             // btnApagarCliente
             // 
-            this.btnApagarCliente.Location = new System.Drawing.Point(31, 410);
+            this.btnApagarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnApagarCliente.Location = new System.Drawing.Point(33, 473);
             this.btnApagarCliente.Name = "btnApagarCliente";
             this.btnApagarCliente.Size = new System.Drawing.Size(110, 23);
             this.btnApagarCliente.TabIndex = 19;
@@ -169,6 +171,9 @@
             // 
             // dataGridViewCliente
             // 
+            this.dataGridViewCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCliente.Location = new System.Drawing.Point(303, 65);
             this.dataGridViewCliente.MultiSelect = false;
@@ -181,7 +186,8 @@
             // 
             // btnEditCliente
             // 
-            this.btnEditCliente.Location = new System.Drawing.Point(161, 364);
+            this.btnEditCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditCliente.Location = new System.Drawing.Point(163, 427);
             this.btnEditCliente.Name = "btnEditCliente";
             this.btnEditCliente.Size = new System.Drawing.Size(108, 23);
             this.btnEditCliente.TabIndex = 24;
@@ -191,7 +197,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(161, 410);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(163, 473);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 25;

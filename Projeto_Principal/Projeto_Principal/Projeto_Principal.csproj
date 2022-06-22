@@ -231,6 +231,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\waiter-holding-tray-in-hotel.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\spanner21.png" />
     <None Include="Resources\restaurant_11.png" />

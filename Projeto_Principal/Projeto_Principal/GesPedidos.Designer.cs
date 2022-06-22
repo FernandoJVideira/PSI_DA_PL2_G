@@ -61,6 +61,7 @@
             // 
             // buttonConcluir
             // 
+            this.buttonConcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonConcluir.Location = new System.Drawing.Point(786, 478);
             this.buttonConcluir.Name = "buttonConcluir";
             this.buttonConcluir.Size = new System.Drawing.Size(166, 23);
@@ -75,6 +76,7 @@
             // 
             // listBoxPayment
             // 
+            this.listBoxPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxPayment.FormattingEnabled = true;
             this.listBoxPayment.Location = new System.Drawing.Point(786, 59);
             this.listBoxPayment.Name = "listBoxPayment";
@@ -84,6 +86,9 @@
             // 
             // listBoxProcessing
             // 
+            this.listBoxProcessing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxProcessing.FormattingEnabled = true;
             this.listBoxProcessing.Location = new System.Drawing.Point(453, 68);
             this.listBoxProcessing.Name = "listBoxProcessing";
@@ -92,6 +97,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(783, 243);
             this.label1.Name = "label1";
@@ -101,6 +107,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(783, 39);
             this.label2.Name = "label2";
@@ -110,7 +117,9 @@
             // 
             // buttonFinalizar
             // 
-            this.buttonFinalizar.Location = new System.Drawing.Point(453, 331);
+            this.buttonFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFinalizar.Location = new System.Drawing.Point(453, 383);
             this.buttonFinalizar.Name = "buttonFinalizar";
             this.buttonFinalizar.Size = new System.Drawing.Size(245, 23);
             this.buttonFinalizar.TabIndex = 48;
@@ -120,6 +129,7 @@
             // 
             // listBoxTrabalhadores
             // 
+            this.listBoxTrabalhadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxTrabalhadores.FormattingEnabled = true;
             this.listBoxTrabalhadores.Location = new System.Drawing.Point(20, 305);
             this.listBoxTrabalhadores.Name = "listBoxTrabalhadores";
@@ -137,6 +147,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(17, 286);
             this.label5.Name = "label5";
@@ -146,7 +157,9 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(453, 291);
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.Location = new System.Drawing.Point(453, 343);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(245, 23);
             this.buttonCancel.TabIndex = 52;
@@ -165,6 +178,8 @@
             // 
             // listBoxMenu
             // 
+            this.listBoxMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxMenu.FormattingEnabled = true;
             this.listBoxMenu.Location = new System.Drawing.Point(228, 71);
             this.listBoxMenu.Name = "listBoxMenu";
@@ -182,6 +197,7 @@
             // 
             // listBoxItems
             // 
+            this.listBoxItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxItems.FormattingEnabled = true;
             this.listBoxItems.Location = new System.Drawing.Point(228, 318);
             this.listBoxItems.Name = "listBoxItems";
@@ -190,6 +206,7 @@
             // 
             // buttonCreate
             // 
+            this.buttonCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonCreate.Location = new System.Drawing.Point(20, 504);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(352, 23);
@@ -200,6 +217,7 @@
             // 
             // buttonAddItem
             // 
+            this.buttonAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAddItem.Location = new System.Drawing.Point(228, 289);
             this.buttonAddItem.Name = "buttonAddItem";
             this.buttonAddItem.Size = new System.Drawing.Size(144, 23);
@@ -210,6 +228,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(786, 259);
             this.comboBox1.Name = "comboBox1";
@@ -218,6 +237,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(783, 290);
             this.label7.Name = "label7";
@@ -227,6 +247,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(905, 292);
             this.label9.Name = "label9";
@@ -236,6 +257,7 @@
             // 
             // labelValor
             // 
+            this.labelValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelValor.AutoSize = true;
             this.labelValor.Location = new System.Drawing.Point(869, 291);
             this.labelValor.Name = "labelValor";
@@ -245,6 +267,8 @@
             // 
             // listBoxMetodosUsados
             // 
+            this.listBoxMetodosUsados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxMetodosUsados.FormattingEnabled = true;
             this.listBoxMetodosUsados.Location = new System.Drawing.Point(786, 383);
             this.listBoxMetodosUsados.Name = "listBoxMetodosUsados";
@@ -253,6 +277,7 @@
             // 
             // buttonRemMetodo
             // 
+            this.buttonRemMetodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRemMetodo.Location = new System.Drawing.Point(786, 510);
             this.buttonRemMetodo.Name = "buttonRemMetodo";
             this.buttonRemMetodo.Size = new System.Drawing.Size(166, 23);
@@ -263,6 +288,7 @@
             // 
             // buttonValor
             // 
+            this.buttonValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonValor.Location = new System.Drawing.Point(786, 341);
             this.buttonValor.Name = "buttonValor";
             this.buttonValor.Size = new System.Drawing.Size(157, 23);
@@ -273,6 +299,7 @@
             // 
             // labelinfo
             // 
+            this.labelinfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelinfo.AutoSize = true;
             this.labelinfo.Location = new System.Drawing.Point(796, 129);
             this.labelinfo.MaximumSize = new System.Drawing.Size(150, 0);
@@ -292,6 +319,8 @@
             // 
             // buttonHistory
             // 
+            this.buttonHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonHistory.Location = new System.Drawing.Point(476, 431);
             this.buttonHistory.Name = "buttonHistory";
             this.buttonHistory.Size = new System.Drawing.Size(200, 60);
@@ -302,12 +331,33 @@
             // 
             // listBoxClientes
             // 
+            this.listBoxClientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxClientes.FormattingEnabled = true;
             this.listBoxClientes.Location = new System.Drawing.Point(20, 74);
             this.listBoxClientes.Name = "listBoxClientes";
             this.listBoxClientes.Size = new System.Drawing.Size(149, 199);
             this.listBoxClientes.TabIndex = 70;
             // 
+<<<<<<< Updated upstream
+=======
+            // textBoxValor
+            // 
+            this.textBoxValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxValor.DecimalPlaces = 2;
+            this.textBoxValor.Location = new System.Drawing.Point(786, 315);
+            this.textBoxValor.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.textBoxValor.Name = "textBoxValor";
+            this.textBoxValor.Size = new System.Drawing.Size(72, 20);
+            this.textBoxValor.TabIndex = 71;
+            this.textBoxValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxValor.ThousandsSeparator = true;
+            // 
+>>>>>>> Stashed changes
             // GesPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

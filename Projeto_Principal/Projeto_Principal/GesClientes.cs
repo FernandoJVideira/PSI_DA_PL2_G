@@ -75,6 +75,7 @@ namespace Projeto_Principal
                 }
             }
             dataGridViewCliente.DataSource = listaCLientes;
+            RecizeDataGrid();
         }
 
         private void GesClientes_Load(object sender, EventArgs e)
@@ -199,6 +200,28 @@ namespace Projeto_Principal
             form.Show();
             menu.Hide();
 
+        }
+
+        private void RecizeDataGrid()
+        {
+            dataGridViewCliente.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCliente.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCliente.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCliente.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCliente.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
+            for (int i = 0; i <= dataGridViewCliente.Columns.Count - 1; i++)
+            {
+                // Store Auto Sized Widths:
+                int colw = dataGridViewCliente.Columns[i].Width;
+
+                // Remove AutoSizing:
+                dataGridViewCliente.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                // Set Width to calculated AutoSize value:
+                dataGridViewCliente.Columns[i].Width = colw;
+            }
         }
     }
 }
