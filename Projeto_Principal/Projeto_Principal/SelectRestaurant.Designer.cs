@@ -37,6 +37,7 @@
             // 
             // btnGerir
             // 
+            this.btnGerir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGerir.Location = new System.Drawing.Point(161, 168);
             this.btnGerir.Name = "btnGerir";
             this.btnGerir.Size = new System.Drawing.Size(141, 51);
@@ -61,6 +62,9 @@
             // 
             // listBoxRestaurantes
             // 
+            this.listBoxRestaurantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxRestaurantes.FormattingEnabled = true;
             this.listBoxRestaurantes.Location = new System.Drawing.Point(531, 64);
             this.listBoxRestaurantes.Name = "listBoxRestaurantes";

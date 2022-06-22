@@ -55,7 +55,8 @@
             // 
             // txtRemove
             // 
-            this.txtRemove.Location = new System.Drawing.Point(184, 397);
+            this.txtRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtRemove.Location = new System.Drawing.Point(174, 421);
             this.txtRemove.Name = "txtRemove";
             this.txtRemove.Size = new System.Drawing.Size(90, 23);
             this.txtRemove.TabIndex = 1;
@@ -90,7 +91,8 @@
             // 
             // btnAddTrabalhador
             // 
-            this.btnAddTrabalhador.Location = new System.Drawing.Point(49, 397);
+            this.btnAddTrabalhador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddTrabalhador.Location = new System.Drawing.Point(39, 421);
             this.btnAddTrabalhador.Name = "btnAddTrabalhador";
             this.btnAddTrabalhador.Size = new System.Drawing.Size(129, 23);
             this.btnAddTrabalhador.TabIndex = 28;
@@ -177,6 +179,9 @@
             // 
             // dataGridViewTrabalhadores
             // 
+            this.dataGridViewTrabalhadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewTrabalhadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTrabalhadores.Location = new System.Drawing.Point(302, 51);
             this.dataGridViewTrabalhadores.Name = "dataGridViewTrabalhadores";
@@ -219,7 +224,8 @@
             // 
             // btnAtualizarDados
             // 
-            this.btnAtualizarDados.Location = new System.Drawing.Point(49, 433);
+            this.btnAtualizarDados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAtualizarDados.Location = new System.Drawing.Point(39, 457);
             this.btnAtualizarDados.Name = "btnAtualizarDados";
             this.btnAtualizarDados.Size = new System.Drawing.Size(225, 23);
             this.btnAtualizarDados.TabIndex = 71;

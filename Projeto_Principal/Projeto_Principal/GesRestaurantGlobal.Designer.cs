@@ -68,7 +68,8 @@
             // 
             // btnRegistar
             // 
-            this.btnRegistar.Location = new System.Drawing.Point(45, 277);
+            this.btnRegistar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegistar.Location = new System.Drawing.Point(36, 397);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(129, 37);
             this.btnRegistar.TabIndex = 34;
@@ -151,7 +152,9 @@
             // 
             // btnRemoverRestaurante
             // 
-            this.btnRemoverRestaurante.Location = new System.Drawing.Point(311, 327);
+            this.btnRemoverRestaurante.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoverRestaurante.Location = new System.Drawing.Point(281, 418);
             this.btnRemoverRestaurante.Name = "btnRemoverRestaurante";
             this.btnRemoverRestaurante.Size = new System.Drawing.Size(157, 36);
             this.btnRemoverRestaurante.TabIndex = 1;
@@ -165,6 +168,7 @@
             // 
             // btnRegistarCategoria
             // 
+            this.btnRegistarCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegistarCategoria.Location = new System.Drawing.Point(587, 439);
             this.btnRegistarCategoria.Name = "btnRegistarCategoria";
             this.btnRegistarCategoria.Size = new System.Drawing.Size(123, 28);
@@ -175,6 +179,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(584, 377);
             this.label1.Name = "label1";
@@ -184,6 +189,7 @@
             // 
             // txtNomeCategoria
             // 
+            this.txtNomeCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomeCategoria.Location = new System.Drawing.Point(668, 337);
             this.txtNomeCategoria.Name = "txtNomeCategoria";
             this.txtNomeCategoria.Size = new System.Drawing.Size(123, 20);
@@ -191,6 +197,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(584, 337);
             this.label3.Name = "label3";
@@ -200,6 +207,7 @@
             // 
             // btnRemoverCategoria
             // 
+            this.btnRemoverCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoverCategoria.Location = new System.Drawing.Point(775, 454);
             this.btnRemoverCategoria.Name = "btnRemoverCategoria";
             this.btnRemoverCategoria.Size = new System.Drawing.Size(152, 38);
@@ -210,6 +218,7 @@
             // 
             // cbDisponibilidadeCategoria
             // 
+            this.cbDisponibilidadeCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbDisponibilidadeCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDisponibilidadeCategoria.FormattingEnabled = true;
             this.cbDisponibilidadeCategoria.Items.AddRange(new object[] {
@@ -222,6 +231,7 @@
             // 
             // cbDisponibilidadeMetodoPagamento
             // 
+            this.cbDisponibilidadeMetodoPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbDisponibilidadeMetodoPagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDisponibilidadeMetodoPagamento.FormattingEnabled = true;
             this.cbDisponibilidadeMetodoPagamento.Items.AddRange(new object[] {
@@ -234,6 +244,7 @@
             // 
             // btnRegistarMetodoPagamento
             // 
+            this.btnRegistarMetodoPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegistarMetodoPagamento.Location = new System.Drawing.Point(595, 181);
             this.btnRegistarMetodoPagamento.Name = "btnRegistarMetodoPagamento";
             this.btnRegistarMetodoPagamento.Size = new System.Drawing.Size(153, 35);
@@ -244,6 +255,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(584, 110);
             this.label8.Name = "label8";
@@ -253,6 +265,7 @@
             // 
             // txtNomeMetodoPagamento
             // 
+            this.txtNomeMetodoPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomeMetodoPagamento.Location = new System.Drawing.Point(668, 64);
             this.txtNomeMetodoPagamento.Name = "txtNomeMetodoPagamento";
             this.txtNomeMetodoPagamento.Size = new System.Drawing.Size(123, 20);
@@ -260,6 +273,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(584, 71);
             this.label9.Name = "label9";
@@ -269,6 +283,7 @@
             // 
             // btnRemoverMetodoPagamento
             // 
+            this.btnRemoverMetodoPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoverMetodoPagamento.Location = new System.Drawing.Point(764, 195);
             this.btnRemoverMetodoPagamento.Name = "btnRemoverMetodoPagamento";
             this.btnRemoverMetodoPagamento.Size = new System.Drawing.Size(163, 35);
@@ -279,7 +294,8 @@
             // 
             // btnSalvarRestaurante
             // 
-            this.btnSalvarRestaurante.Location = new System.Drawing.Point(45, 326);
+            this.btnSalvarRestaurante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSalvarRestaurante.Location = new System.Drawing.Point(36, 446);
             this.btnSalvarRestaurante.Name = "btnSalvarRestaurante";
             this.btnSalvarRestaurante.Size = new System.Drawing.Size(129, 37);
             this.btnSalvarRestaurante.TabIndex = 55;
@@ -289,6 +305,7 @@
             // 
             // btnSalvarCategoria
             // 
+            this.btnSalvarCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarCategoria.Location = new System.Drawing.Point(587, 473);
             this.btnSalvarCategoria.Name = "btnSalvarCategoria";
             this.btnSalvarCategoria.Size = new System.Drawing.Size(123, 28);
@@ -299,6 +316,7 @@
             // 
             // btnSalvarMetodoPagamento
             // 
+            this.btnSalvarMetodoPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarMetodoPagamento.Location = new System.Drawing.Point(595, 222);
             this.btnSalvarMetodoPagamento.Name = "btnSalvarMetodoPagamento";
             this.btnSalvarMetodoPagamento.Size = new System.Drawing.Size(153, 33);
@@ -317,6 +335,9 @@
             // 
             // listBoxRestaurantes
             // 
+            this.listBoxRestaurantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxRestaurantes.FormattingEnabled = true;
             this.listBoxRestaurantes.Location = new System.Drawing.Point(281, 71);
             this.listBoxRestaurantes.Name = "listBoxRestaurantes";
@@ -326,6 +347,8 @@
             // 
             // listBoxMetodosPag
             // 
+            this.listBoxMetodosPag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxMetodosPag.FormattingEnabled = true;
             this.listBoxMetodosPag.Location = new System.Drawing.Point(807, 64);
             this.listBoxMetodosPag.Name = "listBoxMetodosPag";
@@ -335,6 +358,7 @@
             // 
             // listBoxCat
             // 
+            this.listBoxCat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxCat.FormattingEnabled = true;
             this.listBoxCat.Location = new System.Drawing.Point(807, 313);
             this.listBoxCat.Name = "listBoxCat";
@@ -354,6 +378,7 @@
             // 
             // label12
             // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.label12.Location = new System.Drawing.Point(583, 34);
@@ -364,6 +389,7 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.label13.Location = new System.Drawing.Point(583, 292);
