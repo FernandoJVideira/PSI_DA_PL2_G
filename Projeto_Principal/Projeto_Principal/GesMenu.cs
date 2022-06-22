@@ -69,12 +69,16 @@ namespace Projeto_Principal
 
         private void buttonAddEngrediente_Click(object sender, EventArgs e)
         {
-            if(txtIngredientes.Text.Trim() == "") { return; };
+            try
+            {
+                if (txtIngredientes.Text.Trim() == "") { return; };
 
-            txtIngredientes.Text = txtIngredientes.Text.Replace(",", " ");
-            listBoxIngredientes.Items.Add(txtIngredientes.Text);
+                txtIngredientes.Text = txtIngredientes.Text.Replace(",", " ");
+                listBoxIngredientes.Items.Add(txtIngredientes.Text);
 
-            txtIngredientes.Clear();
+                txtIngredientes.Clear();
+            }
+            catch (Exception ex) { }
         }
 
         private void btnRegistar_Click(object sender, EventArgs e)
@@ -88,9 +92,11 @@ namespace Projeto_Principal
                 string nome = txtNome.Text;
                 decimal preco = txtPreco.Value;
 
+                if (nome.Trim() == "" || preco <= 0 || filepath.Trim() == "") { throw new Exception("Preencha todos os campos!"); }
+
                 byte[] imageBytes = File.ReadAllBytes(filepath);
 
-                if(nome.Trim() == "" || preco < 0 || imageBytes == null) { throw new Exception("Preencha todos os campos corretamente"); }
+                if(listBoxIngredientes.Items.Count == 0) { throw new Exception("Adicione Ingredientes!"); }
 
                 foreach (string item in listBoxIngredientes.Items)
                 {
@@ -101,6 +107,7 @@ namespace Projeto_Principal
 
                 itemMenu.Nome = nome;
                 itemMenu.Preco = preco;
+
                 ingredientes = ingredientes.Remove(ingredientes.Length - 2);
                 itemMenu.Ingredientes = ingredientes;
                 itemMenu.CategoriaId = categoria.Id;
@@ -109,11 +116,14 @@ namespace Projeto_Principal
                 model.ItemMenu.Add(itemMenu);
                 model.SaveChanges();
 
+                txtNome.Text = "";
+                txtPreco.Value = 0;
+                filepath = "";
+
                 LerDados();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
@@ -143,33 +153,48 @@ namespace Projeto_Principal
 
         private void buttonRemvEngrediente_Click(object sender, EventArgs e)
         {
+            if(listBoxIngredientes.SelectedItem == null) { MessageBox.Show("Selecione um Item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             listBoxIngredientes.Items.Remove(listBoxIngredientes.SelectedItem);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
-            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
-            listBoxMenu.Items.Add(item);
-            listBoxPratosInativos.Items.Remove(listBoxPratosInativos.SelectedItem);
+            try
+            {
+                ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+                if(item == null) { throw new Exception("Selecione um Item!"); }
 
+                Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
+                listBoxMenu.Items.Add(item);
+                listBoxPratosInativos.Items.Remove(listBoxPratosInativos.SelectedItem);
 
-            item.Restaurante.Add(restaurante);
-            model.SaveChanges();
-
+                item.Restaurante.Add(restaurante);
+                model.SaveChanges();
+                LerDados();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
+                ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
+                if (item == null) { throw new Exception("Selecione um Item!"); }
+                listBoxPratosInativos.Items.Add(item);
+                listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
 
-            Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
-            ItemMenu item = (ItemMenu)listBoxMenu.SelectedItem;
-            listBoxPratosInativos.Items.Add(item);
-            listBoxMenu.Items.Remove(listBoxMenu.SelectedItem);
-
-            item.Restaurante.Remove(restaurante);
-
-
+                item.Restaurante.Remove(restaurante);
+                model.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void GetItemPicture(byte[] imageSource)
@@ -181,40 +206,51 @@ namespace Projeto_Principal
             }
         }
 
-
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            ItemMenu menuItem = (ItemMenu)listBoxPratosInativos.SelectedItem;
-            string ingredientes = "";
-
-            menuItem.Nome = txtNome.Text;
-            string texto = txtPreco.Text;
-            texto = texto.Replace(".", ",");
-            menuItem.Preco = Convert.ToDecimal(texto);
-
-            menuItem.Preco = Convert.ToDecimal(txtPreco.Text);
-            if(filepath != "")
+            try
             {
-                byte[] imageBytes = File.ReadAllBytes(filepath);
+                string ingredientes = "";
+                byte[] imageBytes = null;
+                ItemMenu menuItem = (ItemMenu)listBoxPratosInativos.SelectedItem;
+                if (menuItem == null) { throw new Exception("Selecione um Item!"); }
 
+                if (filepath.Trim() != "")
+                {
+                    imageBytes = File.ReadAllBytes(filepath);
+                }
+                else
+                {
+                    imageBytes = menuItem.Fotografia;
+                }    
 
-                menuItem.Fotografia = imageBytes;
-            }     
+                if (txtNome.Text.Trim() == "" || txtPreco.Value <= 0 || imageBytes == null) { throw new Exception("Preencha todos os campos!"); }
                 
-            foreach (string item in listBoxIngredientes.Items)
-            {
-                if (item.Trim() == "") { return; }
+                menuItem.Nome = txtNome.Text;
+                menuItem.Preco = txtPreco.Value;
+                menuItem.Fotografia = imageBytes;
 
-                ingredientes = ingredientes + item + ", ";
+                foreach (string item in listBoxIngredientes.Items)
+                {
+                    if (item.Trim() == "") { return; }
 
+                    ingredientes = ingredientes + item + ", ";
+                }
+
+                ingredientes = ingredientes.Remove(ingredientes.Length - 2);
+                menuItem.Ingredientes = ingredientes;
+
+                txtNome.Text = "";
+                txtPreco.Value = 0;
+                filepath = "";
+
+                model.SaveChanges();
+                LerDados();
             }
-
-            ingredientes = ingredientes.Remove(ingredientes.Length - 2);
-            menuItem.Ingredientes = ingredientes;
-
-
-            model.SaveChanges();
-            GetData();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SetRestName()
@@ -230,16 +266,17 @@ namespace Projeto_Principal
 
         private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            filepath = "";
             GetData();
         }
 
         private void GetData()
         {
-            listBoxIngredientes.Items.Clear();
-            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
-
-            if (item != null)
+            try
             {
+                listBoxIngredientes.Items.Clear();
+                ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+                
                 txtNome.Text = item.Nome;
                 txtPreco.Text = item.Preco.ToString();
 
@@ -253,22 +290,37 @@ namespace Projeto_Principal
                     listBoxIngredientes.Items.Add(ingrediente.Trim());
                 }
             }
-            
+            catch (Exception)
+            {
+                MessageBox.Show("Selecione um Cliente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+            try
+            {
+                ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
+                if (item == null) { throw new Exception("Selecione um Item!"); }
 
-            if (VerifyPresenceItem(item))
-            {
-                MessageBox.Show("Não pode apagar este Prato pois ele está a ser utilizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (VerifyPresenceItem(item))
+                {
+                    MessageBox.Show("Não pode apagar este Prato pois ele está a ser utilizado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    txtNome.Text = "";
+                    txtPreco.Value = 0;
+                    filepath = "";
+
+                    model.ItemMenu.Remove(item);
+                    model.SaveChanges();
+                    LerDados();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                model.ItemMenu.Remove(item);
-                model.SaveChanges();
-                LerDados();
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

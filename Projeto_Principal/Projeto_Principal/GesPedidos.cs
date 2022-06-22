@@ -14,7 +14,8 @@ namespace Projeto_Principal
     public partial class GesPedidos : Form
     {
         private Model1Container model;
-
+        private NewMenu menu = null;
+        private Button gesRestaurant, gesClientes, gesGlobal, gesMenu;
         private void LoadTheme()
         {
             foreach (Control btns in this.Controls)
@@ -29,8 +30,14 @@ namespace Projeto_Principal
             }
         }
 
-        public GesPedidos()
+        public GesPedidos(NewMenu prevMenu, Button btnGesRestaurant, Button btnGesClientes, Button btnGesRestaurantGlobal, Button btnGesMenu)
         {
+            menu = prevMenu;
+            gesRestaurant = btnGesRestaurant;
+            gesClientes = btnGesClientes;
+            gesGlobal = btnGesRestaurantGlobal;
+            gesMenu = btnGesMenu;
+
             InitializeComponent();
         }
 
@@ -109,27 +116,6 @@ namespace Projeto_Principal
                 }
             }
 
-            if (listaTrabalhadores.Count == 0)
-            {
-                Erro("Não existem trabalhadores registados");
-                this.Close();
-            }
-            else if (listBoxClientes.Items.Count == 0)
-            {
-                Erro("Não existem clientes registados");
-                this.Close();
-            }            
-            else if (listaMetodoPagamentos.Count == 0)
-            {
-                Erro("Não existem metodos de pagamento registados ou ativos");
-                this.Close();
-            }
-            else if (itemsAtivos.Count<ItemMenu>() == 0)
-            {
-                Erro("Não existem pratos registados ou ativos");
-                this.Close();
-            }
-
             //--------------- load Lista menu
 
 
@@ -150,6 +136,27 @@ namespace Projeto_Principal
         {
             LerDados();
             LoadTheme();
+
+            if (listBoxTrabalhadores.Items.Count == 0)
+            {
+                Erro("Não existem trabalhadores registados");
+                menu.OpenChildForm(new GerirRestaurante(), gesRestaurant);
+            }
+            else if (listBoxClientes.Items.Count == 0)
+            {
+                Erro("Não existem clientes registados");
+                menu.OpenChildForm(new GesClientes(), gesClientes);
+            }
+            else if (listBoxMetodosUsados.Items.Count == 0)
+            {
+                Erro("Não existem metodos de pagamento registados ou ativos");
+                menu.OpenChildForm(new GesRestaurantGlobal(), gesGlobal);
+            }
+            else if (listBoxItems.Items.Count == 0)
+            {
+                Erro("Não existem pratos registados ou ativos");
+                menu.OpenChildForm(new GesMenu(menu, gesGlobal), gesMenu);
+            }
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)

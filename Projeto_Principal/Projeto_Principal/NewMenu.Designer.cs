@@ -300,7 +300,9 @@
             this.Controls.Add(this.formPanel);
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.menuPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "NewMenu";
             this.Text = "RestGest";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewMenu_FormClosing);

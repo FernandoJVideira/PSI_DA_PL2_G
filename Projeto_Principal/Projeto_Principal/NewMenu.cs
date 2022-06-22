@@ -92,7 +92,7 @@ namespace Projeto_Principal
 
         private void btnGesPedidos_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GesPedidos(), sender);
+            OpenChildForm(new GesPedidos(this, btnGesRestaurant, btnGesClientes, btnGesRestaurantGlobal, btnGesMenu), sender);
         }
 
         private void btnGesMenu_Click(object sender, EventArgs e)
