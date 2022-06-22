@@ -271,8 +271,6 @@ namespace Projeto_Principal
             {
                 GetData();
             }
-
-
         }
 
         private void GetData()
@@ -297,7 +295,7 @@ namespace Projeto_Principal
             }
             catch (Exception)
             {
-                MessageBox.Show("Selecione item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selecione um Prato", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

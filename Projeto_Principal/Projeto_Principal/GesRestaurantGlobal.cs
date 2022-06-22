@@ -78,7 +78,9 @@ namespace Projeto_Principal
                 model.Morada.Add(morada);
 
                 model.SaveChanges();
+                ClearRestauranteTxt();
                 LerDados();
+                listBoxRestaurantes.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -103,6 +105,8 @@ namespace Projeto_Principal
                 model.Categoria.Add(categoria);
 
                 model.SaveChanges();
+                txtNomeCategoria.Text = "";
+                listBoxCat.SelectedIndex = 0;
                 LerDados();
             }
             catch (Exception ex)
@@ -127,7 +131,9 @@ namespace Projeto_Principal
                 model.MetodoPagamento.Add(metodoPagamento);
 
                 model.SaveChanges();
+                txtNomeMetodoPagamento.Text = "";
                 LerDados();
+                listBoxMetodosPag.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -148,8 +154,9 @@ namespace Projeto_Principal
                 model.Morada.Remove(restaurante.Morada);
                 model.Restaurante.Remove(restaurante);
                 model.SaveChanges();
-
+                ClearRestauranteTxt();
                 LerDados();
+                listBoxRestaurantes.SelectedIndex = 0;
             }
 
         }
@@ -206,8 +213,9 @@ namespace Projeto_Principal
 
                 model.Categoria.Remove(categoria);
                 model.SaveChanges();
-
+                txtNomeCategoria.Text = "";
                 LerDados();
+                listBoxCat.SelectedIndex = 0;
             }
 
 
@@ -240,8 +248,9 @@ namespace Projeto_Principal
             {
                 model.MetodoPagamento.Remove(metodoPagamento);
                 model.SaveChanges();
-
+                txtNomeMetodoPagamento.Text = "";
                 LerDados();
+                listBoxMetodosPag.SelectedIndex = 0;
             }
         }
 
@@ -300,7 +309,9 @@ namespace Projeto_Principal
             morada.Pais = txtPais.Text;
 
             model.SaveChanges();
+            ClearRestauranteTxt();
             LerDados();
+            listBoxRestaurantes.SelectedIndex = 0;
         }
 
         private void btnSalvarCategoria_Click(object sender, EventArgs e)
@@ -311,7 +322,10 @@ namespace Projeto_Principal
             categoria.Ativo = cbDisponibilidadeCategoria.Text == "Disponível" ? true : false;
 
             model.SaveChanges();
+            txtNomeCategoria.Text = "";
+            listBoxCat.SelectedIndex = 0;
             LerDados();
+            listBoxMetodosPag.SelectedIndex = 0;
         }
 
         private void btnSalvarMetodoPagamento_Click(object sender, EventArgs e)
@@ -322,7 +336,20 @@ namespace Projeto_Principal
             metodoPagamento.Ativo = cbDisponibilidadeMetodoPagamento.Text == "Disponível" ? true : false;
 
             model.SaveChanges();
+            txtNomeMetodoPagamento.Text = "";
+            listBoxMetodosPag.SelectedIndex = 0;
             LerDados();
+            listBoxMetodosPag.SelectedIndex = 0;
         }
+
+        private void ClearRestauranteTxt()
+        {
+            txtCidade.Text = "";
+            txtNome.Text = "";
+            txtPais.Text = "";
+            txtRua.Text = "";
+            txtPostalCod.Text = "";
+        }
+
     }
 }
