@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="19fffc057c464f67afa98785574cd599" Name="Diagram1" ZoomLevel="94" >
+        <EntityTypeShape EntityType="Model1.Pessoa" Width="1.5" PointX="3.625" PointY="1.25" />
+        <EntityTypeShape EntityType="Model1.Cliente" Width="1.5" PointX="1.75" PointY="3.875" />
+        <InheritanceConnector EntityType="Model1.Cliente" />
+        <EntityTypeShape EntityType="Model1.Trabalhador" Width="1.5" PointX="5.25" PointY="3.875" />
+        <InheritanceConnector EntityType="Model1.Trabalhador" />
+        <EntityTypeShape EntityType="Model1.Morada" Width="1.5" PointX="7.875" PointY="0.875" />
+        <EntityTypeShape EntityType="Model1.Restaurante" Width="1.5" PointX="9.875" PointY="4" />
+        <AssociationConnector Association="Model1.RestauranteMorada" />
+        <AssociationConnector Association="Model1.PessoaMorada" />
+        <AssociationConnector Association="Model1.RestauranteTrabalhador" />
+        <EntityTypeShape EntityType="Model1.Pedido" Width="1.5" PointX="5.625" PointY="6.5" />
+        <AssociationConnector Association="Model1.PedidoTrabalhador" />
+        <AssociationConnector Association="Model1.PedidoCliente" />
+        <EntityTypeShape EntityType="Model1.Estado" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="Model1.EstadoPedido" />
+        <EntityTypeShape EntityType="Model1.Pagamento" PointX="1" PointY="9.25" Width="1.5" />
+        <EntityTypeShape EntityType="Model1.MetodoPagamento" PointX="2.25" PointY="11.75" Width="1.5" />
+        <AssociationConnector Association="Model1.PagamentoMetodoPagamento" />
+        <EntityTypeShape EntityType="Model1.ItemMenu" Width="1.5" PointX="10.625" PointY="6.75" />
+        <AssociationConnector Association="Model1.ItemMenuPedido" />
+        <EntityTypeShape EntityType="Model1.Categoria" Width="1.5" PointX="11.75" PointY="10.125" />
+        <AssociationConnector Association="Model1.CategoriaItemMenu" />
+        <AssociationConnector Association="Model1.RestauranteItemMenu" />
+        <AssociationConnector Association="Model1.PedidoPagamento" />
+        <AssociationConnector Association="Model1.RestaurantePedido" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestGuest.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="RestGuestStoreContainer">
+    <EntitySet Name="Pessoas" EntityType="RestGuest.Store.Pessoas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Moradas" EntityType="RestGuest.Store.Moradas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoas_Cliente" EntityType="RestGuest.Store.Pessoas_Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pessoas_Trabalhador" EntityType="RestGuest.Store.Pessoas_Trabalhador" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PessoaMorada" Association="RestGuest.Store.PessoaMorada">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Morada" EntitySet="Moradas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_inherits_Pessoa" Association="RestGuest.Store.FK_Cliente_inherits_Pessoa">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Cliente" EntitySet="Pessoas_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabalhador_inherits_Pessoa" Association="RestGuest.Store.FK_Trabalhador_inherits_Pessoa">
+      <End Role="Pessoa" EntitySet="Pessoas" />
+      <End Role="Trabalhador" EntitySet="Pessoas_Trabalhador" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pessoas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telemovel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Morada_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Moradas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rua" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cidade" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodPost" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pais" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas_Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TotalGasto" Type="decimal" Nullable="false" />
+    <Property Name="NumCont" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas_Trabalhador">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Salario" Type="decimal" Nullable="false" />
+    <Property Name="Posicao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdRestaurante" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PessoaMorada">
+    <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="*" />
+    <End Role="Morada" Type="RestGuest.Store.Moradas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Morada">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pessoa">
+        <PropertyRef Name="Morada_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_inherits_Pessoa">
+    <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="RestGuest.Store.Pessoas_Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabalhador_inherits_Pessoa">
+    <End Role="Pessoa" Type="RestGuest.Store.Pessoas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trabalhador" Type="RestGuest.Store.Pessoas_Trabalhador" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trabalhador">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
