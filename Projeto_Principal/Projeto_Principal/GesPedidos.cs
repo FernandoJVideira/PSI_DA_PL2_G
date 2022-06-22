@@ -129,34 +129,12 @@ namespace Projeto_Principal
 
             comboBox1.DataSource = listaMetodoPagamentos;
 
-            
         }
 
         private void GesPedidos_Load(object sender, EventArgs e)
         {
             LerDados();
             LoadTheme();
-
-            if (listBoxTrabalhadores.Items.Count == 0)
-            {
-                Erro("Não existem trabalhadores registados");
-                menu.OpenChildForm(new GerirRestaurante(), gesRestaurant);
-            }
-            else if (listBoxClientes.Items.Count == 0)
-            {
-                Erro("Não existem clientes registados");
-                menu.OpenChildForm(new GesClientes(), gesClientes);
-            }
-            else if (listBoxMetodosUsados.Items.Count == 0)
-            {
-                Erro("Não existem metodos de pagamento registados ou ativos");
-                menu.OpenChildForm(new GesRestaurantGlobal(), gesGlobal);
-            }
-            else if (listBoxItems.Items.Count == 0)
-            {
-                Erro("Não existem pratos registados ou ativos");
-                menu.OpenChildForm(new GesMenu(menu, gesGlobal), gesMenu);
-            }
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)

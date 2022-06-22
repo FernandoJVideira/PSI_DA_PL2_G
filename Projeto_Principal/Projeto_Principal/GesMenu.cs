@@ -162,7 +162,7 @@ namespace Projeto_Principal
             try
             {
                 ItemMenu item = (ItemMenu)listBoxPratosInativos.SelectedItem;
-                if(item == null) { throw new Exception("Selecione um Item!"); }
+                if (item == null) { return; }
 
                 Restaurante restaurante = model.Restaurante.Find(NewMenu.IdRestaurante);
                 listBoxMenu.Items.Add(item);
@@ -267,7 +267,12 @@ namespace Projeto_Principal
         private void listBoxPratosInativos_SelectedIndexChanged(object sender, EventArgs e)
         {
             filepath = "";
-            GetData();
+            if (listBoxPratosInativos.Items.Count != 0 && listBoxPratosInativos.SelectedItem != null)
+            {
+                GetData();
+            }
+
+
         }
 
         private void GetData()
@@ -292,7 +297,7 @@ namespace Projeto_Principal
             }
             catch (Exception)
             {
-                MessageBox.Show("Selecione um Cliente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selecione item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

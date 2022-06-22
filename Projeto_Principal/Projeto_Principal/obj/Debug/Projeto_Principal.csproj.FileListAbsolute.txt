@@ -155,7 +155,6 @@ C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\bi
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.AssemblyReference.cache
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.SuggestedBindingRedirects.cache
-C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.MainMenu.resources
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GerirRestaurante.resources
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesClientes.resources
 C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesMenu.resources
@@ -196,3 +195,4 @@ D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.History.resources
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.NewMenu.resources
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.NewMenu.resources
+C:\Users\rodri\Documents\GitHub\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.NewMenu.resources
