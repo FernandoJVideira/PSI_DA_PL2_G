@@ -129,15 +129,5 @@ namespace Projeto_Principal.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap waiter_holding_tray_in_hotel {
-            get {
-                object obj = ResourceManager.GetObject("waiter-holding-tray-in-hotel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

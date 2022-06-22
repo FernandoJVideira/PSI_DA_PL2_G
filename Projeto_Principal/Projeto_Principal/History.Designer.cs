@@ -38,9 +38,6 @@
             // 
             // listBoxHistory
             // 
-            this.listBoxHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxHistory.FormattingEnabled = true;
             this.listBoxHistory.Location = new System.Drawing.Point(36, 54);
             this.listBoxHistory.Name = "listBoxHistory";
@@ -49,8 +46,6 @@
             // 
             // buttonView
             // 
-            this.buttonView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonView.Location = new System.Drawing.Point(36, 402);
             this.buttonView.Name = "buttonView";
             this.buttonView.Size = new System.Drawing.Size(373, 23);
@@ -61,8 +56,6 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(33, 26);
             this.label1.Name = "label1";
@@ -72,8 +65,6 @@
             // 
             // labelTotal
             // 
-            this.labelTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTotal.AutoSize = true;
             this.labelTotal.Location = new System.Drawing.Point(356, 29);
             this.labelTotal.Name = "labelTotal";
@@ -83,8 +74,6 @@
             // 
             // comboBoxEstados
             // 
-            this.comboBoxEstados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEstados.FormattingEnabled = true;
             this.comboBoxEstados.Items.AddRange(new object[] {
             "Todos"});

@@ -61,8 +61,6 @@
             // 
             // listBoxMenu
             // 
-            this.listBoxMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxMenu.FormattingEnabled = true;
             this.listBoxMenu.Location = new System.Drawing.Point(697, 101);
             this.listBoxMenu.Name = "listBoxMenu";
@@ -71,7 +69,6 @@
             // 
             // lblNomeRestaurante
             // 
-            this.lblNomeRestaurante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNomeRestaurante.AutoSize = true;
             this.lblNomeRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblNomeRestaurante.Location = new System.Drawing.Point(693, 27);
@@ -107,7 +104,6 @@
             // 
             // btnRegistar
             // 
-            this.btnRegistar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRegistar.Location = new System.Drawing.Point(70, 443);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(85, 23);
@@ -118,7 +114,6 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Location = new System.Drawing.Point(697, 463);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(257, 23);
@@ -129,9 +124,6 @@
             // 
             // listBoxPratosInativos
             // 
-            this.listBoxPratosInativos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxPratosInativos.FormattingEnabled = true;
             this.listBoxPratosInativos.Location = new System.Drawing.Point(377, 230);
             this.listBoxPratosInativos.Name = "listBoxPratosInativos";
@@ -141,8 +133,6 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(377, 469);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(244, 23);
@@ -172,8 +162,6 @@
             // 
             // listBoxIngredientes
             // 
-            this.listBoxIngredientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxIngredientes.FormattingEnabled = true;
             this.listBoxIngredientes.Location = new System.Drawing.Point(70, 314);
             this.listBoxIngredientes.Name = "listBoxIngredientes";
@@ -221,7 +209,6 @@
             // 
             // buttonRemvEngrediente
             // 
-            this.buttonRemvEngrediente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonRemvEngrediente.Location = new System.Drawing.Point(70, 402);
             this.buttonRemvEngrediente.Name = "buttonRemvEngrediente";
             this.buttonRemvEngrediente.Size = new System.Drawing.Size(187, 23);
@@ -260,7 +247,6 @@
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAtualizar.Location = new System.Drawing.Point(167, 443);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(91, 23);
@@ -271,7 +257,6 @@
             // 
             // itemPic
             // 
-            this.itemPic.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.itemPic.Location = new System.Drawing.Point(392, 40);
             this.itemPic.Margin = new System.Windows.Forms.Padding(2);
             this.itemPic.Name = "itemPic";
@@ -283,7 +268,6 @@
             // 
             // lblNomeRest
             // 
-            this.lblNomeRest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNomeRest.AutoSize = true;
             this.lblNomeRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblNomeRest.Location = new System.Drawing.Point(752, 61);
@@ -294,8 +278,6 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Location = new System.Drawing.Point(377, 440);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(244, 23);
@@ -306,7 +288,6 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Location = new System.Drawing.Point(71, 481);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(187, 23);
