@@ -13,8 +13,11 @@ namespace Projeto_Principal
     public partial class SelectRestaurant : Form
     {
         private Model1Container model;
-        public SelectRestaurant()
+        private NewMenu menu = null;
+
+        public SelectRestaurant(NewMenu prevMenu)
         {
+            menu = prevMenu;
             InitializeComponent();
         }
 
@@ -55,6 +58,7 @@ namespace Projeto_Principal
                 NewMenu.IdRestaurante = restaurante.Id;
                 GesMenu.IdRestaurante = restaurante.Id;
                 MessageBox.Show($"Restaurante {restaurante.Nome} Selecionado", "Seleção com Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                menu.CheckID();
             }
             else
             {

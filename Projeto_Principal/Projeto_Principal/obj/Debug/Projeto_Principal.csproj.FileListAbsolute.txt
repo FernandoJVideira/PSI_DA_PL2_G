@@ -88,7 +88,6 @@ E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\bi
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\bin\Debug\EntityFramework.SqlServer.xml
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.AssemblyReference.cache
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.csproj.SuggestedBindingRedirects.cache
-E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.MainMenu.resources
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GerirRestaurante.resources
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesClientes.resources
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.GesMenu.resources
@@ -196,3 +195,4 @@ D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.pdb
 E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.History.resources
 D:\Yes\ProjetoDA\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.NewMenu.resources
+E:\DA\Projeto\ProjetoDA\Projeto_Principal\Projeto_Principal\Projeto_Principal\obj\Debug\Projeto_Principal.NewMenu.resources

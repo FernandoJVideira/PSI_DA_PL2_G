@@ -262,9 +262,6 @@ namespace Projeto_Principal
 
             listBoxItems.Items.Add(listBoxMenu.SelectedItem);
             listBoxMenu.SelectedItem = null;
- 
-
-
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -327,13 +324,11 @@ namespace Projeto_Principal
 
             try
             {
-                string texto = textBoxValor.Text;
-                texto = texto.Replace(".", ",");
-                pagamento.Valor = Convert.ToDecimal(texto);
+                pagamento.Valor = Convert.ToDecimal(textBoxValor.Value);
                 pagamento.MetodoPagamento = (MetodoPagamento)comboBox1.SelectedItem;
                 pagamento.PedidoId = pedido.Id;
 
-                if (Total < Convert.ToDecimal(texto) || 0 >= Convert.ToDecimal(texto))
+                if (Total < textBoxValor.Value || 0 >= textBoxValor.Value)
                 {
                     MessageBox.Show("Valor introduzido acima do valor do pedido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -346,7 +341,7 @@ namespace Projeto_Principal
                 listBoxMetodosUsados.Items.Add(pagamento);
                 listBoxPayment.Visible = false;
                 labelinfo.Visible = true;
-                textBoxValor.Clear();
+                textBoxValor.Value = 0;
 
             }
             catch (Exception)

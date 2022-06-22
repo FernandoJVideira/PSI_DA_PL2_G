@@ -44,7 +44,6 @@ namespace Projeto_Principal
             {
                 if(currentButton != (Button)btnSender)
                 {
-                    CheckID();
                     DisableButton();
                     Color color = SelectThemeColor();
                     currentButton = (Button)btnSender;
@@ -73,7 +72,7 @@ namespace Projeto_Principal
             }
         }
 
-        private void OpenChildForm(Form childForm, object btnSender)
+        public void OpenChildForm(Form childForm, object btnSender)
         {
             if(activeForm != null)
             {
@@ -98,7 +97,7 @@ namespace Projeto_Principal
 
         private void btnGesMenu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GesMenu(), sender);
+            OpenChildForm(new GesMenu(this, btnGesRestaurantGlobal), sender);
         }
 
         private void btnGesRestaurant_Click(object sender, EventArgs e)
@@ -113,7 +112,7 @@ namespace Projeto_Principal
 
         private void btnSelectRestaurante_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new SelectRestaurant(), sender);
+            OpenChildForm(new SelectRestaurant(this), sender);
         }
 
         private void btnGesClientes_Click(object sender, EventArgs e)
@@ -176,7 +175,7 @@ namespace Projeto_Principal
             btnClose.Visible = false;
         }
 
-        private void CheckID()
+        public void CheckID()
         {
             if (IdRestaurante != 0)
             {
@@ -186,9 +185,13 @@ namespace Projeto_Principal
                 btnGesRestaurant.Enabled = true;
                 btnGesMenu.Enabled = true;
 
-                lblNomeRestaurante.Text = restaurante.Nome;
-                lblDesc.Visible = false;
+                lblDesc.Text = $"Restaurante selecionado: {restaurante.Nome}";
             }
+        }
+
+        private void NewMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(1);
         }
     }
 }

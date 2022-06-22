@@ -30,21 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewMenu));
             this.menuPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.LogoPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.topPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblNomeRestaurante = new System.Windows.Forms.Label();
-            this.lblDesc = new System.Windows.Forms.Label();
-            this.formPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnGesClientes = new System.Windows.Forms.Button();
             this.btnSelectRestaurante = new System.Windows.Forms.Button();
             this.btnGesRestaurantGlobal = new System.Windows.Forms.Button();
             this.btnGesRestaurant = new System.Windows.Forms.Button();
             this.btnGesMenu = new System.Windows.Forms.Button();
             this.btnGesPedidos = new System.Windows.Forms.Button();
+            this.LogoPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.topPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblNomeRestaurante = new System.Windows.Forms.Label();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.formPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.menuPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.topPanel.SuspendLayout();
@@ -67,107 +67,6 @@
             this.menuPanel.ShadowDecoration.Parent = this.menuPanel;
             this.menuPanel.Size = new System.Drawing.Size(220, 625);
             this.menuPanel.TabIndex = 0;
-            // 
-            // LogoPanel
-            // 
-            this.LogoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.LogoPanel.Controls.Add(this.label5);
-            this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LogoPanel.Location = new System.Drawing.Point(0, 0);
-            this.LogoPanel.Name = "LogoPanel";
-            this.LogoPanel.ShadowDecoration.Parent = this.LogoPanel;
-            this.LogoPanel.Size = new System.Drawing.Size(220, 80);
-            this.LogoPanel.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(186, 46);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "RestGest";
-            // 
-            // topPanel
-            // 
-            this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.topPanel.Controls.Add(this.btnClose);
-            this.topPanel.Controls.Add(this.lblTitle);
-            this.topPanel.Controls.Add(this.label1);
-            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topPanel.Location = new System.Drawing.Point(220, 0);
-            this.topPanel.Name = "topPanel";
-            this.topPanel.ShadowDecoration.Parent = this.topPanel;
-            this.topPanel.Size = new System.Drawing.Size(1013, 80);
-            this.topPanel.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(404, 16);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(138, 46);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "MENU";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(427, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 26);
-            this.label1.TabIndex = 0;
-            // 
-            // lblNomeRestaurante
-            // 
-            this.lblNomeRestaurante.AutoSize = true;
-            this.lblNomeRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeRestaurante.Location = new System.Drawing.Point(34, 54);
-            this.lblNomeRestaurante.Name = "lblNomeRestaurante";
-            this.lblNomeRestaurante.Size = new System.Drawing.Size(314, 31);
-            this.lblNomeRestaurante.TabIndex = 2;
-            this.lblNomeRestaurante.Text = "Bem-Vindo ao RestGest!";
-            // 
-            // lblDesc
-            // 
-            this.lblDesc.AutoSize = true;
-            this.lblDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesc.Location = new System.Drawing.Point(37, 92);
-            this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(238, 17);
-            this.lblDesc.TabIndex = 3;
-            this.lblDesc.Text = "Por Favor selecione um restaurante.";
-            // 
-            // formPanel
-            // 
-            this.formPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.formPanel.Controls.Add(this.lblNomeRestaurante);
-            this.formPanel.Controls.Add(this.lblDesc);
-            this.formPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formPanel.Location = new System.Drawing.Point(220, 80);
-            this.formPanel.Name = "formPanel";
-            this.formPanel.ShadowDecoration.Parent = this.formPanel;
-            this.formPanel.Size = new System.Drawing.Size(1013, 545);
-            this.formPanel.TabIndex = 4;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::Projeto_Principal.Properties.Resources.close;
-            this.btnClose.Location = new System.Drawing.Point(0, 0);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(83, 80);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnGesClientes
             // 
@@ -292,6 +191,107 @@
             this.btnGesPedidos.UseVisualStyleBackColor = true;
             this.btnGesPedidos.Click += new System.EventHandler(this.btnGesPedidos_Click);
             // 
+            // LogoPanel
+            // 
+            this.LogoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.LogoPanel.Controls.Add(this.label5);
+            this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LogoPanel.Location = new System.Drawing.Point(0, 0);
+            this.LogoPanel.Name = "LogoPanel";
+            this.LogoPanel.ShadowDecoration.Parent = this.LogoPanel;
+            this.LogoPanel.Size = new System.Drawing.Size(220, 80);
+            this.LogoPanel.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(12, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(186, 46);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "RestGest";
+            // 
+            // topPanel
+            // 
+            this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.topPanel.Controls.Add(this.btnClose);
+            this.topPanel.Controls.Add(this.lblTitle);
+            this.topPanel.Controls.Add(this.label1);
+            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topPanel.Location = new System.Drawing.Point(220, 0);
+            this.topPanel.Name = "topPanel";
+            this.topPanel.ShadowDecoration.Parent = this.topPanel;
+            this.topPanel.Size = new System.Drawing.Size(1013, 80);
+            this.topPanel.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::Projeto_Principal.Properties.Resources.close;
+            this.btnClose.Location = new System.Drawing.Point(0, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(83, 80);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(404, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(138, 46);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "MENU";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(427, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 26);
+            this.label1.TabIndex = 0;
+            // 
+            // lblNomeRestaurante
+            // 
+            this.lblNomeRestaurante.AutoSize = true;
+            this.lblNomeRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeRestaurante.Location = new System.Drawing.Point(34, 54);
+            this.lblNomeRestaurante.Name = "lblNomeRestaurante";
+            this.lblNomeRestaurante.Size = new System.Drawing.Size(314, 31);
+            this.lblNomeRestaurante.TabIndex = 2;
+            this.lblNomeRestaurante.Text = "Bem-Vindo ao RestGest!";
+            // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDesc.Location = new System.Drawing.Point(37, 92);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(238, 17);
+            this.lblDesc.TabIndex = 3;
+            this.lblDesc.Text = "Por Favor selecione um restaurante.";
+            // 
+            // formPanel
+            // 
+            this.formPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.formPanel.Controls.Add(this.lblNomeRestaurante);
+            this.formPanel.Controls.Add(this.lblDesc);
+            this.formPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formPanel.Location = new System.Drawing.Point(220, 80);
+            this.formPanel.Name = "formPanel";
+            this.formPanel.ShadowDecoration.Parent = this.formPanel;
+            this.formPanel.Size = new System.Drawing.Size(1013, 545);
+            this.formPanel.TabIndex = 4;
+            // 
             // NewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +303,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewMenu";
             this.Text = "RestGest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewMenu_FormClosing);
             this.Load += new System.EventHandler(this.NewMenu_Load);
             this.menuPanel.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);

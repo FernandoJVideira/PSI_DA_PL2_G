@@ -41,14 +41,12 @@ namespace Projeto_Principal
                 if (pessoa is Trabalhador)
                 {
                     Trabalhador trabalhador = (Trabalhador)pessoa;
+
                     if(trabalhador.RestauranteId == NewMenu.IdRestaurante)
                     {
                         listaTrabalhadores.Add(trabalhador);
-
                     }
                 }
-
-                // falta verificar se pertence ao restaurante selecionado
             }
 
             dataGridViewTrabalhadores.DataSource = listaTrabalhadores;
@@ -61,19 +59,29 @@ namespace Projeto_Principal
 
             try
             {
-                morada.Rua = txtRua.Text;
-                morada.Cidade = txtCidade.Text;
-                morada.Pais = txtPais.Text;
-                morada.CodPostal = txtPostalCod.Text;
-                
-                trabalhador.Posicao = txtPosicao.Text;
+                string rua = txtRua.Text;
+                string cidade = txtCidade.Text;
+                string pais = txtPais.Text;
+                string codpostal = txtPostalCod.Text;
 
-                string texto = txtSalario.Text;
-                texto = texto.Replace(".", ",");
-                trabalhador.Salario = Convert.ToDecimal(texto);
+                string nome = txtNome.Text;
+                string tele = txtTelemovel.Text;
+                string posicao = txtPosicao.Text;
+
+                if (nome.Trim() == "" || tele.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "" || posicao.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal"); }
+                if (!txtTelemovel.MaskCompleted) { txtTelemovel.Focus(); throw new Exception("Preencha corretamente o número de telemóvel"); }
+
+                morada.Rua = rua;
+                morada.Cidade = cidade;
+                morada.Pais = pais;
+                morada.CodPostal = codpostal;
+                trabalhador.Posicao = posicao;
+
+                trabalhador.Salario = txtSalario.Value;
                 trabalhador.Morada = morada;
-                trabalhador.Nome = txtNome.Text;
-                trabalhador.Telemovel = txtTelemovel.Text;
+                trabalhador.Nome = nome;
+                trabalhador.Telemovel = tele;
                 trabalhador.RestauranteId = NewMenu.IdRestaurante;
 
                 model.Morada.Add(morada);
@@ -85,17 +93,25 @@ namespace Projeto_Principal
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private Trabalhador GetSelectedTrabalhador()
         {
-            int row = dataGridViewTrabalhadores.SelectedCells[0].RowIndex;
-            int id = (int)dataGridViewTrabalhadores.Rows[row].Cells["id"].Value;
-            Trabalhador data = model.Pessoa.First(c => c.Id == id) as Trabalhador;
+            try
+            {
+                int row = dataGridViewTrabalhadores.SelectedCells[0].RowIndex;
+                int id = (int)dataGridViewTrabalhadores.Rows[row].Cells["id"].Value;
+                Trabalhador data = model.Pessoa.First(c => c.Id == id) as Trabalhador;
 
-            return data;
+                return data;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Selecione um Funcionário!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
         private void txtRemove_Click(object sender, EventArgs e)
@@ -138,27 +154,44 @@ namespace Projeto_Principal
 
         private void btnAtualizarDados_Click(object sender, EventArgs e)
         {
-            Trabalhador userdata = GetSelectedTrabalhador();
+            try
+            {
+                Trabalhador userdata = GetSelectedTrabalhador();
+                if(userdata == null) { return; }
 
-            userdata.Nome = txtNome.Text;
-            userdata.Telemovel = txtTelemovel.Text;
-            userdata.Morada.Cidade = txtCidade.Text;
+                string rua = txtRua.Text;
+                string cidade = txtCidade.Text;
+                string pais = txtPais.Text;
+                string codpostal = txtPostalCod.Text;
 
+                string nome = txtNome.Text;
+                string tele = txtTelemovel.Text;
+                string posicao = txtPosicao.Text;
 
-            string texto = txtSalario.Text;
-            texto = texto.Replace(".", ",");
-            userdata.Salario = Convert.ToDecimal(texto);
+                if (nome.Trim() == "" || tele.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "" || posicao.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal"); }
+                if (!txtTelemovel.MaskCompleted) { txtTelemovel.Focus(); throw new Exception("Preencha corretamente o número de telemóvel"); }
 
-            userdata.Posicao = txtPosicao.Text;
+                userdata.Morada.Rua = rua;
+                userdata.Morada.Cidade = cidade;
+                userdata.Morada.Pais = pais;
+                userdata.Morada.CodPostal = codpostal;
+                userdata.Posicao = posicao;
 
-            userdata.Morada.CodPostal = txtPostalCod.Text;
-            userdata.Morada.Rua = txtRua.Text;
-            userdata.Morada.Pais = txtPais.Text;
+                userdata.Salario = txtSalario.Value;
+                userdata.Nome = nome;
+                userdata.Telemovel = tele;
+                userdata.RestauranteId = NewMenu.IdRestaurante;
 
-            model.SaveChanges();
+                model.SaveChanges();
 
-            LerDados();
-            ClearTxb();
+                LerDados();
+                ClearTxb();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dataGridViewTrabalhadores_CellClick(object sender, DataGridViewCellEventArgs e)

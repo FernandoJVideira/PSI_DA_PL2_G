@@ -61,6 +61,7 @@ namespace Projeto_Principal
                 string codpostal = txtPostalCod.Text;
 
                 if (nome.Trim() == "" || rua.Trim() == "" || cidade.Trim() == "" || pais.Trim() == "" || codpostal.Trim() == "") { throw new Exception("Preencha todos os campos"); }
+                if (!txtPostalCod.MaskCompleted) { txtPostalCod.Focus(); throw new Exception("Preencha corretamente o código postal"); }
 
                 Restaurante restaurante = new Restaurante();
                 Morada morada = new Morada();

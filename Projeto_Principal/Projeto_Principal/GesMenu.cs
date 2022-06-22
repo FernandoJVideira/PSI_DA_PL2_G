@@ -14,11 +14,15 @@ namespace Projeto_Principal
     public partial class GesMenu : Form
     {
         private Model1Container model;
+        private NewMenu menu = null;
+        private Button gesBtn = null;
         private static string filepath = "";
         public static int IdRestaurante = 0;
 
-        public GesMenu()
+        public GesMenu(NewMenu prevMenu, Button btn)
         {
+            menu = prevMenu;
+            gesBtn = btn;
             InitializeComponent();
         }
 
@@ -50,12 +54,10 @@ namespace Projeto_Principal
 
             IEnumerable<ItemMenu> itemsInativos = model.ItemMenu.ToList<ItemMenu>().Except<ItemMenu>(itemsAtivos);
 
-
             foreach (ItemMenu item in itemsInativos)
             {
                 listBoxPratosInativos.Items.Add(item);
             }
-
 
             foreach (ItemMenu item in itemsAtivos)
             {
@@ -63,20 +65,16 @@ namespace Projeto_Principal
             }
 
             comboBoxCategoria.DataSource = model.Categoria.ToList<Categoria>();
-
-
-
         }
 
         private void buttonAddEngrediente_Click(object sender, EventArgs e)
         {
             if(txtIngredientes.Text.Trim() == "") { return; };
 
+            txtIngredientes.Text = txtIngredientes.Text.Replace(",", " ");
             listBoxIngredientes.Items.Add(txtIngredientes.Text);
 
             txtIngredientes.Clear();
-
-
         }
 
         private void btnRegistar_Click(object sender, EventArgs e)
@@ -88,9 +86,7 @@ namespace Projeto_Principal
             try
             {
                 string nome = txtNome.Text;
-                string texto = txtPreco.Text;
-                texto = texto.Replace(".", ",");
-                decimal preco = Convert.ToDecimal(texto);
+                decimal preco = txtPreco.Value;
 
                 byte[] imageBytes = File.ReadAllBytes(filepath);
 
@@ -101,7 +97,6 @@ namespace Projeto_Principal
                     if (item.Trim() == "") { return; }
 
                     ingredientes = ingredientes + item + ", ";
-
                 }
 
                 itemMenu.Nome = nome;
@@ -139,10 +134,10 @@ namespace Projeto_Principal
             openFileDialog.Filter = "All Images|*.jpg; *.bmp; *.png";
             openFileDialog.ShowDialog(this);
 
-
             if (openFileDialog.FileName.ToString() != "")  
             {
                 filepath = openFileDialog.FileName.ToString();
+                itemPic.Image = Image.FromFile(filepath);
             }
         }
 
@@ -179,13 +174,11 @@ namespace Projeto_Principal
 
         private void GetItemPicture(byte[] imageSource)
         {
-            Bitmap resizedImg;
             using (MemoryStream stream = new MemoryStream(imageSource))
             {
                 Bitmap image = new Bitmap(stream);
-                resizedImg = new Bitmap(image, new Size(150,150));
+                itemPic.Image = image;
             }
-            itemPic.Image = resizedImg;
         }
 
 
@@ -301,17 +294,10 @@ namespace Projeto_Principal
             return false;
         }
 
-        private void ShowMenuForm(Form form)
-        {
-            form.Show();
-            this.Close();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
-            ShowMenuForm(new GesRestaurantGlobal());
-
+            menu.OpenChildForm(new GesRestaurantGlobal(), gesBtn);
+            this.Close();
         }
     }
 }

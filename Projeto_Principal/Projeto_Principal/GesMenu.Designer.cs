@@ -49,14 +49,14 @@
             this.buttonRemvEngrediente = new System.Windows.Forms.Button();
             this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelpath = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.itemPic = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.lblNomeRest = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtPreco = new System.Windows.Forms.MaskedTextBox();
+            this.txtPreco = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPreco)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxMenu
@@ -143,7 +143,7 @@
             // 
             // btnAddFoto
             // 
-            this.btnAddFoto.Location = new System.Drawing.Point(227, 176);
+            this.btnAddFoto.Location = new System.Drawing.Point(147, 176);
             this.btnAddFoto.Name = "btnAddFoto";
             this.btnAddFoto.Size = new System.Drawing.Size(30, 23);
             this.btnAddFoto.TabIndex = 10;
@@ -187,7 +187,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 113);
+            this.label6.Location = new System.Drawing.Point(177, 115);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 15;
@@ -234,17 +234,6 @@
             this.label1.TabIndex = 40;
             this.label1.Text = "Categoria";
             // 
-            // labelpath
-            // 
-            this.labelpath.AutoSize = true;
-            this.labelpath.Location = new System.Drawing.Point(133, 181);
-            this.labelpath.MaximumSize = new System.Drawing.Size(100, 0);
-            this.labelpath.Name = "labelpath";
-            this.labelpath.Size = new System.Drawing.Size(50, 13);
-            this.labelpath.TabIndex = 41;
-            this.labelpath.Text = "labelpath";
-            this.labelpath.Visible = false;
-            // 
             // btnAtualizar
             // 
             this.btnAtualizar.Location = new System.Drawing.Point(167, 443);
@@ -262,7 +251,8 @@
             this.itemPic.Name = "itemPic";
             this.itemPic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.itemPic.ShadowDecoration.Parent = this.itemPic;
-            this.itemPic.Size = new System.Drawing.Size(147, 144);
+            this.itemPic.Size = new System.Drawing.Size(144, 144);
+            this.itemPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.itemPic.TabIndex = 44;
             this.itemPic.TabStop = false;
             // 
@@ -298,11 +288,18 @@
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(106, 110);
-            this.txtPreco.Mask = "000.00";
+            this.txtPreco.DecimalPlaces = 2;
+            this.txtPreco.Location = new System.Drawing.Point(105, 111);
+            this.txtPreco.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(49, 20);
-            this.txtPreco.TabIndex = 48;
+            this.txtPreco.Size = new System.Drawing.Size(72, 20);
+            this.txtPreco.TabIndex = 49;
+            this.txtPreco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPreco.ThousandsSeparator = true;
             // 
             // GesMenu
             // 
@@ -315,7 +312,6 @@
             this.Controls.Add(this.lblNomeRest);
             this.Controls.Add(this.itemPic);
             this.Controls.Add(this.btnAtualizar);
-            this.Controls.Add(this.labelpath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxCategoria);
             this.Controls.Add(this.buttonRemvEngrediente);
@@ -340,6 +336,7 @@
             this.Text = "Gerir Menus";
             this.Load += new System.EventHandler(this.GesMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPreco)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,12 +364,11 @@
         private System.Windows.Forms.Button buttonAddEngrediente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
-        private System.Windows.Forms.Label labelpath;
         private System.Windows.Forms.Button btnAtualizar;
         private Guna.UI2.WinForms.Guna2CirclePictureBox itemPic;
         private System.Windows.Forms.Label lblNomeRest;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.MaskedTextBox txtPreco;
+        private System.Windows.Forms.NumericUpDown txtPreco;
     }
 }

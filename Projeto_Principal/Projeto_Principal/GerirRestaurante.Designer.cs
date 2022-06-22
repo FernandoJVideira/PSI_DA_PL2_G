@@ -48,9 +48,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTelemovel = new System.Windows.Forms.MaskedTextBox();
             this.txtPostalCod = new System.Windows.Forms.MaskedTextBox();
-            this.txtSalario = new System.Windows.Forms.MaskedTextBox();
             this.btnAtualizarDados = new System.Windows.Forms.Button();
+            this.txtSalario = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalario)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRemove
@@ -209,14 +210,6 @@
             this.txtPostalCod.Size = new System.Drawing.Size(123, 20);
             this.txtPostalCod.TabIndex = 47;
             // 
-            // txtSalario
-            // 
-            this.txtSalario.Location = new System.Drawing.Point(140, 326);
-            this.txtSalario.Mask = "0000.00";
-            this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(123, 20);
-            this.txtSalario.TabIndex = 70;
-            // 
             // btnAtualizarDados
             // 
             this.btnAtualizarDados.Location = new System.Drawing.Point(49, 433);
@@ -227,13 +220,28 @@
             this.btnAtualizarDados.UseVisualStyleBackColor = true;
             this.btnAtualizarDados.Click += new System.EventHandler(this.btnAtualizarDados_Click);
             // 
+            // txtSalario
+            // 
+            this.txtSalario.DecimalPlaces = 2;
+            this.txtSalario.Location = new System.Drawing.Point(140, 327);
+            this.txtSalario.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtSalario.Name = "txtSalario";
+            this.txtSalario.Size = new System.Drawing.Size(123, 20);
+            this.txtSalario.TabIndex = 72;
+            this.txtSalario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSalario.ThousandsSeparator = true;
+            // 
             // GerirRestaurante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 545);
-            this.Controls.Add(this.btnAtualizarDados);
             this.Controls.Add(this.txtSalario);
+            this.Controls.Add(this.btnAtualizarDados);
             this.Controls.Add(this.txtPostalCod);
             this.Controls.Add(this.txtTelemovel);
             this.Controls.Add(this.label1);
@@ -257,6 +265,7 @@
             this.Text = "Gerir Funcionários";
             this.Load += new System.EventHandler(this.GerirRestaurante_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabalhadores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +291,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox txtTelemovel;
         private System.Windows.Forms.MaskedTextBox txtPostalCod;
-        private System.Windows.Forms.MaskedTextBox txtSalario;
         private System.Windows.Forms.Button btnAtualizarDados;
+        private System.Windows.Forms.NumericUpDown txtSalario;
     }
 }

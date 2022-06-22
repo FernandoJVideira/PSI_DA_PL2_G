@@ -54,9 +54,10 @@
             this.buttonRemMetodo = new System.Windows.Forms.Button();
             this.buttonValor = new System.Windows.Forms.Button();
             this.labelinfo = new System.Windows.Forms.Label();
-            this.textBoxValor = new System.Windows.Forms.MaskedTextBox();
             this.buttonHistory = new System.Windows.Forms.Button();
             this.listBoxClientes = new System.Windows.Forms.ListBox();
+            this.textBoxValor = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxValor)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonConcluir
@@ -282,14 +283,6 @@
             this.labelinfo.Text = "Termine o Pagamento para poder selecionar outro pedido";
             this.labelinfo.Visible = false;
             // 
-            // textBoxValor
-            // 
-            this.textBoxValor.Location = new System.Drawing.Point(786, 315);
-            this.textBoxValor.Mask = "0000.00";
-            this.textBoxValor.Name = "textBoxValor";
-            this.textBoxValor.Size = new System.Drawing.Size(46, 20);
-            this.textBoxValor.TabIndex = 69;
-            // 
             // buttonHistory
             // 
             this.buttonHistory.Location = new System.Drawing.Point(476, 431);
@@ -308,14 +301,29 @@
             this.listBoxClientes.Size = new System.Drawing.Size(149, 199);
             this.listBoxClientes.TabIndex = 70;
             // 
+            // textBoxValor
+            // 
+            this.textBoxValor.DecimalPlaces = 2;
+            this.textBoxValor.Location = new System.Drawing.Point(786, 315);
+            this.textBoxValor.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.textBoxValor.Name = "textBoxValor";
+            this.textBoxValor.Size = new System.Drawing.Size(72, 20);
+            this.textBoxValor.TabIndex = 71;
+            this.textBoxValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxValor.ThousandsSeparator = true;
+            // 
             // GesPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 545);
+            this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.listBoxClientes);
             this.Controls.Add(this.buttonHistory);
-            this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.labelinfo);
             this.Controls.Add(this.buttonValor);
             this.Controls.Add(this.buttonRemMetodo);
@@ -344,6 +352,7 @@
             this.Name = "GesPedidos";
             this.Text = "Gestão de Pedidos";
             this.Load += new System.EventHandler(this.GesPedidos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxValor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,7 +386,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelinfo;
         private System.Windows.Forms.Button buttonHistory;
-        private System.Windows.Forms.MaskedTextBox textBoxValor;
         private System.Windows.Forms.ListBox listBoxClientes;
+        private System.Windows.Forms.NumericUpDown textBoxValor;
     }
 }

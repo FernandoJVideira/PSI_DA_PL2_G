@@ -56,8 +56,6 @@ namespace Projeto_Principal
                 }
 
                 comboBoxEstados.DataSource = model.Estado.ToList<Estado>();
-            
-
             }
             else
             {
@@ -70,14 +68,14 @@ namespace Projeto_Principal
                                                     where pedido.Cliente == cliente
                                                     select pedido;
 
-
                 foreach (Pedido pedido in Pedidos)
                 {
-
-                    listBoxHistory.Items.Add(pedido);
-                    total += pedido.ValorTotal;
+                    if (pedido.EstadoId != 3)
+                    {
+                        listBoxHistory.Items.Add(pedido);
+                        total += pedido.ValorTotal;
+                    }
                 }
-
 
                 label1.Text = "Lista de Pedidos do cliente "+ cliente.Nome;
                 labelTotal.Visible = true;

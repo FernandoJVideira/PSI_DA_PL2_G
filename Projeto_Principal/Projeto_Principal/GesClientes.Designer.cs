@@ -177,7 +177,6 @@
             this.dataGridViewCliente.Size = new System.Drawing.Size(662, 405);
             this.dataGridViewCliente.TabIndex = 23;
             this.dataGridViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellClick);
-            this.dataGridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCliente_CellContentClick);
             // 
             // btnEditCliente
             // 
