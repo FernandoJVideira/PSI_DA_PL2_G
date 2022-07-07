@@ -1,0 +1,18 @@
+Cliente: Jujérbio (888888888) em recebido em 7/4/2022 9:32:29 PM
+--------------------------------------------------------------------
+
+Artigos:
+	Conas Fritas 0.69 €
+
+	Conas Fritas 0.69 €
+
+--------------------------------------------------------------------
+
+O total do cliente é: 1.38 €
+
+Pedido em Processamento: 7/4/2022 9:32:55 PM
+
+Pedido Finalizado: 7/4/2022 9:33:15 PM
+
+Métodos de Pagamento:
+	1.38€ via Cú

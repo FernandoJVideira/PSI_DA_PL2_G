@@ -64,7 +64,21 @@ namespace Projeto_Principal
                 listBoxMenu.Items.Add(item);
             }
 
-            comboBoxCategoria.DataSource = model.Categoria.ToList<Categoria>();
+            foreach(Categoria cat in model.Categoria.ToList<Categoria>())
+            {
+                if (cat.Ativo)
+                {
+                    comboBoxCategoria.Enabled = true;
+                    label7.Visible = false;
+                    comboBoxCategoria.Items.Add(cat);
+                }
+                else if(comboBoxCategoria.Items == null)
+                {
+                    comboBoxCategoria.Enabled = false;
+                    label7.Visible = true;
+                }
+            }
+            
         }
 
         private void buttonAddEngrediente_Click(object sender, EventArgs e)

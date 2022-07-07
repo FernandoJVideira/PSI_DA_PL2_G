@@ -126,9 +126,20 @@ namespace Projeto_Principal
 
 
             //--------------- load metodos
-
-            comboBox1.DataSource = listaMetodoPagamentos;
-
+            foreach(MetodoPagamento metodoPagamento in listaMetodoPagamentos)
+            {
+                if (metodoPagamento.Ativo)
+                {
+                    label8.Visible = false;
+                    comboBox1.Enabled = true;
+                    comboBox1.Items.Add(metodoPagamento);
+                }
+                else if (comboBox1.Items == null)
+                {
+                    comboBox1.Enabled = false;
+                    label8.Visible = true;
+                }
+            }
         }
 
         private void GesPedidos_Load(object sender, EventArgs e)

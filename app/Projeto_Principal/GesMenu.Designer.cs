@@ -55,6 +55,7 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtPreco = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPreco)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             // 
             // btnRegistar
             // 
-            this.btnRegistar.Location = new System.Drawing.Point(70, 443);
+            this.btnRegistar.Location = new System.Drawing.Point(69, 454);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(85, 23);
             this.btnRegistar.TabIndex = 6;
@@ -163,14 +164,14 @@
             // listBoxIngredientes
             // 
             this.listBoxIngredientes.FormattingEnabled = true;
-            this.listBoxIngredientes.Location = new System.Drawing.Point(70, 314);
+            this.listBoxIngredientes.Location = new System.Drawing.Point(69, 325);
             this.listBoxIngredientes.Name = "listBoxIngredientes";
             this.listBoxIngredientes.Size = new System.Drawing.Size(187, 82);
             this.listBoxIngredientes.TabIndex = 12;
             // 
             // txtIngredientes
             // 
-            this.txtIngredientes.Location = new System.Drawing.Point(70, 288);
+            this.txtIngredientes.Location = new System.Drawing.Point(69, 299);
             this.txtIngredientes.Name = "txtIngredientes";
             this.txtIngredientes.Size = new System.Drawing.Size(160, 20);
             this.txtIngredientes.TabIndex = 13;
@@ -178,7 +179,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(67, 261);
+            this.label5.Location = new System.Drawing.Point(66, 272);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 14;
@@ -199,7 +200,7 @@
             // 
             // buttonAddEngrediente
             // 
-            this.buttonAddEngrediente.Location = new System.Drawing.Point(236, 288);
+            this.buttonAddEngrediente.Location = new System.Drawing.Point(235, 299);
             this.buttonAddEngrediente.Name = "buttonAddEngrediente";
             this.buttonAddEngrediente.Size = new System.Drawing.Size(21, 23);
             this.buttonAddEngrediente.TabIndex = 37;
@@ -209,7 +210,7 @@
             // 
             // buttonRemvEngrediente
             // 
-            this.buttonRemvEngrediente.Location = new System.Drawing.Point(70, 402);
+            this.buttonRemvEngrediente.Location = new System.Drawing.Point(69, 413);
             this.buttonRemvEngrediente.Name = "buttonRemvEngrediente";
             this.buttonRemvEngrediente.Size = new System.Drawing.Size(187, 23);
             this.buttonRemvEngrediente.TabIndex = 38;
@@ -236,7 +237,7 @@
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(167, 443);
+            this.btnAtualizar.Location = new System.Drawing.Point(166, 454);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(91, 23);
             this.btnAtualizar.TabIndex = 42;
@@ -278,7 +279,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(71, 481);
+            this.button1.Location = new System.Drawing.Point(70, 492);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(187, 23);
             this.button1.TabIndex = 47;
@@ -301,11 +302,22 @@
             this.txtPreco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPreco.ThousandsSeparator = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(108, 251);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(148, 13);
+            this.label7.TabIndex = 50;
+            this.label7.Text = "Não existem categorias ativas";
+            this.label7.Visible = false;
+            // 
             // GesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 545);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDelete);
@@ -370,5 +382,6 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown txtPreco;
+        private System.Windows.Forms.Label label7;
     }
 }
